@@ -18,7 +18,7 @@ class LoginForm extends React.Component{
     // Once the user has been authenticated, redirect to the Rooms page
   componentWillReceiveProps(nextProps) {
     if (nextProps.currentUser === true) {
-      this.props.history.push('/startgame');
+      this.props.history.push('/');
     }
     this.setState({errors: nextProps.errors})
   }
@@ -33,7 +33,7 @@ class LoginForm extends React.Component{
     e.preventDefault();
 
     let user = {
-      email: this.state.email,
+      username: this.state.username,
       password: this.state.password
     };
 

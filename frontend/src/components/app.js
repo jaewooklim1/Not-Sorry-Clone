@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
-
+// import Rooms from './main/rooms'
 import Splash from './main/splash';
 import Game from './games/Game';
 
