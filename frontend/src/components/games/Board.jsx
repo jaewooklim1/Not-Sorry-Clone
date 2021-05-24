@@ -14,6 +14,10 @@ const Board = (props) => {
        return [dieOne, dieTwo];
     }
 
+    const initializePiece = () => {
+        
+    }
+
     // console.log(rollDice());
     // console.log(rollDice());
     // console.log(rollDice());
