@@ -1,0 +1,12 @@
+.board-container {
+    height: 650px;
+    background-color: red;
+}
+
+.tiles-container {
+    display: flex;
+}
+
+.board-tile {
+    border: solid black 2px;
+} 
