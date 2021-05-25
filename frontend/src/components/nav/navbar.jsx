@@ -17,7 +17,7 @@ class NavBar extends React.Component {
         if (this.props.loggedIn) {
           return (
               <div>
-                  <h1>Hi, {this.props.user} </h1>
+                  {/* <h1>Hi, {this.props.user} </h1> upon logout i receive a username undefined error*/}
                   <button onClick={this.logoutUser}>Logout</button>
               </div>
           );
@@ -32,6 +32,7 @@ class NavBar extends React.Component {
     }
   
     render() {
+        console.log(this.state)
         return (
           <div>
               <h1>Not Sorry</h1>
