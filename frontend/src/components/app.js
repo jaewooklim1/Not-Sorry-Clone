@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
-// import Rooms from './main/rooms'
+import RoomsContainer from './main/rooms_container'
 import Splash from './main/splash';
 import Game from './games/Game';
 
@@ -12,9 +12,10 @@ const App = () => (
     <div>
         <NavBarContainer />
         <Switch>
-            <AuthRoute exact path="/" component={Splash} />
+            <Route exact path="/" component={Splash} />
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
+            <ProtectedRoute path="/rooms" component={RoomsContainer} /> 
             <Route exact path="/game" component={Game}/>
         </Switch>
     </div>
