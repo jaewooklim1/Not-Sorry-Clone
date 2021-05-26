@@ -1,4 +1,4 @@
-import { fetchAllRooms,
+import { fetchAllRooms, 
     getRoom, 
     createRoom,  
     removeRoom} from '../util/room_api_util'; 
@@ -11,10 +11,11 @@ export const RECEIVE_ROOM_ERRORS= "RECEIVE_ROOM_ERRORS";
 export const REMOVE_ROOM_ERRORS= "REMOVE_ROOM_ERRORS";
 
 
-export const receiveRooms = rooms => ({ 
-    type: RECEIVE_ROOMS, 
-    rooms
-}); 
+
+// export const receiveRooms = rooms => ({ 
+//     type: RECEIVE_ROOMS, 
+//     rooms
+// }); 
 
 // export const receiveRoom = room => ({ 
 //     type: RECEIVE_ROOM, 
@@ -26,26 +27,30 @@ export const receiveRooms = rooms => ({
 //     room: roomData,
 // });
 
+
 export const receiveNewRoom = room => ({
     type: RECEIVE_NEW_ROOM,
     room
 });
 
-export const receiveRoomErrors= errors => ({ 
-    type: RECEIVE_ROOM_ERRORS, 
-    errors
-}); 
 
-export const removeRoomErrors= ()=> ({
-    type: REMOVE_ROOM_ERRORS
 
-}); 
+// export const receiveRoomErrors= errors => ({ 
+//     type: RECEIVE_ROOM_ERRORS, 
+//     errors
+// }); 
 
-export const fetchRooms=()=> dispatch => (
-    fetchAllRooms()
-        .then(rooms => dispatch(receiveRooms(rooms)))
-        .catch(err => console.log(err))
-); 
+// export const removeRoomErrors= ()=> ({
+//     type: REMOVE_ROOM_ERRORS
+
+// }); 
+
+// export const fetchRooms=()=> dispatch => (
+//     fetchAllRooms()
+//         .then(rooms => dispatch(receiveRooms(rooms)))
+//         .catch(err => console.log(err))
+// ); 
+
 
 export const createNewRoom=(roomData)=> dispatch => ( 
     createRoom(roomData)

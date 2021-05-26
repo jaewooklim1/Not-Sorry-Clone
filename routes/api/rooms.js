@@ -33,7 +33,7 @@ router.post('/',
   
       const newRoom = new Room({
         roomname: req.body.roomname,
-        user: req.user.id
+        user: req.user.id,
       });
       
       //should redirect user to /room/:room_id
