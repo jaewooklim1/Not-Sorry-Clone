@@ -8,9 +8,16 @@ const roomsReducer= (state={}, action)=> {
     // let newState = Object.assign({}, state); 
     switch (action.type) {
         case RECEIVE_ROOMS:
-            return action.rooms; 
+            // return action.rooms;
+            const newState = {};
+            action.rooms.forEach(room => {newState[room._id] = room} ) 
+            return newState;
         case RECEIVE_NEW_ROOM: 
-            return Object.assign({}, state, {[action.room.id]: action.room}); 
+            return Object.assign(
+                {}, 
+                state, 
+                {[action.room._id]: action.room}
+            ); 
         default:
             return state;
     }
