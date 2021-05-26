@@ -7,6 +7,7 @@ import SignupFormContainer from './session/signup_form_container';
 import RoomsContainer from './main/rooms_container'
 import Splash from './main/splash';
 import Game from './games/Game';
+const path = require('path');
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('frontend/build'));
@@ -14,7 +15,7 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
     })
   }
-  
+
 const App = () => (
     <div>
         <NavBarContainer />
