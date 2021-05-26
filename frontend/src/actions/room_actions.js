@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import { fetchAllRooms, 
 //     fetchUsersRooms,
 //     getRoom, 
@@ -11,6 +12,20 @@
 // export const RECEIVE_NEW_ROOM = "RECEIVE_NEW_ROOM"; 
 // export const RECEIVE_ROOM_ERRORS= "RECEIVE_ROOM_ERRORS"; 
 // export const REMOVE_ROOM_ERRORS= "REMOVE_ROOM_ERRORS";
+=======
+import { fetchAllRooms, 
+    getRoom, 
+    createRoom, 
+    updateRoom, 
+    removeRoom} from '../util/room_api_util'; 
+
+export const RECEIVE_ROOMS= "RECEIVE_ROOMS"; 
+// export const RECEIVE_ROOM= "RECEIVE_ROOM"; 
+export const RECEIVE_ROOM_DATA = "RECEIVE_ROOM_DATA";
+export const RECEIVE_NEW_ROOM = "RECEIVE_NEW_ROOM"; 
+export const RECEIVE_ROOM_ERRORS= "RECEIVE_ROOM_ERRORS"; 
+export const REMOVE_ROOM_ERRORS= "REMOVE_ROOM_ERRORS";
+>>>>>>> b80b6515d6a8ae462f5154af70a91cfe08888967
 
 
 // export const receiveRooms = rooms => ({ 
