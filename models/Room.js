@@ -5,7 +5,7 @@ const RoomSchema = new Schema ({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'users'
-      },
+    },
     roomname: {
         type: String,
         required: true
@@ -14,12 +14,14 @@ const RoomSchema = new Schema ({
         type: String,
     },
     headcount: {
-        type: Number, 
+        type: Number,
+        max: [4, "Max is 4"],
         default: 1
+    },
+    date: {
+        type: String,
+        default: Date.now,
     }
-
-}, {
-    timestamps: true
 })
 
 module.exports = Room = mongoose.model('room', RoomSchema);
