@@ -1,12 +1,11 @@
 import { fetchAllRooms, 
-    fetchUsersRooms,
     getRoom, 
     createRoom, 
     updateRoom, 
     removeRoom} from '../util/room_api_util'; 
 
 export const RECEIVE_ROOMS= "RECEIVE_ROOMS"; 
-export const RECEIVE_ROOM= "RECEIVE_ROOM"; 
+// export const RECEIVE_ROOM= "RECEIVE_ROOM"; 
 export const RECEIVE_ROOM_DATA = "RECEIVE_ROOM_DATA";
 export const RECEIVE_NEW_ROOM = "RECEIVE_NEW_ROOM"; 
 export const RECEIVE_ROOM_ERRORS= "RECEIVE_ROOM_ERRORS"; 

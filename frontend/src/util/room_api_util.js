@@ -4,9 +4,9 @@ export const fetchAllRooms= () => {
     return axios.get('/api/rooms')
 }
 
-export const fetchUsersRooms= id => { 
-    return axios.get(`/api/rooms/user/${id}`)
-}
+// export const fetchUsersRooms= id => { 
+//     return axios.get(`/api/rooms/user/${id}`)
+// }
 
 export const getRoom = roomId => { 
     return axios.get(`/api/rooms/${roomId}`)
