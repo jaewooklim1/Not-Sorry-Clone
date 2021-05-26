@@ -1,8 +1,9 @@
-const JwtStrategy = require('passport-jwt');
+const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const keys = require('./keys');
+require('dotenv').config();
 
 const options = {};
 options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
