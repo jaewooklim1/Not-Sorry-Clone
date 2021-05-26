@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styling/splash.css';
+import '../../styling/splash.scss';
 import { AuthRoute } from "../../util/route_util";
 import login_form_container from "../session/login_form_container";
 import signup_form_container from "../session/signup_form_container";
