@@ -147,7 +147,6 @@ const Board = (props) => {
                 // console.log("current player piece", currentPlayer.pieces[i]);
                 if ((player.pieces[i].color !== currentPlayer.pieces[i].color) && (player.pieces[i].pos === (currentPlayer.pieces[i].pos + diceRoll))) {
                     // console.log("players piece", player.pieces[i])
-                    console.log("BACK TO AFRICA");
                     player.pieces[i].pos = -1;
                 }
                 break;
@@ -530,7 +529,7 @@ const Board = (props) => {
             <br />
 
             <button onClick={() => startGame(players)} className="reset">
-                RESET BTICH
+                RESET 
             </button>
         </div>
     )
