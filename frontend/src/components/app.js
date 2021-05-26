@@ -8,8 +8,6 @@ import RoomsContainer from './main/rooms_container'
 import Splash from './main/splash';
 import Game from './games/Game';
 
-
-
 const App = () => (
     <div>
         <NavBarContainer />
