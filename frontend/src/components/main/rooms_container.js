@@ -1,14 +1,19 @@
-// import { connect } from 'react-redux';
-// import { fetchRooms, createRoom } from '../../actions/room_actions';
-// import Rooms from './rooms';  
+import { connect } from 'react-redux';
+import { fetchRooms, createNewRoom } from '../../actions/room_actions';
+import { openModal } from '../../actions/modal_actions'
+import Rooms from './rooms';  
 
-// const mSTP= (state)=> ({
+const mSTP= (state)=> {
+    console.log(state)
+    return ({
+    rooms: state.entities.rooms.data
+})}; 
 
-// }); 
+const mDTP= (dispatch)=> ({ 
+    fetchRooms: ()=> dispatch(fetchRooms()), 
+    createRoom: (room)=> dispatch(createNewRoom(room)), 
+    openModal: modal => dispatch(openModal(modal))
+})
 
-// const mDTP= (dispatch)=> ({ 
-//     fetchRooms: ()=> dispatch(fetchRooms()), 
-//     createRoom: (room)=> dispatch(createRoom(room))
-// })
+export default connect(mSTP, mDTP)(Rooms);
 
-// export default connect(null, mDTP)(Rooms);

@@ -1,22 +1,6 @@
-<<<<<<< HEAD
-// import { fetchAllRooms, 
-//     fetchUsersRooms,
-//     getRoom, 
-//     createRoom, 
-//     updateRoom, 
-//     removeRoom} from '../util/room_api_util'; 
-
-// export const RECEIVE_ROOMS= "RECEIVE_ROOMS"; 
-// export const RECEIVE_ROOM= "RECEIVE_ROOM"; 
-// export const RECEIVE_ROOM_DATA = "RECEIVE_ROOM_DATA";
-// export const RECEIVE_NEW_ROOM = "RECEIVE_NEW_ROOM"; 
-// export const RECEIVE_ROOM_ERRORS= "RECEIVE_ROOM_ERRORS"; 
-// export const REMOVE_ROOM_ERRORS= "REMOVE_ROOM_ERRORS";
-=======
 import { fetchAllRooms, 
     getRoom, 
-    createRoom, 
-    updateRoom, 
+    createRoom,  
     removeRoom} from '../util/room_api_util'; 
 
 export const RECEIVE_ROOMS= "RECEIVE_ROOMS"; 
@@ -25,7 +9,7 @@ export const RECEIVE_ROOM_DATA = "RECEIVE_ROOM_DATA";
 export const RECEIVE_NEW_ROOM = "RECEIVE_NEW_ROOM"; 
 export const RECEIVE_ROOM_ERRORS= "RECEIVE_ROOM_ERRORS"; 
 export const REMOVE_ROOM_ERRORS= "REMOVE_ROOM_ERRORS";
->>>>>>> b80b6515d6a8ae462f5154af70a91cfe08888967
+
 
 
 // export const receiveRooms = rooms => ({ 
@@ -43,10 +27,13 @@ export const REMOVE_ROOM_ERRORS= "REMOVE_ROOM_ERRORS";
 //     room: roomData,
 // });
 
-// export const receiveNewRoom = room => ({
-//     type: RECEIVE_NEW_ROOM,
-//     room,
-// });
+
+export const receiveNewRoom = room => ({
+    type: RECEIVE_NEW_ROOM,
+    room
+});
+
+
 
 // export const receiveRoomErrors= errors => ({ 
 //     type: RECEIVE_ROOM_ERRORS, 
@@ -64,11 +51,12 @@ export const REMOVE_ROOM_ERRORS= "REMOVE_ROOM_ERRORS";
 //         .catch(err => console.log(err))
 // ); 
 
-// export const createRoom=(roomData)=> dispatch => ( 
-//     createRoom(roomData)
-//         .then(room => dispatch(receiveNewRoom(room)))
-//         .catch(err => console.log(err))
-// )
+
+export const createNewRoom=(roomData)=> dispatch => ( 
+    createRoom(roomData)
+        .then(room => dispatch(receiveNewRoom(room)))
+        .catch(err => console.log(err))
+)
 
 // export const updateRoom=(roomData)=> dispatch => (
 //     updateRoom(roomData)

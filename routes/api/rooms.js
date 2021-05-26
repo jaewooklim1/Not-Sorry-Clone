@@ -37,7 +37,7 @@ router.post('/',
       });
       
       //should redirect user to /room/:room_id
-      newRoom.save().then(res.redirect(`rooms/${newRoom.id}`));
+      newRoom.save()
     }
 );
 
