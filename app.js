@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'production') {
   }
 
 mongoose
-  .connect("mongodb://localhost:5000/notSorry", { useNewUrlParser: true })
+  .connect(db, { useNewUrlParser: true })
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
 
@@ -64,7 +64,7 @@ app.use( bodyParser.json());
 
 app.use("/api/users", users);
 app.use("/api/rooms", rooms);
-// app.use("/api/messages", messages);
+app.use("/api/messages", messages);
 
 
 
