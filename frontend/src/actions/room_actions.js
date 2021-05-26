@@ -47,14 +47,22 @@ export const receiveNewRoom = room => ({
 
 export const fetchRooms=()=> dispatch => (
     fetchAllRooms()
-        .then(rooms => dispatch(receiveRooms(rooms)))
+        .then(rooms => { 
+            
+            dispatch(receiveRooms(rooms.data))
+            
+        }) 
+        
         .catch(err => console.log(err))
 ); 
 
 
 export const createNewRoom=(roomData)=> dispatch => ( 
     createRoom(roomData)
-        .then(room => dispatch(receiveNewRoom(room)))
+        .then(room => {
+            
+            dispatch(receiveNewRoom(room.data))
+        })
         .catch(err => console.log(err))
 )
 
