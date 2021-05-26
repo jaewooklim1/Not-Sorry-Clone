@@ -44,10 +44,10 @@ mongoose
   // });
   
   
-app.get("/", (req, res) => {
+// app.get("/", (req, res) => {
     
-  res.send("Hello mern sweet hahahah")
-});
+//   res.send("Hello mern sweet hahahah")
+// });
   
 app.use(passport.initialize());
 require('./config/passport')(passport);
