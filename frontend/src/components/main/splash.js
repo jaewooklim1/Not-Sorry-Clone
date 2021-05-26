@@ -4,7 +4,7 @@ import { AuthRoute } from "../../util/route_util";
 import login_form_container from "../session/login_form_container";
 import signup_form_container from "../session/signup_form_container";
 import { Link, Switch } from 'react-router-dom';
-import Modal from './modal.js';
+import Modal from './Learn_to_play_modal';
 
 
 class Splash extends React.Component {
@@ -22,7 +22,8 @@ class Splash extends React.Component {
             <Modal></Modal>
             {/* <a className='second-menu' href='https://www.youtube.com/watch?v=y-puYiDeIhg'>Learn to Play</a> */}
             <a className='fourth-menu' href='www.google.com'>Fourth Menu</a>
-            <a className='fifth-menu' href='www.google.com'>Account</a>         
+            <a className='fifth-menu' href='www.google.com'>Sign In</a>         
+            <a className='sixth-menu' href='www.google.com'>Register</a>         
           </ul>
           <div className="account-creation">
           <Switch>
