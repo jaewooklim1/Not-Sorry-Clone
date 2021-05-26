@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'production') {
   }
 
 mongoose
-  .connect("mongodb://localhost:5000/notSorry", { useNewUrlParser: true })
+  .connect("mongodb://localhost:3000/notSorry", { useNewUrlParser: true })
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
 
