@@ -24,7 +24,7 @@ mongoose
       // Send the last messages to the user.
       socket.emit('init', messages);
     });
-  
+
     // Listen to connected users for a new message.
     socket.on('message', (msg) => {
       // Create a message with the content and the name of the user.
@@ -41,6 +41,14 @@ mongoose
       // Notify all other users about a new message.
       socket.broadcast.emit('push', msg);
     });
+
+    socket.on("newGameRoom", (user) => {
+
+    })
+
+    socket.on("joinGameRoom", (user, lobbyI) => {
+
+    })
   });
   
   
