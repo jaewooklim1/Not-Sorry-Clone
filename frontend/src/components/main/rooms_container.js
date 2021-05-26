@@ -3,9 +3,11 @@ import { fetchRooms, createNewRoom } from '../../actions/room_actions';
 import { openModal } from '../../actions/modal_actions'
 import Rooms from './rooms';  
 
-const mSTP= (state)=> ({
+const mSTP= (state)=> {
+    console.log(state)
+    return ({
     rooms: state.entities.rooms.data
-}); 
+})}; 
 
 const mDTP= (dispatch)=> ({ 
     fetchRooms: ()=> dispatch(fetchRooms()), 

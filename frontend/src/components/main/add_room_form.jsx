@@ -10,7 +10,7 @@ class AddRoom extends React.Component{
     handleSubmit(e){ 
         e.preventDefault();
         const room= Object.assign({}, this.state);
-        this.props.createRoom(room)
+        this.props.createRoom(room).then(this.props.closeModal())
     }
 
     update(field){ 
