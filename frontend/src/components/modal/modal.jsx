@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import AddRoomContainer from '../main/add_room_container'; 
 import '../../modal.css'
 
-const Modal= ({ modal, closeModal})=> { 
+const Modal = ({ modal, closeModal})=> { 
     if (!modal){ 
         return null; 
     }

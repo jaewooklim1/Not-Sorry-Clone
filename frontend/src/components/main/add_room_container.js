@@ -11,7 +11,7 @@ const mSTP= (state)=> ({
 
 const mDTP = (dispatch) => ({ 
     createRoom: roomData => dispatch(createNewRoom(roomData)), 
-    closeModal: ()=> dispatch(closeModal())
+    closeModal: () => dispatch(closeModal())
 })
 
 export default connect(mSTP, mDTP)(AddRoom); 

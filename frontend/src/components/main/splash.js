@@ -17,7 +17,7 @@ class Splash extends React.Component {
             <img className="sorry-logo-transparent" src="https://i.imgur.com/DlHwK47.png"/>
           </div>
           <div>          
-          <ul class="banner-menu">            
+          <ul className="banner-menu">            
             <a className='first-menu' href='www.rooms.com'>Rooms</a>
             <Modal></Modal>
             {/* <a className='second-menu' href='https://www.youtube.com/watch?v=y-puYiDeIhg'>Learn to Play</a> */}

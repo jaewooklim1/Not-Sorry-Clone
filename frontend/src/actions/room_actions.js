@@ -12,10 +12,10 @@ export const REMOVE_ROOM_ERRORS= "REMOVE_ROOM_ERRORS";
 
 
 
-// export const receiveRooms = rooms => ({ 
-//     type: RECEIVE_ROOMS, 
-//     rooms
-// }); 
+export const receiveRooms = rooms => ({ 
+    type: RECEIVE_ROOMS, 
+    rooms
+}); 
 
 // export const receiveRoom = room => ({ 
 //     type: RECEIVE_ROOM, 
@@ -45,11 +45,11 @@ export const receiveNewRoom = room => ({
 
 // }); 
 
-// export const fetchRooms=()=> dispatch => (
-//     fetchAllRooms()
-//         .then(rooms => dispatch(receiveRooms(rooms)))
-//         .catch(err => console.log(err))
-// ); 
+export const fetchRooms=()=> dispatch => (
+    fetchAllRooms()
+        .then(rooms => dispatch(receiveRooms(rooms)))
+        .catch(err => console.log(err))
+); 
 
 
 export const createNewRoom=(roomData)=> dispatch => ( 
