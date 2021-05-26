@@ -64,7 +64,7 @@ app.use( bodyParser.json());
 
 app.use("/api/users", users);
 app.use("/api/rooms", rooms);
-app.use("/api/messages", messages);
+// app.use("/api/messages", messages);
 
 
 
