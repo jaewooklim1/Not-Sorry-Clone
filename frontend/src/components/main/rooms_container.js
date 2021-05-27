@@ -4,7 +4,8 @@ import { openModal } from '../../actions/modal_actions'
 import Rooms from './rooms';  
 
 const mSTP= (state)=> {
-    console.log(state)
+    // console.log(state);
+    // debugger 
     return ({
     rooms: Object.values(state.entities.rooms)
 })}; 

@@ -5,10 +5,13 @@ import {
 
 const roomsReducer= (state={}, action)=> { 
     Object.freeze(state); 
-    let newState = Object.assign({}, state); 
+    // let newState = Object.assign({}, state); 
     switch (action.type) {
         case RECEIVE_ROOMS:
-            return action.rooms; 
+            // return action.rooms;
+            const newState = {};
+            action.rooms.forEach(room => {newState[room._id] = room} ) 
+            return newState;
         case RECEIVE_NEW_ROOM: 
             return Object.assign({}, state, {[Object.keys(state).length]: action.room}); 
         default:
