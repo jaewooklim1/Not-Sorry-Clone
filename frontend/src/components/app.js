@@ -12,7 +12,7 @@ import { io } from 'socket.io-client';
 import { useDispatch } from 'react-redux';
 import { receiveNewRoom } from '../actions/room_actions';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-// import Game from './games/Game';
+import Game from './games/Game';
 export const socket = io.connect('http://localhost:5000');
 
 socket.connect();
@@ -40,6 +40,10 @@ const App = () => {
             console.log(error);
         })
 
+        socket.on("started_game", room => {
+            console.log("gamestate from frontend", room.gameState);
+        })
+
     }, []);
 
     return (
@@ -52,7 +56,7 @@ const App = () => {
                 <AuthRoute exact path="/login" component={LoginFormContainer} />
                 <AuthRoute exact path="/signup" component={SignupFormContainer} />
                 <ProtectedRoute path="/rooms" component={RoomsContainer} />
-                {/* <Route exact path="/game" component={Game}/> */}
+                <Route exact path="/game" component={Game}/>
             </Switch>
         </div>
     )
