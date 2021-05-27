@@ -9,17 +9,37 @@ import Splash from './main/splash';
 import Modal from './modal/modal';
 import socketIOClient from 'socket.io-client';
 import { io } from 'socket.io-client';
+import { useDispatch } from 'react-redux';
+import { receiveNewRoom } from '../actions/room_actions';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 // import Game from './games/Game';
+export const socket = io.connect('http://localhost:5000');
 
-
+socket.connect();
 
 const App = () => {
-
+    const dispatch = useDispatch();
+    const history = useHistory();
     useEffect( () => {
-        const socket = io()
+        
         socket.on("test", (test) => {
             console.log("message from server", test);
         })
+
+        socket.on("push_new_room", (room) => {
+            dispatch(receiveNewRoom(room))
+            history.push(`/rooms/${room._id}`)
+        })
+
+        socket.on("joined_room", (room) => {
+            console.log("FRONT END WOOWWOWOWOOWOW")
+            history.push(`/rooms/${room._id}`)
+        })
+
+        socket.on("join_room_error", ({error})=> {
+            console.log(error);
+        })
+
     }, []);
 
     return (

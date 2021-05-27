@@ -45,17 +45,18 @@ export const receiveNewRoom = room => ({
 
 // }); 
 
-export const fetchRooms=()=> dispatch => (
+export const fetchRooms = () => dispatch => (
     fetchAllRooms()
-        .then(rooms => dispatch(receiveRooms(rooms)))
+        .then(rooms => {console.log("ROOOOOOOOMS", rooms); 
+            dispatch(receiveRooms(rooms.data))})
         .catch(err => console.log(err))
 ); 
 
 
-export const createNewRoom=(roomData)=> dispatch => ( 
+export const createNewRoom = (roomData) => dispatch => ( 
     createRoom(roomData)
-        .then(room => dispatch(receiveNewRoom(room)))
-        .catch(err => console.log(err))
+        // .then(room => dispatch(receiveNewRoom(room)))
+        // .catch(err => console.log(err))
 )
 
 // export const updateRoom=(roomData)=> dispatch => (

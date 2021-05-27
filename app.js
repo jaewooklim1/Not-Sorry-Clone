@@ -15,6 +15,7 @@ const io = require('socket.io')(server, {
     origin: "*"
   }
 });
+const { onConnect } = require('./routes/api/socket_protocol');
 
 
 
@@ -51,11 +52,7 @@ mongoose
 //   });
 // });
 
-io.on('connection', socket => {
-
-  socket.emit("test", "weewowowowowwowo")
-  // socket.on()
-})
+io.on('connection',  (socket) => onConnect(socket, io));
 
 
 // app.get("/", (req, res) => {
@@ -89,3 +86,5 @@ server.listen(port, () => console.log(`Server is running on port ${port}`));
   
 // app.listen(port, () => console.log(`Server is running on port ${port}`));
 
+module.exports = io; 
+// export default io; 

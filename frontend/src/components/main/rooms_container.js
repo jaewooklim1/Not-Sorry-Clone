@@ -6,7 +6,7 @@ import Rooms from './rooms';
 const mSTP= (state)=> {
     console.log(state)
     return ({
-    rooms: state.entities.rooms.data
+    rooms: Object.values(state.entities.rooms)
 })}; 
 
 const mDTP= (dispatch)=> ({ 
