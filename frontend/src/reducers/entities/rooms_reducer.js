@@ -1,5 +1,6 @@
 import { 
-    RECEIVE_ROOMS,  
+    RECEIVE_ROOMS,
+    RECEIVE_ROOM,  
     RECEIVE_NEW_ROOM,
 }from '../../actions/room_actions'; 
 
@@ -14,6 +15,8 @@ const roomsReducer= (state={}, action)=> {
             return newState;
         case RECEIVE_NEW_ROOM: 
             return Object.assign({}, state, {[Object.keys(state).length]: action.room}); 
+        case RECEIVE_ROOM: 
+            return action.room._id = action.room
         default:
             return state;
     }

@@ -1,16 +1,19 @@
-import {connect} from 'react-redux'; 
+import {connect} from 'react-redux';
+import { fetchGameRoom } from '../../actions/room_actions';  
 import RoomShowPage from './room_show_page'
-const mSTP= state=> { 
+
+const mSTP= (state, ownProps)=> { 
     return({ 
-        roomname: state.entities.rooms
-    }
-    )
+        roomId: ownProps.match.params.roomId, 
+        userId: state.session.user.id,
+        rooms: state.entities.rooms
+    })
 }
 
 const mDTP = dispatch => { 
     return ({ 
-
+        fetchRoom: room=> dispatch(fetchGameRoom(room))
     })
 } 
 
-export default connect(mSTP, null)(RoomShowPage); 
+export default connect(mSTP, mDTP)(RoomShowPage); 
