@@ -12,11 +12,11 @@ const Board = (props) => {
     const [pos, setPos] = useState(-1);
     const [pieces, setPiece] = useState([]);
     const [safeZonePieces, setSafeZonePieces] = useState([]);
-    const [redCounter, setRedCounter] = useState(0);
-    const [blueCounter, setBlueCounter] = useState(0);
-    const [greenCounter, setGreenCounter] = useState(0);
-    const [yellowCounter, setYellowCounter] = useState(0);
-    let [activePieces, setActivePieces] = useState([]);
+    // const [redCounter, setRedCounter] = useState(0);
+    // const [blueCounter, setBlueCounter] = useState(0);
+    // const [greenCounter, setGreenCounter] = useState(0);
+    // const [yellowCounter, setYellowCounter] = useState(0);
+    // let [activePieces, setActivePieces] = useState([]);
     const [players, setPlayers] = useState([{ team: "red" }, { team: "blue" }, { team: "green" }, { team: "yellow" }]);
     const [currentPlayer, setCurrentPlayer] = useState(0);
     const [pointCounter, setPointCounter] = useState(0);
@@ -433,38 +433,7 @@ const Board = (props) => {
 
     }
 
-    const startGame = () => {
-        const newPlayers = players.map(player => {
-            player.pieces = [
-                {
-                    safeZonePos: -1,
-                    pos: -1,
-                    color: player.team
-                },
-                {
-                    safeZonePos: -1,
-                    pos: -1,
-                    color: player.team
-                },
-                {
-                    safeZonePos: -1,
-                    pos: -1,
-                    color: player.team
-                }
-            ]
-            return player;
-        })
-        setActivePieces([]);
-        setSafeZonePieces([]);
-        setCurrentPlayer(0);
-        setBlueCounter(0);
-        setRedCounter(0);
-        setGreenCounter(0);
-        setYellowCounter(0);
-        setPlayers(newPlayers);
-        console.log("players", players);
-    }
-
+    
     const initializePiece = (player) => {
 
         for (let i = 0; i < player.pieces.length; i++) {
@@ -479,6 +448,43 @@ const Board = (props) => {
             }
         }
     }
+
+    // const startGame = () => {
+    //     const newPlayers = room.gameState.players.map(player, idx => {
+    //         player.id.push(player._id);
+    //         player.pieces.push( [
+    //             {
+    //                 safeZonePos: -1,
+    //                 pos: -1,
+    //                 color: playerTeams[idx]
+    //             },
+    //             {
+    //                 safeZonePos: -1,
+    //                 pos: -1,
+    //                 color: playerTeams[idx]
+    //             },
+    //             {
+    //                 safeZonePos: -1,
+    //                 pos: -1,
+    //                 color: playerTeams[idx]
+    //             }
+    //         ]);
+    //         return player;
+    //     })
+    //     // setActivePieces([]);
+    //     // setSafeZonePieces([]);
+    //     setCurrentPlayer(0);
+    //     setBlueCounter(0);
+    //     setRedCounter(0);
+    //     setGreenCounter(0);
+    //     setYellowCounter(0);
+    //     currentPlayer = 0;
+    //     // setPlayers(newPlayers);
+    //     room.gameState.players = newPlayers;
+    //     console.log("new players protocol", newPlayers);
+    //     return io.emit("started_game", room.gameState);
+    // }
+
 
     console.log(players[currentPlayer]);
     // console.log(rollDice());
