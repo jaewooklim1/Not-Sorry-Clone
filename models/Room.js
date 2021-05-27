@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const RoomSchema = new Schema ({
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'users'
+        ref: 'User',
+        required: true
     },
     roomname: {
         type: String,
@@ -17,6 +18,12 @@ const RoomSchema = new Schema ({
         type: Number,
         max: [4, "Max is 4"],
         default: 1
+    },
+    players: {
+        type: [Schema.Types.ObjectId],
+        ref: 'User',
+        default: [],
+        required: true
     },
     date: {
         type: String,

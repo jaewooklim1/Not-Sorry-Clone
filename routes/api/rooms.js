@@ -9,7 +9,6 @@ const validateRoomInput = require('../../validation/rooms');
 
 router.get("/", (req, res) => {
     Room.find()
-    .sort({date: -1})
     .then(room => res.json(room))
     .catch(err=> res.status(404).json({noroomfound: "no room found"}))
 })

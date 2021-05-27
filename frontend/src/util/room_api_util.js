@@ -1,6 +1,7 @@
 import axios from 'axios'; 
+import { socket } from '../components/app'; 
 
-export const fetchAllRooms= () => { 
+export const fetchAllRooms = () => { 
     return axios.get('/api/rooms')
 }
 
@@ -12,14 +13,18 @@ export const getRoom = roomId => {
     return axios.get(`/api/rooms/${roomId}`)
 } 
 
-export const createRoom= (roomData)=> { 
-    return axios.post('/api/rooms/', roomData)
+// export const createRoom = (roomData)=> { 
+//     return axios.post('/api/rooms/', roomData)
+// }
+
+export const createRoom = (roomData)=> { 
+    return socket.emit('create_new_room', roomData)
 }
 
 // export const updateRoom= (roomData)=> { 
 //     return axios.patch(`/api/rooms/${roomData.id}`, roomData)
 // }
 
-export const removeRoom= (roomId)=> { 
+export const removeRoom = (roomId)=> { 
     return axios.delete(`/api/rooms/${roomId}`)
 }
