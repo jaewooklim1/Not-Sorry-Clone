@@ -28,6 +28,20 @@ const RoomSchema = new Schema ({
     date: {
         type: String,
         default: Date.now,
+    },
+    gameState: {
+        players: [{
+            id: [{
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            }],
+            pieces: {
+                type: [],
+                default: []
+            },
+        }],
+        activePieces: [],
+        safeZonePieces: []
     }
 })
 
