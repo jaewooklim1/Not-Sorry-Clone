@@ -13,14 +13,9 @@ import { io } from 'socket.io-client';
 import { useDispatch } from 'react-redux';
 import { receiveNewRoom } from '../actions/room_actions';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-<<<<<<< HEAD
 import Game from './games/Game';
 import { receiveLiveGame, startGame, endGame } from '../actions/live_room_actions';
-
-=======
 import './reset.scss';
-// import Game from './games/Game';
->>>>>>> 2403541a8a269c486d905e2cfd7caaa2885ed598
 export const socket = io.connect('http://localhost:5000');
 
 
@@ -85,7 +80,7 @@ const App = () => {
                 <AuthRoute exact path="/signup" component={SignupFormContainer} />
                 <ProtectedRoute path="/rooms/:roomId" component={RoomShowPage} />
                 <ProtectedRoute path="/rooms" component={RoomsContainer} />
-                {/* <Route exact path="/game" component={Game}/> */}
+                <Route exact path="/game" component={Game}/>
                 
             </Switch>
         </div>

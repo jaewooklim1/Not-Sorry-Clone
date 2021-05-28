@@ -4,14 +4,6 @@ import Board from './Board'
 
 const Game = (props) => {
 
-    const rollDice = () => {
-
-    }
-
-    const changeTurns = () => {
-
-    }    
-
     return (
         <div>
             <Board />

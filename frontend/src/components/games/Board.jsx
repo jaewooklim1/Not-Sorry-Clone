@@ -284,7 +284,10 @@ const Board = (props) => {
             <button onClick={() => socket.emit("start_game", liveRoom)}>
                 start game
             </button>
-            <div>
+            <div className="counter-container">
+
+            </div>
+            <div className="dice-roll">
                 {liveRoom.gameState.prevDiceRoll}
             </div>
         </div>
