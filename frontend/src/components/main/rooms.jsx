@@ -6,6 +6,15 @@ import "../../styling/rooms.scss";
 import { Link, Switch } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     "& > *": {
+//       margin: theme.spacing(1),
+//     },
+//   },
+// }));
 
 class Rooms extends React.Component {
   constructor(props) {
@@ -28,6 +37,7 @@ class Rooms extends React.Component {
     if (!rooms) {
       return null;
     }
+    // const classes = useStyles();
     return (
       // <Splash>
       <div className="whole-page">
@@ -46,16 +56,17 @@ class Rooms extends React.Component {
         </div>
         <div className="rooms-page-text">Sorry Lobby</div>
         <br></br>
-        <button
-          className="button-add-room"
-          variant="contained"
-          onClick={() => {
-            console.log("on click");
-            this.props.openModal({ modal: "addRoom" });
-          }}
-        >
-          Add Room
-        </button>
+        <div className="button-add-room">
+          <Button
+            variant="contained"
+            onClick={() => {
+              console.log("on click");
+              this.props.openModal({ modal: "addRoom" });
+            }}
+          >
+            Add Room
+          </Button>
+        </div>
         <div className="rooms-window">
           <ul>
             <Grid container style={{ justifyContent: "center" }}>
