@@ -18,7 +18,7 @@ class NavBar extends React.Component {
           return (
               <div>
                   {/* <h1>Hi, {this.props.user} </h1> upon logout i receive a username undefined error*/}
-                  <button onClick={this.logoutUser}>Logout</button>
+                  <div className="logout-button" onClick={this.logoutUser}>Logout</div>
               </div>
           );
         } else {

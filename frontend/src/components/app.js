@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Switch, Route } from 'react-router-dom';
-import NavBarContainer from './nav/navbar_container';
+
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import RoomsContainer from './main/rooms_container';
@@ -13,10 +13,16 @@ import { io } from 'socket.io-client';
 import { useDispatch } from 'react-redux';
 import { receiveNewRoom } from '../actions/room_actions';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+<<<<<<< HEAD
 import Game from './games/Game';
 import { receiveLiveGame, startGame, endGame } from '../actions/live_room_actions';
 
+=======
+import './reset.scss';
+// import Game from './games/Game';
+>>>>>>> 2403541a8a269c486d905e2cfd7caaa2885ed598
 export const socket = io.connect('http://localhost:5000');
+
 
 socket.connect();
 
@@ -69,15 +75,18 @@ const App = () => {
     return (
 
         <div>
+            
             <Modal />
-            <NavBarContainer />
+            
             <Switch>
+                
                 <Route exact path="/" component={Splash} />
                 <AuthRoute exact path="/login" component={LoginFormContainer} />
                 <AuthRoute exact path="/signup" component={SignupFormContainer} />
                 <ProtectedRoute path="/rooms/:roomId" component={RoomShowPage} />
                 <ProtectedRoute path="/rooms" component={RoomsContainer} />
-                <Route exact path="/game" component={Game}/>
+                {/* <Route exact path="/game" component={Game}/> */}
+                
             </Switch>
         </div>
     )

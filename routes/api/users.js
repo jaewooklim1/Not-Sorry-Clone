@@ -19,6 +19,11 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
   });
 })
 
+router.get("/", (req, res) => {
+  User.find()
+  .then(user => res.json(user))
+  .catch(err=> res.status(404).json({nouserfound: "no user found"}))
+})
 
 router.post('/register', (req, res) => {
     // Check to make sure nobody has already registered with a duplicate username
