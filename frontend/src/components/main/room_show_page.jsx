@@ -1,17 +1,22 @@
-import React from 'react'; 
-import {Link} from 'react-router-dom';
-import '../../styling/room_show_page.scss';  
+import React from 'react';
+import { Link } from 'react-router-dom';
+import '../../styling/room_show_page.scss';
+import { socket } from '../app';
+import Game from '../games/Game';
 
-class RoomShowPage extends React.Component{ 
-    constructor(props){ 
+class RoomShowPage extends React.Component {
+    constructor(props) {
         super(props);
-        this.state= {
-            rooms: this.props.rooms
-        };  
+        this.state = {
+            room: this.props.liveRoom
+        };
+
+        console.log("From constructor",this.props.rooms);
         // this.exitRoom= this.exitRoom.bind(this); 
     }
 
-    componentDidMount(){ 
+    componentDidMount() {
+        socket.emit("get_room", this.props.roomId);
         this.props.fetchRoom(this.props.roomId)
     }
 
@@ -23,27 +28,70 @@ class RoomShowPage extends React.Component{
     //     }
     // }
 
-    render(){ 
-        console.log(this.props); 
-        console.log(this.state.players); 
-        return( 
-            <div>
-                <header className="back">
-                    <Link to='/rooms' >
-                        Back to Lobby
+
+    render() {
+        const { rooms } = this.props;
+        if (!this.props.liveRoom) return null;
+        console.log("room", rooms);
+        if (!this.props.rooms) return null;
+        console.log("props from show room", this.props);
+        console.log(this.state.players);
+
+        const renderBoard = () => {
+            this.props.liveRoom.gameState.players.length === 0 ? socket.emit("start_game", this.props.liveRoom) : console.log("game in progress");
+            return <Game/>;
+        }
+
+        const renderShow = () => {
+            return (
+                <>
+                    <header className="back">
+                        <Link to='/rooms' >
+                            Back to Lobby
                     </Link>
-                </header>
-                <div className="game-box">
-                    <div className="players">    
+                    </header>
+                    <div className="game-box">
+                        <div className="players">
+                        </div>
+                        <div className="gameboard">
+                        </div>
                     </div>
-                    <div className="gameboard">
+                    <p>This is the show page of a Room</p>
+                    <button onClick={() => {
+                        // console.log("ON CLICK", this.props.rooms); 
+                        socket.emit("start_game", this.props.liveRoom)
+                        }}>
+                        start the game
+                    </button> 
+                </>
+            )
+        }
+        // console.log("live room from render", this.props.liveRoom.players);
+        return (
+            <div>
+                {this.props.liveRoom.players.length === 4 ? renderBoard() : renderShow()}
+                {/* <header className="back">
+                        <Link to='/rooms' >
+                            Back to Lobby
+                    </Link>
+                    </header>
+                    <div className="game-box">
+                        <div className="players">
+                        </div>
+                        <div className="gameboard">
+                        </div>
                     </div>
-                </div>
-                <p>This is the show page of a Room</p>
-                <p>Should have a board in here</p>
-            </div>
+                    <p>This is the show page of a Room</p>
+
+                    <button onClick={() => {
+                        // console.log("ON CLICK", this.props.rooms); 
+                        socket.emit("start_game", this.props.liveRoom)
+                        }}>
+                        start the game
+                    </button> */}
+           </div>
         )
     }
 }
 
-export default RoomShowPage; 
+export default RoomShowPage;

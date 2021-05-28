@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const RoomSchema = new Schema ({
+const RoomSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
@@ -31,17 +31,54 @@ const RoomSchema = new Schema ({
     },
     gameState: {
         players: [{
-            id: [{
+            id: {
                 type: Schema.Types.ObjectId,
                 ref: 'User'
-            }],
-            pieces: {
-                type: [],
-                default: []
             },
+            team: {
+                type: String,
+                default: ' ',
+                required: true
+            },
+            pieces: [{
+                pos: {
+                    type: Number,
+                    default: -1
+                },
+                safeZonePos: {
+                    type: Number,
+                    default: -1
+                },
+                color: {
+                    type: String,
+                },
+            }]
         }],
+        currentPlayer: {
+            type: Number,
+            default: 0
+        },
         activePieces: [],
-        safeZonePieces: []
+        safeZonePieces: [],
+        redCounter: {
+            type: Number,
+            default: 0
+        },
+        blueCounter: {
+            type: Number,
+            default: 0
+        },
+        greenCounter: {
+            type: Number,
+            default: 0
+        },
+        yellowCounter: {
+            type: Number,
+            default: 0
+        },
+        prevDiceRoll: {
+            type: Number
+        }
     }
 })
 

@@ -63,6 +63,10 @@ export const fetchGameRoom=(roomId)=> dispatch=> (
     getRoom(roomId)
         .then(room => dispatch(receiveRoom(room)))
 )
+
+export const receiveLiveGame = (room) => {
+    
+}
 // export const updateRoom=(roomData)=> dispatch => (
 //     updateRoom(roomData)
 //         .then(room=> dispatch(receiveRoom(room)))

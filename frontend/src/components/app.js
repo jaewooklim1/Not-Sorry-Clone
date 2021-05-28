@@ -14,6 +14,8 @@ import { useDispatch } from 'react-redux';
 import { receiveNewRoom } from '../actions/room_actions';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Game from './games/Game';
+import { receiveLiveGame, startGame, endGame } from '../actions/live_room_actions';
+
 export const socket = io.connect('http://localhost:5000');
 
 socket.connect();
@@ -32,6 +34,8 @@ const App = () => {
             history.push(`/rooms/${room._id}`)
         })
 
+
+
         socket.on("joined_room", (room) => {
             console.log("FRONT END WOOWWOWOWOOWOW")
             history.push(`/rooms/${room._id}`)
@@ -41,9 +45,24 @@ const App = () => {
             console.log(error);
         })
 
-        socket.on("started_game", room => {
-            console.log("gamestate from frontend", room.gameState);
+        socket.on("started_game", liveRoom => {
+            console.log("gamestate from frontend", liveRoom);
+            dispatch(startGame(liveRoom));
         })
+
+        socket.on("got_room", room => {
+            console.log("got room from frontend", room);
+            dispatch(receiveLiveGame(room));
+        })
+
+        socket.on("updated_game_state", liveRoom => {
+            console.log("update_game_state liveRoom", liveRoom);
+            dispatch(receiveLiveGame(liveRoom));
+        })
+
+        socket.on("end_game", liveRoom => {
+            dispatch(endGame(liveRoom));
+        }) 
 
     }, []);
 

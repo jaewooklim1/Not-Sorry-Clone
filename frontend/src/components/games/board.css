@@ -1,12 +1,24 @@
 .board-container {
     height: 650px;
-    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .tiles-container {
     display: flex;
+    flex-wrap: wrap;
+    width: 40%;
+    
 }
 
 .board-tile {
     border: solid black 2px;
+    width: 6.25%;
+    height: 45px;
+    border-color:  seagreen;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 } 

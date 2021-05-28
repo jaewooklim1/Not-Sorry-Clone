@@ -16,7 +16,7 @@ const roomsReducer= (state={}, action)=> {
         case RECEIVE_NEW_ROOM: 
             return Object.assign({}, state, {[Object.keys(state).length]: action.room}); 
         case RECEIVE_ROOM: 
-            return action.room._id = action.room
+            return Object.assign({}, state, {[action.room._id]: action.room});
         default:
             return state;
     }
