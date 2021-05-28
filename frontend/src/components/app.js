@@ -4,7 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
-import RoomsContainer from './main/rooms_container'
+import RoomsContainer from './main/rooms_container';
+import RoomShowPage from './main/room_show_container';
 import Splash from './main/splash';
 import Modal from './modal/modal';
 import socketIOClient from 'socket.io-client';
@@ -42,6 +43,10 @@ const App = () => {
             console.log(error);
         })
 
+        socket.on("started_game", room => {
+            console.log("gamestate from frontend", room.gameState);
+        })
+
     }, []);
 
     return (
@@ -54,6 +59,7 @@ const App = () => {
                 <Route exact path="/" component={Splash} />
                 <AuthRoute exact path="/login" component={LoginFormContainer} />
                 <AuthRoute exact path="/signup" component={SignupFormContainer} />
+                <ProtectedRoute path="/rooms/:roomId" component={RoomShowPage} />
                 <ProtectedRoute path="/rooms" component={RoomsContainer} />
                 {/* <Route exact path="/game" component={Game}/> */}
             </Switch>
