@@ -14,21 +14,9 @@ class Splash extends React.Component {
 
   render() {
     return (
+     
       <div className="whole-page">
-        <div class='ripple-background'>
-                <div class='circle xxlarge shade1'></div>
-                <div class='circle xlarge shade2'></div>
-                <div class='circle large shade3'></div>
-                <div class='circle medium shade4'></div>
-                <div class='circle small shade5'></div>
-        </div>   
-        <div class='ripple-background-right'>
-                <div class='circle1 xxlarge1 shade1'></div>
-                <div class='circle1 xlarge1 shade2'></div>
-                <div class='circle1 large1 shade3'></div>
-                <div class='circle1 medium1 shade4'></div>
-                <div class='circle1 small1 shade5'></div>
-        </div>   
+      
         <div className="sorry-banner"style={{position: "relative"}}>
           <div className="sorry-logo-container">
             <img className="sorry-logo-transparent" src="https://i.imgur.com/DlHwK47.png"/>
@@ -108,6 +96,7 @@ class Splash extends React.Component {
           </div> */}
         </footer>       
       </div>
+      // </div>
     );
   }
 }

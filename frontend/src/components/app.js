@@ -56,12 +56,14 @@ const App = () => {
             <Modal />
             
             <Switch>
+                
                 <Route exact path="/" component={Splash} />
                 <AuthRoute exact path="/login" component={LoginFormContainer} />
                 <AuthRoute exact path="/signup" component={SignupFormContainer} />
                 <ProtectedRoute path="/rooms/:roomId" component={RoomShowPage} />
                 <ProtectedRoute path="/rooms" component={RoomsContainer} />
                 {/* <Route exact path="/game" component={Game}/> */}
+                
             </Switch>
         </div>
     )
