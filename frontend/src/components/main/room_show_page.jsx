@@ -24,7 +24,6 @@ class RoomShowPage extends React.Component {
         // this.exitRoom = this.exitRoom.bind(this);
     }
 
-
     exitRoom(e) {
         // e.preventDefault(); 
         const index = this.props.rooms.data.players.indexOf(this.props.userId);

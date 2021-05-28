@@ -9,6 +9,7 @@ const validateRoomInput = require('../../validation/rooms');
 
 router.get("/", (req, res) => {
     Room.find()
+    .sort({date: -1})
     .then(room => res.json(room))
     .catch(err=> res.status(404).json({noroomfound: "no room found"}))
 })
@@ -24,8 +25,6 @@ router.get('/:id', (req, res) => {
 router.post('/',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        // console.log(req);
-        // debugger
       const { errors, isValid } = validateRoomInput(req.body);
   
       if (!isValid) {
@@ -38,7 +37,7 @@ router.post('/',
       });
       
       //should redirect user to /room/:room_id
-      newRoom.save().then(room => res.json(room));
+      newRoom.save()
     }
 );
 
