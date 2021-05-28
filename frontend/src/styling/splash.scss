@@ -12,7 +12,7 @@ body {
   top: 0;
   right: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 99;
   display: flex;
   // justify-content: space-between;
   height: 80px;
@@ -59,7 +59,7 @@ body {
   /* float: left; */
   // text-align: center;
   margin: 0 13px 0 12px;
-  padding: 2px;
+  padding: 25px;
   line-height: 45px;
   color: aliceblue;
   font-size: 25px;
@@ -67,20 +67,20 @@ body {
   /* text-align: center; */
 }
 
-.logout-button {
-  width: 275px;
-  /* border: 1px solid rgba(255,255,255,0.3); */
+// .logout-button {
+//   width: 275px;
+//   /* border: 1px solid rgba(255,255,255,0.3); */
 
-  height: 53px;
-  /* float: left; */
-  text-align: center;
-  margin-bottom: 35px;
-  padding: 2px;
-  line-height: 45px;
-  color: aliceblue;
-  font-size: 25px;
-  text-decoration: none;
-}
+//   height: 53px;
+//   /* float: left; */
+//   text-align: center;
+//   margin-bottom: 35px;
+//   padding: 2px;
+//   line-height: 45px;
+//   color: aliceblue;
+//   font-size: 25px;
+//   text-decoration: none;
+// }
 
 .sorry-banner a:hover {
   // background-color: rgba(20, 52, 99, 0.863);
@@ -101,188 +101,25 @@ body {
 }
 
 .sorry-fighting-background {
-  z-index: -5;
+  z-index: -500;
   height: 90%;
   width: 90%;
   bottom: 2%;
   left: 5%;
   opacity: 0.5;
   position: fixed;
-}
-
-.ripple-background {
-  top: 150px;
-  opacity: 0.5;
-}
-body {
-  background: #0a0641;
-}
-
-.circle {
-  position: absolute;
-  border-radius: 50%;
-  background: white;
-  animation: ripple 15s infinite;
-  box-shadow: 0px 0px 1px 0px #508fb9;
-}
-
-.small {
-  width: 200px;
-  height: 200px;
-  left: -100px;
-  bottom: -100px;
-}
-
-.medium {
-  width: 400px;
-  height: 400px;
-  left: -200px;
-  bottom: -200px;
-}
-
-.large {
-  width: 600px;
-  height: 600px;
-  left: -300px;
-  bottom: -300px;
-}
-
-.xlarge {
-  width: 800px;
-  height: 800px;
-  left: -400px;
-  bottom: -400px;
-}
-
-.xxlarge {
-  width: 1000px;
-  height: 1000px;
-  left: -500px;
-  bottom: -500px;
-}
-
-.shade1 {
-  opacity: 0.2;
-}
-.shade2 {
-  opacity: 0.5;
-}
-
-.shade3 {
-  opacity: 0.7;
-}
-
-.shade4 {
-  opacity: 0.8;
-}
-
-.shade5 {
-  opacity: 0.9;
-}
-
-@keyframes ripple {
-  0% {
-    transform: scale(0.8);
-  }
-
-  50% {
-    transform: scale(1.2);
-  }
-
-  100% {
-    transform: scale(0.8);
-  }
-}
-
-.ripple-background-right {
-  top: 150px;
-  opacity: 0.5;
-}
-
-.circle1 {
-  position: absolute;
-  border-radius: 50%;
-  background: white;
-  animation: ripple 15s infinite;
-  box-shadow: 0px 0px 1px 0px #508fb9;
-}
-
-.small1 {
-  width: 200px;
-  height: 200px;
-  left: 1900px;
-  bottom: -100px;
-}
-
-.medium1 {
-  width: 400px;
-  height: 400px;
-  left: 1800px;
-  bottom: -200px;
-}
-
-.large1 {
-  width: 600px;
-  height: 600px;
-  left: 1700px;
-  bottom: -300px;
-}
-
-.xlarge1 {
-  width: 800px;
-  height: 800px;
-  left: 1600px;
-  bottom: -400px;
-}
-
-.xxlarge1 {
-  width: 1000px;
-  height: 1000px;
-  left: 1500px;
-  bottom: -500px;
-}
-
-.shade1 {
-  opacity: 0.2;
-}
-.shade2 {
-  opacity: 0.5;
-}
-
-.shade3 {
-  opacity: 0.7;
-}
-
-.shade4 {
-  opacity: 0.8;
-}
-
-.shade5 {
-  opacity: 0.9;
-}
-
-@keyframes ripple {
-  0% {
-    transform: scale(0.8);
-  }
-
-  50% {
-    transform: scale(1.2);
-  }
-
-  100% {
-    transform: scale(0.8);
-  }
+  display: inline-block;
 }
 
 .sorry-logo-background {
-  z-index: -5;
+  z-index: -50;
   height: 55%;
   width: 55%;
   bottom: -160px;
   left: 51%;
   opacity: 0.5;
   position: fixed;
+  display: inline-block;
 }
 
 .logo-background-row {

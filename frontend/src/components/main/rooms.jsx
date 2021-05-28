@@ -33,14 +33,14 @@ class Rooms extends React.Component {
       <div className="whole-page">
         <div className="sorry-banner" style={{ position: "relative" }}>
           <div className="sorry-logo-container">
-            <img
+            {/* <img
               className="sorry-logo-transparent"
               src="https://i.imgur.com/DlHwK47.png"
-            />
+            /> */}
           </div>
-          <Link exact to="/" className='"Home-button'>
+          {/* <Link exact to="/" className='"Home-button'>
             Home
-          </Link>
+          </Link> */}
 
           <NavBarContainer />
         </div>
