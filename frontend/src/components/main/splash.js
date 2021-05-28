@@ -12,6 +12,7 @@ import LoginModal from './Login_modal';
 
 class Splash extends React.Component {
 
+  
   render() {
     return (
       <div className="whole-page">
