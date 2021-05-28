@@ -6,6 +6,8 @@ import signup_form_container from "../session/signup_form_container";
 import rooms_container from "../main/rooms_container";
 import { Link, Switch } from 'react-router-dom';
 import Modal from './Learn_to_play_modal';
+import LoginModal from './Login_modal';
+import NavBarContainer from '../nav/navbar_container';
 
 
 class Splash extends React.Component {
@@ -13,31 +15,8 @@ class Splash extends React.Component {
   render() {
     return (
       <div className="whole-page">
-        <div className="sorry-banner"style={{position: "relative"}}>
-          <div className="sorry-logo-container">
-            <img className="sorry-logo-transparent" src="https://i.imgur.com/DlHwK47.png"/>
-          </div>
-          <div>          
-          <ul className="banner-menu">            
-            <a className='first-menu' href='www.rooms.com'>Rooms</a>
-            <Modal></Modal>
-            {/* <a className='second-menu' href='https://www.youtube.com/watch?v=y-puYiDeIhg'>Learn to Play</a> */}
-            <a className='fourth-menu' href='www.google.com'>Fourth Menu</a>     
-            <Link exact to="/login" className='fifth-menu' >Sign In</Link>       
-            <Link exact to="/signup" className='sixth-menu'  >Register</Link>       
-          </ul>
-          <div className="account-creation">
-          <Switch>
-            <AuthRoute exact path="/login" component={login_form_container} />
-            <AuthRoute exact path="/signup" component={signup_form_container} />
-            <ProtectedRoute exact path="/rooms" component={rooms_container} />
-
-          </Switch>
-          </div>
-          
-
-          </div>
-        </div>
+        
+         
           
         <footer className='footer' style={{position: "absolute", bottom: "-1500px"}}>
           <div className="logo-background-row">

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Switch, Route } from 'react-router-dom';
-import NavBarContainer from './nav/navbar_container';
+
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import RoomsContainer from './main/rooms_container'
@@ -12,8 +12,10 @@ import { io } from 'socket.io-client';
 import { useDispatch } from 'react-redux';
 import { receiveNewRoom } from '../actions/room_actions';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import './reset.scss';
 // import Game from './games/Game';
 export const socket = io.connect('http://localhost:5000');
+
 
 socket.connect();
 
@@ -45,8 +47,9 @@ const App = () => {
     return (
 
         <div>
+            
             <Modal />
-            <NavBarContainer />
+            
             <Switch>
                 <Route exact path="/" component={Splash} />
                 <AuthRoute exact path="/login" component={LoginFormContainer} />

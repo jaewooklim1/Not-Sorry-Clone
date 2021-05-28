@@ -1,3 +1,5 @@
+
+
 body {
     background: rgb(19, 27, 58);
     padding: 0;
@@ -8,10 +10,10 @@ body {
 .sorry-banner{
     height: 80px;
     width: 100%;
-    top: -18px;
+    // top: -18px;
     z-index: 5;
     background: rgba(8, 21, 41, 0.863);
-    justify-content: space-between;
+    // justify-content: space-between;
     display: flex;
     margin: 0;
     padding: 0;
@@ -28,8 +30,8 @@ body {
     font-size: 15px;
     font-weight: 100;
     display: flex;
-    margin-right: 250px;
-    margin-left: 200px;
+    // margin-right: 250px;
+    // margin-left: 200px;
     /* padding-left: 15px; */
     /* padding-right: 15px; */
     justify-content: space-between;
@@ -50,8 +52,21 @@ body {
     font-size: 25px;
     text-decoration: none;
     /* text-align: center; */
-    
+}
 
+.logout-button {
+    width: 275px;
+    /* border: 1px solid rgba(255,255,255,0.3); */
+   
+    height: 53px;
+    /* float: left; */
+    text-align: center;
+    margin-bottom: 35px;
+    padding: 2px;
+    line-height: 45px;
+    color:aliceblue;
+    font-size: 25px;
+    text-decoration: none;
 }
 
 .sorry-banner a:hover {
@@ -73,8 +88,8 @@ body {
     z-index: -5;
     height: 90%;
     width: 90%;
-    bottom: -160px;
-    left: -219px;
+    bottom: 2%;
+    left: 5%;
     opacity: 0.5;
     position: fixed;
 
@@ -188,4 +203,26 @@ body {
 }
 .bottom-footer {
     /* margin-top: 90%; */
+}
+
+.rooms-page-text {
+    font-size: 50px;
+    justify-content: center;
+    margin-top: 12px;
+    color: gray;
+}
+
+.input-errors {
+    color: rgb(114, 3, 3);
+    font-weight: 1000;
+    
+}
+
+.input-errors > li {
+    list-style: none;
+}
+
+
+.input-errors >  ul > li {
+    list-style: none;
 }
