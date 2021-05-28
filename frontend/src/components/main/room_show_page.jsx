@@ -1,12 +1,12 @@
 import React from 'react'; 
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import '../../styling/room_show_page.scss';  
 
 class RoomShowPage extends React.Component{ 
     constructor(props){ 
         super(props);
         // this.state = {
-        //     players: this.props.rooms.data.players
+        //     players: this.props.rooms.data
         // };  
         this.exitRoom = this.exitRoom.bind(this); 
         // this.idToName = this.idToName.bind(this);
@@ -28,7 +28,7 @@ class RoomShowPage extends React.Component{
 
     render(){ 
         // console.log(this.props); 
-        // console.log(this.state); 
+        console.log(this.state); 
         let {rooms, roomId, userId, users} = this.props;
 
         if(!rooms.data){
@@ -39,7 +39,7 @@ class RoomShowPage extends React.Component{
         // console.log(userId);
         // // console.log(userId);
         // console.log(rooms.data.players);
-        console.log(users.data);
+        // console.log(users.data);
 
         function idToName(id) {
 
@@ -61,23 +61,28 @@ class RoomShowPage extends React.Component{
             return username;
     
         }
-    
+        const startbtn= ()=> { 
+            if(rooms.data.players.length=== 4){ 
+                return (
+                    <NavLink to="/game" className="btn third game-btn">Start Game</NavLink>
+                )
+            }
+        }
         return( 
             <div>
                 <header className="back">
-                    <Link to='/rooms' onClick={() => this.exitRoom()} >
+                    <NavLink className="btn third" to='/rooms' onClick={() => this.exitRoom()} >
                         Back to Lobby
-                    </Link>
+                    </NavLink>
                 </header>
                 <div className="game-box">
-                    <div className="players">    
-                    </div>
-                    <ul>
+                       
+                    <ul className="players">
                         {
                             rooms.data.players.map(playerId => {
                                 return (
-                                    <div>
-                                        <p key ={playerId.id} >
+                                    <div className="player-ctn">
+                                        <p className="player-name" key ={playerId.id} >
                                             {
                                             idToName(playerId)
                                             }
@@ -87,11 +92,8 @@ class RoomShowPage extends React.Component{
                             } )
                         }
                     </ul>
-                    <div className="gameboard">
-                    </div>
+                    {startbtn()}
                 </div>
-                <p>This is the show page of a Room</p>
-                <p>Should have a board in here</p>
             </div>
         )
     }
