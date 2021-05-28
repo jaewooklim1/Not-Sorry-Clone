@@ -40,9 +40,11 @@ class Rooms extends React.Component {
             
           </div>
           <Link exact to="/" className='"Home-button'>Home</Link>
-          <div className="rooms-page-text">Sorry Lobby</div>
+          
           <NavBarContainer />  
+          
           </div>           
+          <div className="rooms-page-text">Sorry Lobby</div>
             <br></br>
             <div className="rooms-window">      
               

@@ -7,7 +7,7 @@ import rooms_container from "../main/rooms_container";
 import { Link, Switch } from 'react-router-dom';
 import Modal from './Learn_to_play_modal';
 import LoginModal from './Login_modal';
-import NavBarContainer from '../nav/navbar_container';
+// import NavBarContainer from './nav/navbar_container';
 
 
 class Splash extends React.Component {
@@ -15,8 +15,47 @@ class Splash extends React.Component {
   render() {
     return (
       <div className="whole-page">
-        
-         
+        <div class='ripple-background'>
+                <div class='circle xxlarge shade1'></div>
+                <div class='circle xlarge shade2'></div>
+                <div class='circle large shade3'></div>
+                <div class='circle medium shade4'></div>
+                <div class='circle small shade5'></div>
+        </div>   
+        <div class='ripple-background-right'>
+                <div class='circle1 xxlarge1 shade1'></div>
+                <div class='circle1 xlarge1 shade2'></div>
+                <div class='circle1 large1 shade3'></div>
+                <div class='circle1 medium1 shade4'></div>
+                <div class='circle1 small1 shade5'></div>
+        </div>   
+        <div className="sorry-banner"style={{position: "relative"}}>
+          <div className="sorry-logo-container">
+            <img className="sorry-logo-transparent" src="https://i.imgur.com/DlHwK47.png"/>
+          </div>
+          <div>          
+          <ul className="banner-menu">          
+            {/* <NavBarContainer />   */}
+            <Link exact to="/rooms" className='first-menu'>Rooms</Link>
+            <Modal></Modal>
+            {/* <a className='second-menu' href='https://www.youtube.com/watch?v=y-puYiDeIhg'>Learn to Play</a> */}
+            {/* <a className='fourth-menu' href='www.google.com'>Fourth Menu</a> */}
+            {/* <LoginModal></LoginModal>      */}
+            <Link exact to="/login" className='fifth-menu' >Sign In</Link>       
+            <Link exact to="/signup" className='sixth-menu'  >Register</Link>       
+          </ul>
+          <div className="account-creation">
+          <Switch>
+            <AuthRoute exact path="/login" component={login_form_container} />
+            <AuthRoute exact path="/signup" component={signup_form_container} />
+            <ProtectedRoute exact path="/rooms" component={rooms_container} />
+
+          </Switch>
+          </div>
+          
+
+          </div>
+        </div>
           
         <footer className='footer' style={{position: "absolute", bottom: "-1500px"}}>
           <div className="logo-background-row">
@@ -25,7 +64,9 @@ class Splash extends React.Component {
             </div>              */}
             <div className="logo-background-column">       
               <img className="sorry-fighting-background" src="https://i.imgur.com/OArg4Vz.png"/>
-            </div> 
+                         
+            </div>
+             
           </div>         
             <div className='back-to-top' onClick={() => window.scrollTo(0, 0)}>
               Back to top
