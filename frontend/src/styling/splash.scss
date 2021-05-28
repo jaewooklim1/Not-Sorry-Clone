@@ -1,4 +1,5 @@
 body {
+<<<<<<< HEAD
   // background: rgb(19, 27, 58);
   font-family: "Taviraj", serif;
   padding: 0;
@@ -51,6 +52,75 @@ body {
   font-size: 25px;
   text-decoration: none;
   /* text-align: center; */
+=======
+    // background: rgb(19, 27, 58);
+    font-family: 'Taviraj', serif;
+    padding: 0;
+    margin: 0;
+    height: 100px;
+    background-color: rgb(4, 4, 56);
+ }
+
+.sorry-banner{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 9999; 
+    display: flex;
+    // justify-content: space-between;
+    height: 80px;
+    width: 100%;
+    // top: -18px;
+    z-index: 5;
+    background: rgba(8, 21, 41, 0.863);
+    // justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    // vertical-align: baseline;
+    // position: fixed;
+    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+    
+}
+
+.banner-menu {
+    display: inline-flex;
+    width: 1200px;
+    justify-content: space-evenly;  
+    font-size: 15px;
+    font-weight: 100;
+    // margin-right: 250px;
+    // margin-left: 200px;
+    /* padding-left: 15px; */
+    /* padding-right: 15px; */
+
+    // justify-content: space-between;
+    // align-content: stretch;
+}
+
+.sorry-banner a {
+    /* display: table-row; */
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+
+    // width: 150px;
+    /* border: 1px solid rgba(255,255,255,0.3); */
+   
+    height: 80px;
+    /* float: left; */
+    // text-align: center;
+    margin: 0 13px 0 12px;
+    padding: 2px;
+    line-height: 45px;
+    color:aliceblue;
+    font-size: 25px;
+    text-decoration: none;
+    /* text-align: center; */
+>>>>>>> d178379b7901d359047f0d274d64f6db817c8c4b
 }
 
 .logout-button {
@@ -69,7 +139,18 @@ body {
 }
 
 .sorry-banner a:hover {
+<<<<<<< HEAD
   background-color: rgba(20, 52, 99, 0.863);
+=======
+
+    // background-color: rgba(20, 52, 99, 0.863);
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+
+>>>>>>> d178379b7901d359047f0d274d64f6db817c8c4b
+}
+.first-menu{
+  display: flex;
+  justify-content: center;
 }
 
 .sorry-logo-transparent {
