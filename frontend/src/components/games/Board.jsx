@@ -278,17 +278,35 @@ const Board = (props) => {
 
                 }
             </div>
-            <button onClick={() => rollDice()} className="roll-dice-button">
+            <button className="dice" onClick={() => rollDice()} className="roll-dice-button">
                 🎲
             </button>
             <button onClick={() => socket.emit("start_game", liveRoom)}>
                 start game
             </button>
-            <div className="counter-container">
-
-            </div>
-            <div className="dice-roll">
-                {liveRoom.gameState.prevDiceRoll}
+            <div className="dice-counter-container">
+                <div className="counter-container">
+                    <div className="red-counter">
+                        <p>RED COUNTER: </p>
+                        {liveRoom.gameState.redCounter}
+                    </div>
+                    <div className="blue-counter">
+                        <p>BLUE COUNTER: </p>
+                        {liveRoom.gameState.blueCounter}
+                    </div>
+                    <div className="yellow-counter">
+                        <p>YELLOW COUNTER: </p>
+                        {liveRoom.gameState.yellowCounter}
+                    </div>
+                    <div className="green-counter">
+                        <p>GREEN COUNTER: </p>
+                        {liveRoom.gameState.greenCounter}
+                    </div>
+                </div>
+                <div className="dice-roll">
+                    <p>DICE ROLL:</p>
+                    {liveRoom.gameState.prevDiceRoll}
+                </div>
             </div>
         </div>
     )

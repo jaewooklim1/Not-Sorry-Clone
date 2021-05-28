@@ -23,3 +23,84 @@
     justify-content: center;
     align-items: center;
 } 
+
+.dice-counter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: yellow; */
+    height: 350px;
+    width: 350px;
+}
+
+.red-counter {
+    display: flex;
+    flex-direction: row;
+    font-size: 25px;
+    font-weight: bold;
+    color: whitesmoke;
+    align-items: center;
+
+}
+.red-counter > p{
+    padding-right: 8px;
+}
+
+.blue-counter {
+    display: flex;
+    flex-direction: row;
+    font-size: 25px;
+    font-weight: bold;
+    color: whitesmoke;
+    align-items: center;
+
+}
+
+.blue-counter > p {
+    padding: 8px;
+}
+
+.yellow-counter {
+    display: flex;
+    flex-direction: row;
+    font-size: 25px;
+    font-weight: bold;
+    color: whitesmoke;
+    align-items: center;
+}
+
+.yellow-counter > p {
+    padding: 8px;
+}
+
+.green-counter {
+    display: flex;
+    flex-direction: row;
+    font-size: 25px;
+    font-weight: bold;
+    color: whitesmoke;
+
+}
+
+.green-counter > p {
+    padding: 8px;
+
+}
+.dice-roll {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    font-size: 25px;
+    color: whitesmoke;
+}
+
+.dice-roll > p{
+    padding: 8px;
+
+}
+.dice {
+    margin: 10px;
+    font-size: 30px;
+    height: 50px;
+}

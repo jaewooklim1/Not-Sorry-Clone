@@ -77,7 +77,8 @@ const RoomSchema = new Schema({
             default: 0
         },
         prevDiceRoll: {
-            type: Number
+            type: Number,
+            default: 0
         }
     }
 })
