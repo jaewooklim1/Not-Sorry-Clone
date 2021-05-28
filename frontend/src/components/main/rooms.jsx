@@ -46,12 +46,16 @@ class Rooms extends React.Component {
         </div>
         <div className="rooms-page-text">Sorry Lobby</div>
         <br></br>
-          <button
-            variant="contained"
-            onClick={() => {console.log("on click"); this.props.openModal({ modal: "addRoom" })}}
-          >
-            Add Room
-          </button>
+        <button
+          className="button-add-room"
+          variant="contained"
+          onClick={() => {
+            console.log("on click");
+            this.props.openModal({ modal: "addRoom" });
+          }}
+        >
+          Add Room
+        </button>
         <div className="rooms-window">
           <ul>
             <Grid container style={{ justifyContent: "center" }}>
