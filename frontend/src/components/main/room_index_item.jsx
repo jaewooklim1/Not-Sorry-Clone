@@ -7,6 +7,20 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
+<<<<<<< HEAD
+const RoomIndexItem=({room})=>{ 
+    const user_id = useSelector(store => store.session.user.id)
+
+    
+    return(
+        <div >
+            <li>
+               {room.roomname}
+            </li>
+            <button onClick={() => {console.log("ON CLICK"); socket.emit('join_room', {room, user_id})}}>
+                Join Room
+            </button>
+=======
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -53,6 +67,7 @@ const RoomIndexItem = ({ room }) => {
               </Typography>
             </li>
           </div>
+>>>>>>> 2403541a8a269c486d905e2cfd7caaa2885ed598
         </div>
       </CardContent>
     </Card>
