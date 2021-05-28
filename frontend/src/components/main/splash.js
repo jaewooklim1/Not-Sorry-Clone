@@ -8,7 +8,8 @@ class Splash extends React.Component {
     return (
       <body className="whole-page">
         <NavBar></NavBar>
-
+        <div className="greeting-line">Welcome to Sorry</div>
+        <div className="test-background"></div>
         <footer
           className="footer"
           style={{ position: "absolute", bottom: "-500px" }}
