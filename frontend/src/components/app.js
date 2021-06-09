@@ -39,7 +39,7 @@ const App = () => {
 
 
         socket.on("joined_room", (room) => {
-            console.log("FRONT END WOOWWOWOWOOWOW")
+            // console.log("FRONT END WOOWWOWOWOOWOW")
             history.push(`/rooms/${room._id}`)
         })
 
