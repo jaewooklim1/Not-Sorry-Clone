@@ -99,3 +99,18 @@ justify-content: center;
 .input-errors {
     text-align: center;
 }
+
+.sign-up-nav-ctn, .login-nav-ctn{ 
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 26px;
+    padding: 8px;
+    color: white;
+    background-color: rgba(94, 94, 95, 0.37);
+
+
+}
+
+.sign-up-nav-ctn a:hover, .login-nav-ctn a:hover{
+    background-color: rgba(255, 255, 0, 0.747);
+} 
