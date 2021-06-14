@@ -75,6 +75,9 @@ class SignupForm extends React.Component{
                 <br/>
                 <input type="submit" value="Submit" className="input-submit" />
                 {this.renderErrors()}
+                <div className="login-nav-ctn">
+                  <span>Already member? {this.props.navLink} </span>
+                </div>
                 </div>
               </div>
             </form>

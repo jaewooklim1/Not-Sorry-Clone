@@ -27,15 +27,15 @@
 }
 
 .add-room-modal {
-  background-color: rgb(0, 0, 0);
-  height: 150px;
+  background-color: white;
+  height: 200px;
   width: 300px;
-  color: white;
+  color: black;
   display: block;
   align-content: center;
   text-align: center;
   font-size: 25px;
-
+  border-radius: 2px;
   //   margin: 5px;
 }
 
@@ -47,3 +47,29 @@
 //     margin-top: 5px;
 //     // justify-content: center;
 // }
+
+.add-room-modal h2{ 
+  padding: 5px; 
+  margin: 0px 8px;
+  border-bottom: 2px solid rgba(128, 128, 128, 0.438); 
+}
+
+.create-room-btn {
+  background: none;  
+  margin: 32px 6px 6px 6px; 
+  padding: 6px 12px;
+  cursor: pointer;
+  outline: none; 
+  transition: all 0.3s;
+  border: 1px solid black;
+}
+
+.create-room-btn:hover{ 
+  color:white; 
+  background-color: black;
+}
+
+// .button-add-room { 
+//   display: flex;
+//   justify-content: center;
+// } //centers btn but cant click b/c of background
