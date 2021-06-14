@@ -24,12 +24,11 @@ class AddRoom extends React.Component {
   render() {
     return (
       <div className="add-room-modal">
-        <h2>Create a New Room</h2>
+        <h2>Create New Room</h2>
         <br></br>
         <form onSubmit={this.handleSubmit}>
           <label>
-            {" "}
-            Room Name
+            Room Name:
             <input
               type="text"
               value={this.state.roomname}
@@ -37,7 +36,7 @@ class AddRoom extends React.Component {
             />
           </label>
           <br></br>
-          <input type="submit" value="Create Room" />
+          <input className="create-room-btn" type="submit" value="Create Room" />
         </form>
       </div>
     );
