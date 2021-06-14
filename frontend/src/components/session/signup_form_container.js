@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
 import { signup, login } from '../../actions/session_actions';
 import SignupForm from './signup_form';
+import { Link } from 'react-router-dom';
 
 
 const mSTP = (state) => {
     return {
       signedIn: state.session.isSignedIn,
-      errors: state.errors.session
+      errors: state.errors.session, 
+      navLink: <Link to="/login">Log in</Link>
     };
 };
 

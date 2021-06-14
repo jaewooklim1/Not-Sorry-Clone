@@ -82,7 +82,11 @@ class LoginForm extends React.Component{
             <div className="input-errors">
               {this.renderErrors()}
             </div>
-            </div>   
+            <div className="sign-up-nav-ctn">
+              <span>Not a member? {this.props.navLink} </span>
+            </div>
+            </div> 
+
           </div>
         </form>
       </div>
