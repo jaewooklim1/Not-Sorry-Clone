@@ -56,7 +56,7 @@
 
 .create-room-btn {
   background: none;  
-  margin: 12px 5px; 
+  margin: 32px 6px 6px 6px; 
   padding: 6px 12px;
   cursor: pointer;
   outline: none; 
@@ -68,3 +68,8 @@
   color:white; 
   background-color: black;
 }
+
+// .button-add-room { 
+//   display: flex;
+//   justify-content: center;
+// } //centers btn but cant click b/c of background
