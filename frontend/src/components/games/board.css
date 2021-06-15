@@ -10,7 +10,8 @@
     display: flex;
     flex-wrap: wrap;
     width: 40%;
-    
+    position: relative;
+    top: 97px;
 }
 
 .board-tile {
@@ -29,11 +30,24 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top: 11px;
     /* background-color: yellow; */
-    height: 350px;
-    width: 350px;
+    /* height: 350px; */
+    width: 100%;
+}
+.counter-container {
+    display: flex;
+ 
 }
 
+.red-counter-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Inconsolata', monospace;
+}
 .red-counter {
     display: flex;
     flex-direction: row;
@@ -41,10 +55,30 @@
     font-weight: bold;
     color: whitesmoke;
     align-items: center;
-
+    /* border: gray inset 5px; */
 }
-.red-counter > p{
+
+
+.red-player-name {
+    display: flex;
+    justify-content: center;
+    /* background-color: brown; */
+    width: 150px;
+    font-size: 30px;
+
+
+    border-left: gray outset 5px;
+    border-right: gray outset 5px;
+    border-bottom: gray outset 5px;
+    color: whitesmoke;
+} 
+.counter-number {
     padding-right: 8px;
+    border: gray inset 5px;
+    margin-right: 13px;
+    padding: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .blue-counter {
@@ -54,12 +88,10 @@
     font-weight: bold;
     color: whitesmoke;
     align-items: center;
+    /* border: gray inset 5px; */
 
 }
 
-.blue-counter > p {
-    padding: 8px;
-}
 
 .yellow-counter {
     display: flex;
@@ -68,9 +100,14 @@
     font-weight: bold;
     color: whitesmoke;
     align-items: center;
+    /* border: gray inset 5px; */
+
 }
 
-.yellow-counter > p {
+.counter-title {
+    border-left: gray inset 5px;
+    border-bottom: gray inset 5px;
+    border-top: gray inset 5px;
     padding: 8px;
 }
 
@@ -79,28 +116,76 @@
     flex-direction: row;
     font-size: 25px;
     font-weight: bold;
+    align-items: center;
     color: whitesmoke;
+    /* border: gray inset 5px; */
 
 }
 
-.green-counter > p {
-    padding: 8px;
-
-}
 .dice-roll {
     display: flex;
     flex-direction: row;
     font-weight: bold;
+    align-items: center;
+    font-size: 25px;
+    justify-content: center;
+    color: whitesmoke;
+}
+
+.dice {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 10px;
+    font-size: 27px;
+    height: 49px;
+    width: 63px;
+    border: gray outset 5px;
+    /* background-color: brown; */
+}
+
+.each-turn-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    position: relative;
+    bottom: -823px;
+    font-family: 'Inconsolata', monospace;
+}
+
+.current-player-container {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    align-items: center;
     font-size: 25px;
     color: whitesmoke;
 }
 
-.dice-roll > p{
-    padding: 8px;
 
+.current-player-title {
+    border-top: gray outset 5px;
+    border-left: gray outset 5px;
+    border-bottom: gray outset 5px;
+    padding: 6px;
 }
-.dice {
-    margin: 10px;
-    font-size: 30px;
-    height: 50px;
+.current-player-name {
+    border: gray inset 5px;
+    padding: 6px;
 }
+
+.dice-roll-title {
+    border-top: gray outset 5px;
+    border-left: gray outset 5px;
+    border-bottom: gray outset 5px;
+    padding: 8px;
+}
+
+.dice-roll-number {
+    border: gray inset 5px;
+    padding: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+

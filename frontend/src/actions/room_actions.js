@@ -64,6 +64,10 @@ export const fetchGameRoom=(roomId)=> dispatch=> (
         .then(room => dispatch(receiveRoom(room)))
 )
 
+export const deleteRoom = (roomId) => (
+    removeRoom(roomId)
+)
+
 
 // export const updateRoom=(roomData)=> dispatch => (
 //     updateRoom(roomData)
