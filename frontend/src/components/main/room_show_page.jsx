@@ -9,7 +9,8 @@ class RoomShowPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            room: this.props.liveRoom
+            room: this.props.liveRoom,
+
         };
 
         console.log("From constructor", this.props.rooms);
@@ -22,6 +23,22 @@ class RoomShowPage extends React.Component {
         this.props.fetchUsers();
 
         // this.exitRoom = this.exitRoom.bind(this);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        // console.log("currState", room);
+        console.log("prevProps", prevProps);
+        console.log("prevState", prevState);
+        console.log("currProps", this.props);
+        // if (!this.props.liveRoom) {
+        //     return;
+        // }
+        // if(!prevState) {
+        //     return null;
+        // }
+        // if (this.props.liveRoom.players !== prevState.players) {
+        //     this.props.fetchUsers();
+        // }
     }
 
     exitRoom(e) {
@@ -79,7 +96,7 @@ class RoomShowPage extends React.Component {
                 )
             }
             // this.props.liveRoom.gameState.players.length === 4 ? socket.emit("start_game", this.props.liveRoom) : console.log("game in progress");
-            return <Game />;
+            return <Game users={this.props.users}/>;
         }
 
         const renderShow = () => {
@@ -88,7 +105,7 @@ class RoomShowPage extends React.Component {
                     <header className="back">
                         <NavLink className="btn third" to='/rooms' >
                             Back to Lobby
-                </NavLink>
+                        </NavLink>
                     </header>
                     <div className="game-box">
 
@@ -123,7 +140,7 @@ class RoomShowPage extends React.Component {
         //     }
         //     // }
 
-         
+
         // }    // console.log("live room from render", this.props.liveRoom.players);
         return (
             <div>

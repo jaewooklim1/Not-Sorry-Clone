@@ -3,10 +3,13 @@ import Board from './Board'
 
 
 const Game = (props) => {
-
+    if(!props.users) {
+        return null;
+    }
     return (
+       
         <div>
-            <Board />
+            <Board users={props.users}/>
         </div>
     )
 }
