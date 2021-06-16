@@ -86,10 +86,10 @@ class NavBar extends React.Component {
             </div>
           </div>
         </div>
-        <img
+        {/* <img
           className="sorry-fighting-background"
           src="https://i.imgur.com/OArg4Vz.png"
-        />
+        /> */}
       </div>
     );
   }

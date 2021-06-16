@@ -15,14 +15,9 @@ class Splash extends React.Component {
           style={{ position: "absolute", bottom: "-500px" }}
         >
           <div className="logo-background-row">
-            {/* <div className="logo-background-column">
-              <img className="sorry-logo-background" src="https://i.imgur.com/DlHwK47.png"/>
-            </div>              */}
+            
             <div className="logo-background-column">
-              {/* <img
-                className="sorry-fighting-background"
-                src="https://i.imgur.com/OArg4Vz.png"
-              /> */}
+              
             </div>
           </div>
 
