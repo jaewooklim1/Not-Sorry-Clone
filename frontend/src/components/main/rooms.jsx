@@ -5,7 +5,7 @@ import NavBarContainer from "../nav/navbar_container";
 import "../../styling/rooms.scss";
 import { Link, Switch } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
 // const useStyles = makeStyles((theme) => ({
@@ -39,33 +39,28 @@ class Rooms extends React.Component {
     }
     // const classes = useStyles();
     return (
-      // <Splash>
+      
       <div className="whole-page">
         <div className="sorry-banner" style={{ position: "relative" }}>
           <div className="sorry-logo-container">
-            {/* <img
-              className="sorry-logo-transparent"
-              src="https://i.imgur.com/DlHwK47.png"
-            /> */}
+            
           </div>
-          {/* <Link exact to="/" className='"Home-button'>
-            Home
-          </Link> */}
+          
 
           <NavBarContainer />
         </div>
-        <div className="rooms-page-text">Sorry Lobby</div>
+        <div className="rooms-page-text"> Not Sorry Lobby</div>
         <br></br>
         <div className="button-add-room">
-          <Button
-            variant="contained"
+          <button
             onClick={() => {
               console.log("on click");
               this.props.openModal({ modal: "addRoom" });
             }}
+            className="btn third"
           >
             Add Room
-          </Button>
+          </button>
         </div>
         <div className="rooms-window">
           <ul>
@@ -79,7 +74,7 @@ class Rooms extends React.Component {
           </ul>
         </div>
       </div>
-      // </Splash>
+      
     );
   }
 }
