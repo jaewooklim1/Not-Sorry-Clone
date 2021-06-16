@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     },
 });
 
-const RoomIndexItem = ({ room }) => {
+const RoomIndexItem = ({ room, currentUser }) => {
     const classes = useStyles();
 
     const user_id = useSelector((store) => store.session.user.id);
@@ -44,12 +44,18 @@ const RoomIndexItem = ({ room }) => {
                         className="individual-rooms"
                         onClick={() => {
                             console.log("ON CLICK");
-                            socket.emit("join_room", { room, user_id });
+                            if (Object.values(room.players).includes(currentUser.id) || room.players.length < 4){
+                                socket.emit("join_room", { room, user_id });
+                            } else {
+                                alert("Room is full");
+                            }
                         }}
                     >
                         <li>
                             <Typography className={classes.title} color="textSecondary">
-                                {room.roomname}
+                                    {room.roomname}
+                                    <br></br>
+                                    {`Players ${room.players.length}/4`}
                             </Typography>
                         </li>
                     </div>

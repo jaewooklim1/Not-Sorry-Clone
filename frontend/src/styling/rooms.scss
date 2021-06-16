@@ -79,6 +79,11 @@
 }
 
 .button-add-room { 
+display: flex;
+justify-content: center;
+} 
+
+.button-add-room { 
   display: flex;
   justify-content: center;
 } 
@@ -86,4 +91,29 @@
 .MuiCardContent-root:hover{ 
   box-shadow: 0 0 10px 0 #3498db inset;
   cursor: pointer;
+} 
+
+/* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
 }
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+

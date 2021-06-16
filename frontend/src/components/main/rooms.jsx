@@ -33,7 +33,7 @@ class Rooms extends React.Component {
 
   render() {
     // console.log(this.props.rooms)
-    let { rooms } = this.props;
+    let { rooms, currentUser } = this.props;
     if (!rooms) {
       return null;
     }
@@ -67,7 +67,7 @@ class Rooms extends React.Component {
             <Grid container style={{ justifyContent: "center" }}>
               {rooms.map((room) => (
                 <Grid item>
-                  <RoomIndexItem key={room._id} room={room} />{" "}
+                  <RoomIndexItem key={room._id} room={room} currentUser={currentUser} />{" "}
                 </Grid>
               ))}
             </Grid>

@@ -7,7 +7,8 @@ const mSTP= (state)=> {
     // console.log(state);
     // debugger 
     return ({
-    rooms: Object.values(state.entities.rooms)
+    rooms: Object.values(state.entities.rooms),
+    currentUser: state.session.user
 })}; 
 
 const mDTP= (dispatch)=> ({ 
