@@ -61,7 +61,7 @@ class LoginForm extends React.Component{
           <div className="form-navbar">    
             <div className="input-form">  
               <div className="input-login-text">Login</div>
-              <i class="input-icon">
+              <i className="input-icon">
                 
               </i>  
               <input type="text"

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
 .rooms-window {
   align-items: center;
   display: flex;
@@ -47,7 +49,9 @@
 //     margin-top: 5px;
 //     // justify-content: center;
 // }
-
+.add-room-modal { 
+  font-family: 'Lato', sans-serif;
+}
 .add-room-modal h2{ 
   padding: 5px; 
   margin: 0px 8px;
@@ -61,15 +65,25 @@
   cursor: pointer;
   outline: none; 
   transition: all 0.3s;
-  border: 1px solid black;
+  border: 2px solid #3498db;
+  border-radius: 3px;
+}
+
+.rooms-page-text{ 
+  font-family: 'Lato', sans-serif;
 }
 
 .create-room-btn:hover{ 
   color:white; 
-  background-color: black;
+  background-color: #3498db;
 }
 
-// .button-add-room { 
-//   display: flex;
-//   justify-content: center;
-// } //centers btn but cant click b/c of background
+.button-add-room { 
+  display: flex;
+  justify-content: center;
+} 
+
+.MuiCardContent-root:hover{ 
+  box-shadow: 0 0 10px 0 #3498db inset;
+  cursor: pointer;
+}
