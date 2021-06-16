@@ -28,6 +28,7 @@ const onConnect = (socket, io) => {
         socket.emit("push_new_room", (newRoom));
     })
 
+
     socket.on("join_room", async ({ room, user_id }) => {
         let foundRoom = await Room.findById(room._id)
         if (!foundRoom.players.includes(user_id) && foundRoom.players.length <= 3) {

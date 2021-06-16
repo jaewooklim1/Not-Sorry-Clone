@@ -16,8 +16,8 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Game from './games/Game';
 import { receiveLiveGame, startGame, endGame } from '../actions/live_room_actions';
 import './reset.scss';
-// export const socket = io.connect('http://localhost:5000');
-export const socket = io.connect('https://not-sorry.herokuapp.com/');
+export const socket = io.connect('http://localhost:5000');
+// export const socket = io.connect('https://not-sorry.herokuapp.com/');
 
 
 socket.connect();
@@ -39,7 +39,7 @@ const App = () => {
 
 
         socket.on("joined_room", (room) => {
-            console.log("FRONT END WOOWWOWOWOOWOW")
+            // console.log("FRONT END WOOWWOWOWOOWOW")
             history.push(`/rooms/${room._id}`)
         })
 

@@ -21,10 +21,14 @@ export const createRoom = (roomData)=> {
     return socket.emit('create_new_room', roomData)
 }
 
+export const removeRoom = (roomId) => {
+    return socket.emit('remove_room', roomId)
+}
+
 // export const updateRoom= (roomData)=> { 
 //     return axios.patch(`/api/rooms/${roomData.id}`, roomData)
 // }
 
-export const removeRoom = (roomId)=> { 
-    return axios.delete(`/api/rooms/${roomId}`)
-}
+// export const removeRoom = (roomId)=> { 
+//     return axios.delete(`/api/rooms/${roomId}`)
+// }

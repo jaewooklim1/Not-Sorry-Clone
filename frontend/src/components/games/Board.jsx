@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUsers } from '../../actions/session_actions';
 import { socket } from '../app';
 import './board.css';
 import Tile from './tile';
@@ -9,9 +10,10 @@ const rowArr = new Array(16).fill(1);
 
 const Board = (props) => {
 
-
+    const dispatch = useDispatch();
     const playerId = useSelector(state => (state.session.user.id))
     const liveRoom = useSelector(state => (state.entities.liveRoom.liveRoom));
+    // const users = useSelector(state => state.users)
     const playerUsername = useSelector(state => (state.session.user.username));
     const [pos, setPos] = useState(-1);
     const [pieces, setPiece] = useState([]);
@@ -25,6 +27,10 @@ const Board = (props) => {
     const [currentPlayer, setCurrentPlayer] = useState(0);
     const [pointCounter, setPointCounter] = useState(0);
 
+
+    // useEffect(() => {
+    //     dispatch(fetchUsers())
+    // }, []) 
     const rollDice = () => {
         console.log(liveRoom.gameState)
         console.log(playerId)
@@ -34,6 +40,26 @@ const Board = (props) => {
         }
     }
 
+    function idToName(id) {
+        if (!props.users.data) {
+            return null;
+        }
+
+        let username = "";
+        let i = 0;
+        while (i <= props.users.data.length) {
+            let user = props.users.data[i];
+            if (user._id === id) {
+                username = user.username;
+                break;
+            }
+            i++
+        }
+
+        return username;
+
+    }
+    console.log("liveRoom from board", liveRoom);
     return (
         <div className="board-container">
             <div className="tiles-container">
@@ -278,34 +304,83 @@ const Board = (props) => {
 
                 }
             </div>
-            <button className="dice" onClick={() => rollDice()} className="roll-dice-button">
-                🎲
-            </button>
-            <button onClick={() => socket.emit("start_game", liveRoom)}>
+
+            {/* <button onClick={() => socket.emit("start_game", liveRoom)}>
                 start game
-            </button>
+            </button> */}
             <div className="dice-counter-container">
-                <div className="counter-container">
-                    <div className="red-counter">
-                        <p>RED COUNTER: </p>
-                        {liveRoom.gameState.redCounter}
-                    </div>
-                    <div className="blue-counter">
-                        <p>BLUE COUNTER: </p>
-                        {liveRoom.gameState.blueCounter}
-                    </div>
-                    <div className="yellow-counter">
-                        <p>YELLOW COUNTER: </p>
-                        {liveRoom.gameState.yellowCounter}
-                    </div>
-                    <div className="green-counter">
-                        <p>GREEN COUNTER: </p>
-                        {liveRoom.gameState.greenCounter}
+                <div className="each-play-details">
+                    <div className="counter-container">
+                        <div className="red-counter-container">
+                            <div className="red-counter">
+                                <h3 className="counter-title">Red Counter </h3>
+                                <p className="counter-number">
+                                    {liveRoom.gameState.redCounter}
+                                </p>
+                            </div>
+                            <div className="red-player-name">
+                                <p>
+                                    {idToName(liveRoom.players[0])}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="red-counter-container">
+                            <div className="blue-counter">
+                                <h3 className="counter-title">Blue Counter </h3>
+                                <p className="counter-number">
+                                    {liveRoom.gameState.blueCounter}
+                                </p>
+                            </div>
+                            <div className="red-player-name">
+                                <p>
+                                    {idToName(liveRoom.players[1])}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="red-counter-container">
+                            <div className="yellow-counter">
+                                <h3 className="counter-title">Yellow Counter </h3>
+                                <p className="counter-number">
+                                    {liveRoom.gameState.yellowCounter}
+                                </p>
+                            </div>
+                            <div className="red-player-name">
+                                <p>
+                                    {idToName(liveRoom.players[2])}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="red-counter-container">
+                            <div className="green-counter">
+                                <h3 className="counter-title">Green Counter </h3>
+                                <p className="counter-number">
+                                    {liveRoom.gameState.greenCounter}
+                                </p>
+                            </div>
+                            <div className="red-player-name">
+                                <p>
+                                    {idToName(liveRoom.players[3])}
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div className="dice-roll">
-                    <p>DICE ROLL:</p>
-                    {liveRoom.gameState.prevDiceRoll}
+                <div className="each-turn-container">
+                    <div className="current-player-container">
+                        <h3 className="current-player-title">Current Player </h3>
+                        <p className="current-player-name">
+                            {idToName(liveRoom.players[liveRoom.gameState.currentPlayer])}
+                        </p>
+                        <button className="dice" onClick={() => rollDice()} >
+                            🎲
+                        </button>
+                    </div>
+                    <div className="dice-roll">
+                        <h3 className="dice-roll-title">Dice Roll</h3>
+                        <p className="dice-roll-number">
+                            {liveRoom.gameState.prevDiceRoll}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -9,6 +9,7 @@ export const RECEIVE_ROOM= "RECEIVE_ROOM";
 export const RECEIVE_NEW_ROOM = "RECEIVE_NEW_ROOM"; 
 export const RECEIVE_ROOM_ERRORS= "RECEIVE_ROOM_ERRORS"; 
 export const REMOVE_ROOM_ERRORS= "REMOVE_ROOM_ERRORS";
+export const REMOVE_ROOM = "REMOVE_ROOM";
 
 
 
@@ -62,6 +63,10 @@ export const createNewRoom = (roomData) => dispatch => (
 export const fetchGameRoom=(roomId)=> dispatch=> (
     getRoom(roomId)
         .then(room => dispatch(receiveRoom(room)))
+)
+
+export const deleteRoom = (roomId) => (
+    removeRoom(roomId)
 )
 
 
