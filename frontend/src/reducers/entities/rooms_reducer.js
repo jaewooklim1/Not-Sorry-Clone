@@ -1,7 +1,9 @@
+// import rooms from '../../../../validation/rooms';
 import { 
     RECEIVE_ROOMS,
     RECEIVE_ROOM,  
     RECEIVE_NEW_ROOM,
+    REMOVE_ROOM
 }from '../../actions/room_actions'; 
 
 const roomsReducer= (state={}, action)=> { 
