@@ -23,6 +23,11 @@ export const receiveRoom = room => ({
     room
 }); 
 
+export const destroyRoom = roomId => ({
+    type: REMOVE_ROOM,
+    roomId
+})
+
 // export const receiveRoomData = roomData => ({
 //     type: RECEIVE_ROOM_DATA,
 //     room: roomData,
@@ -65,8 +70,9 @@ export const fetchGameRoom=(roomId)=> dispatch=> (
         .then(room => dispatch(receiveRoom(room)))
 )
 
-export const deleteRoom = (roomId) => (
+export const deleteRoom = (roomId) => dispatch => (
     removeRoom(roomId)
+        .then(roomId => dispatch(destroyRoom(roomId)))
 )
 
 

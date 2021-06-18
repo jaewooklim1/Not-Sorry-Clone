@@ -7,6 +7,7 @@ import { Link, Switch } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 // import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import equal from 'fast-deep-equal';
 
 // const useStyles = makeStyles((theme) => ({
 //   root: {
@@ -19,17 +20,18 @@ import { makeStyles } from "@material-ui/core/styles";
 class Rooms extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      rooms: this.props.rooms
+    }
   }
 
   componentDidMount() {
     this.props.fetchRooms();
   }
 
-  // componentDidUpdate(prevProps){
-  //   if(this.props.rooms !== prevProps.rooms){
-  //     this.props.fetchRooms();
-  //   }
-  // }
+  shouldComponentUpdate(nextProps) {
+    return nextProps.rooms !== this.props.rooms;
+  }
 
   render() {
     // console.log(this.props.rooms)
@@ -67,7 +69,7 @@ class Rooms extends React.Component {
             <Grid container style={{ justifyContent: "center" }}>
               {rooms.map((room) => (
                 <Grid item>
-                  <RoomIndexItem key={room._id} room={room} currentUser={currentUser} />{" "}
+                  <RoomIndexItem key={room._id} room={room} currentUser={currentUser} deleteRoom={this.props.deleteRoom}/>{" "}
                 </Grid>
               ))}
             </Grid>
