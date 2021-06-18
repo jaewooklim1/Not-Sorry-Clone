@@ -10,6 +10,29 @@ class Splash extends React.Component {
         <NavBar></NavBar>
         <div className="greeting-line">Welcome to Sorry</div>
         {/* <div className="greeting-instructions">Instructions</div> */}
+        <div id="page">
+          <div class="wrapper">
+            <div class="bottom">
+              <img src="https://i.imgur.com/ZYja6Ai.jpg" draggable="false"/>
+            </div>
+            <div class="middle">
+              <img src="http://i.imgur.com/VdCHW0M.jpg" draggable="false"/>
+            </div>
+            <div class="scroller scroller-middle">
+              <svg class="scroller__thumb" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><polygon points="0 50 37 68 37 32 0 50" style={{fill:"#FFCCBC"}}/><polygon points="100 50 64 32 64 68 100 50" style={{fill:"#FFCCBC"}}/></svg>
+            </div>
+            <div class="top">
+              <img src="https://i.imgur.com/FxM8a8x.png" draggable="false"/>
+            </div>
+            <div class="scroller scroller-top">
+              <svg class="scroller__thumb" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><polygon points="0 50 37 68 37 32 0 50" style={{fill:"#FFAB91"}}/><polygon points="100 50 64 32 64 68 100 50" style={{fill:"#FFAB91"}}/></svg>
+            </div>
+          </div>  
+        </div>
+
+
+
+
 
 
         <div className="test-background"></div>
