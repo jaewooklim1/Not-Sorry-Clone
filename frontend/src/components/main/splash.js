@@ -9,6 +9,9 @@ class Splash extends React.Component {
       <body className="whole-page">
         <NavBar></NavBar>
         <div className="greeting-line">Welcome to Sorry</div>
+        <div className="greeting-instructions">Instructions</div>
+
+
         <div className="test-background"></div>
         <footer
           className="footer"
