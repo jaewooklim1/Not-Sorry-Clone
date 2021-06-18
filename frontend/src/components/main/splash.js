@@ -6,11 +6,16 @@ import NavBar from "../nav/navbar";
 class Splash extends React.Component {
   render() {
     return (
-      <body className="whole-page">
+      <div className="whole-page">
         <NavBar></NavBar>
         <div className="greeting-line">Welcome to Sorry</div>
+        <div className="greeting-subtitle">America's popular board game now online!</div>
+        <div className="splashImage" >
+          <img src="https://im7.ezgif.com/tmp/ezgif-7-999623656006.gif"/>
+        </div>
+        
         {/* <div className="greeting-instructions">Instructions</div> */}
-        <div id="page">
+        {/* <div id="page">
           <div class="wrapper">
             <div class="bottom">
               <img src="https://i.imgur.com/ZYja6Ai.jpg" draggable="false"/>
@@ -28,9 +33,9 @@ class Splash extends React.Component {
               <svg class="scroller__thumb" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><polygon points="0 50 37 68 37 32 0 50" style={{fill:"#FFAB91"}}/><polygon points="100 50 64 32 64 68 100 50" style={{fill:"#FFAB91"}}/></svg>
             </div>
           </div>  
-        </div>
+        </div> */}
 
-
+          
 
 
 
@@ -105,7 +110,7 @@ class Splash extends React.Component {
           </div>
         </footer>
         <img className="parallax-background"></img>
-      </body>
+      </div>
 
       // </div>
       // </div>
