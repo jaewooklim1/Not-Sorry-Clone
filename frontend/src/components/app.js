@@ -15,9 +15,10 @@ import { receiveNewRoom } from '../actions/room_actions';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Game from './games/Game';
 import { receiveLiveGame, startGame, endGame } from '../actions/live_room_actions';
+import { fetchRooms } from '../actions/room_actions'
 import './reset.scss';
-export const socket = io.connect('http://localhost:5000');
-// export const socket = io.connect('https://not-sorry.herokuapp.com/');
+// export const socket = io.connect('http://localhost:5000');
+export const socket = io.connect('https://not-sorry.herokuapp.com/');
 
 
 socket.connect();
@@ -27,16 +28,18 @@ const App = () => {
     const history = useHistory();
     useEffect( () => {
         
-        socket.on("test", (test) => {
-            console.log("message from server", test);
-        })
+        // socket.on("test", (test) => {
+        //     console.log("message from server", test);
+        // })
 
         socket.on("push_new_room", (room) => {
             dispatch(receiveNewRoom(room))
             history.push(`/rooms/${room._id}`)
         })
 
-
+        socket.on("add_new_room", (room) => {
+            dispatch(receiveNewRoom(room))
+        })
 
         socket.on("joined_room", (room) => {
             // console.log("FRONT END WOOWWOWOWOOWOW")
@@ -65,6 +68,11 @@ const App = () => {
         socket.on("end_game", liveRoom => {
             dispatch(endGame(liveRoom));
         }) 
+
+        socket.on("update_rooms", () => {
+            console.log("updating rooms");
+            dispatch(fetchRooms());
+        })
 
     }, []);
 

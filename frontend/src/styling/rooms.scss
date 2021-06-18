@@ -117,3 +117,22 @@ justify-content: center;
   color: black;
 }
 
+.delete-rooms-button {
+  border-color: #3498db;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  margin: auto;
+  height: 50px;
+  width: 200px;
+  border-radius: 15px;
+  font-size: 22px;
+  color: #000000;
+  font-weight: bolder;
+}
+
+.delete-rooms-button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px 0 #000000 inset, 0 0 9px 4px #f7f7f7;
+}
