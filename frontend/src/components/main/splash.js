@@ -11,7 +11,7 @@ class Splash extends React.Component {
         <div className="greeting-line">Welcome to Sorry</div>
         <div className="greeting-subtitle">America's popular board game now online!</div>
         <div className="splashImage" >
-          <img src="https://im7.ezgif.com/tmp/ezgif-7-999623656006.gif"/>
+          <img src="https://i.imgur.com/ETjxAwz.gif"/>
         </div>
         
         {/* <div className="greeting-instructions">Instructions</div> */}
@@ -61,7 +61,8 @@ class Splash extends React.Component {
               <li id="first-creator">
                 <a
                   className="creator-links"
-                  href="https://www.linkedin.com/in/jae-wook-lim-430553100/"
+                  href="https://www.linkedin.com/in/jae-wook-lim-93b5b8214/"
+                  target="_blank"
                 >
                   <p>Jae-Wook Lim</p>
                   <img
@@ -73,31 +74,33 @@ class Splash extends React.Component {
               <li id="second-creator">
                 <a
                   className="creator-links"
-                  href="https://www.linkedin.com/in/jae-wook-lim-430553100/"
+                  href="https://www.linkedin.com/in/mike-wang-38294097/"
+                  target="_blank"
                 >
                   <p>Min Wang</p>
                   <img
                     className="profile-picture"
-                    src="https://i.imgur.com/2b588fv.jpg"
+                    src="https://i.imgur.com/Y9ZYHhe.jpg"
                   />
                 </a>
               </li>
               <li id="third-creator">
                 <a
                   className="creator-links"
-                  href="https://www.linkedin.com/in/jae-wook-lim-430553100/"
+                  href="https://www.linkedin.com/in/anug-saha-5bb43613a/"
                 >
                   <p>Anug Saha</p>
                   <img
                     className="profile-picture"
                     src="https://i.imgur.com/lxcoG3J.jpg"
+                    target="_blank"
                   />
                 </a>
               </li>
               <li id="fourth-creator">
                 <a
                   className="creator-links"
-                  href="https://www.linkedin.com/in/jae-wook-lim-430553100/"
+                  href="https://www.linkedin.com/in/collin-winner-791203176/"
                 >
                   <p>Collin Winner</p>
                   <img
