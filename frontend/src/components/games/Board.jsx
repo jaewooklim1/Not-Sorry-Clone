@@ -313,54 +313,74 @@ const Board = (props) => {
                     <div className="counter-container">
                         <div className="red-counter-container">
                             <div className="red-counter">
-                                <h3 className="counter-title">Red Counter </h3>
-                                <p className="counter-number">
-                                    {liveRoom.gameState.redCounter}
-                                </p>
-                            </div>
-                            <div className="red-player-name">
-                                <p>
-                                    {idToName(liveRoom.players[0])}
-                                </p>
-                            </div>
-                        </div>
-                        <div className="red-counter-container">
-                            <div className="blue-counter">
-                                <h3 className="counter-title">Blue Counter </h3>
-                                <p className="counter-number">
-                                    {liveRoom.gameState.blueCounter}
-                                </p>
-                            </div>
-                            <div className="red-player-name">
-                                <p>
-                                    {idToName(liveRoom.players[1])}
-                                </p>
+                                <div className="team-name">
+                                    <h3>Red Team</h3>
+                                </div>
+                                <div className="player-name">
+                                    <p>
+                                        {idToName(liveRoom.players[0])}
+                                    </p>
+                                </div>
+                                <div className="each-player-count">
+                                    <h3 className="counter-title">Counter </h3>
+                                    <p className="counter-number">
+                                        {liveRoom.gameState.redCounter}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                         <div className="red-counter-container">
-                            <div className="yellow-counter">
-                                <h3 className="counter-title">Yellow Counter </h3>
-                                <p className="counter-number">
-                                    {liveRoom.gameState.yellowCounter}
-                                </p>
-                            </div>
-                            <div className="red-player-name">
-                                <p>
-                                    {idToName(liveRoom.players[2])}
-                                </p>
+                            <div className="red-counter">
+                                <div className="team-name">
+                                    <h3>Blue Team</h3>
+                                </div>
+                                <div className="player-name">
+                                    <p>
+                                        {idToName(liveRoom.players[1])}
+                                    </p>
+                                </div>
+                                <div className="each-player-count">
+                                    <h3 className="counter-title">Counter </h3>
+                                    <p className="counter-number">
+                                        {liveRoom.gameState.blueCounter}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                         <div className="red-counter-container">
-                            <div className="green-counter">
-                                <h3 className="counter-title">Green Counter </h3>
-                                <p className="counter-number">
-                                    {liveRoom.gameState.greenCounter}
-                                </p>
+                            <div className="red-counter">
+                                <div className="team-name">
+                                    <h3>Yellow Team</h3>
+                                </div>
+                                <div className="player-name">
+                                    <p>
+                                        {idToName(liveRoom.players[2])}
+                                    </p>
+                                </div>
+                                <div className="each-player-count">
+                                    <h3 className="counter-title">Counter </h3>
+                                    <p className="counter-number">
+                                        {liveRoom.gameState.yellowCounter}
+                                    </p>
+                                </div>
                             </div>
-                            <div className="red-player-name">
-                                <p>
-                                    {idToName(liveRoom.players[3])}
-                                </p>
+                        </div>
+                        <div className="red-counter-container">
+                            <div className="red-counter">
+                                <div className="team-name">
+                                    <h3>Green Team</h3>
+                                </div>
+                                <div className="player-name">
+                                    <p>
+                                        {idToName(liveRoom.players[3])}
+                                    </p>
+                                </div>
+                                <div className="each-player-count">
+                                    <h3 className="counter-title">Counter </h3>
+                                    <p className="counter-number">
+                                        {liveRoom.gameState.greenCounter}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
