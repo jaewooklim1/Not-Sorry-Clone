@@ -110,10 +110,12 @@ class RoomShowPage extends React.Component {
                     <div className="game-box">
 
                         <ul className="players">
+
+                            <h3> Current Players: </h3>
                             {
-                                this.props.liveRoom.players.map(playerId => {
+                                this.props.liveRoom.players.map((playerId, index) => {
                                     return (
-                                        <div className="player-ctn">
+                                        <div className={`player-ctn pos-${index}`}>
                                             <p className="player-name" key={playerId.id} >
                                                 {
                                                     idToName(playerId)
