@@ -14,7 +14,7 @@ class LoginForm extends React.Component{
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderErrors = this.renderErrors.bind(this);
-        this.demoUserLogin= this.demoUserLogin.binf(this);
+        this.demoUserLogin= this.demoUserLogin.bind(this);
     }
 
     // Once the user has been authenticated, redirect to the Rooms page
@@ -45,7 +45,7 @@ class LoginForm extends React.Component{
   demoUserLogin(e){ 
     e.preventDefault(); 
     const demoUser = { 
-      username= "DemoUser",
+      username: "DemoUser",
       password: "123456"
     }
 
