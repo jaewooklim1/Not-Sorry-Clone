@@ -111,6 +111,12 @@ const onConnect = (socket, io) => {
         return io.to(foundRoom._id.toString()).emit("started_game", foundRoom);
     })
 
+    socket.on("exit_game", async ({playerId, liveRoom}) => {
+        console.log("live room in backend", liveRoom);
+        let foundRoom = await Room.findById(liveRoom._id);
+        console.log("players in room", foundRoom.players);
+    })
+
     socket.on("roll_dice", async ({ playerId, liveRoom }) => {
         // console.log("live room from roll dice", liveRoom);
         let foundRoom = await Room.findById(liveRoom._id);
