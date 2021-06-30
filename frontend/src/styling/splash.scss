@@ -255,16 +255,19 @@ body {
 }
 
 .bulletin-board {
-  height: 300px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 400px;
+  margin:auto;
   width: 50%;
-  margin-left: 500px;
+  // margin-left: 500px;
   background-color: #181818;
   color: #ddd;
   padding: 10px;
-  justify-content: center;
-  display: relative;
+  // display: relative;
   // text-align: center;
-  margin-top: 145px;
+  // margin-top: 145px;
   font-family: 'Comfortaa';
   border: 3px;
   padding: 20px;
@@ -272,15 +275,24 @@ body {
   border: 3px solid rgba(76, 121, 245, 0.15);
 }
 
-.bulletin-board > h2 {
-  font-size: 30px;
+.bulletin-title {
+  box-sizing: border-box;
+  font-size: 20px;
   text-align: center;
-  margin: 25px;
-  font-family: sans-serif;
+  margin: 10px;
+  font-family: 'Comfortaa';
 }
 
-.bulletin-board > p {
+.bulletin-content {
   font-size: 17px;
-  margin: 35px;
-  font-family: sans-serif;
+  text-align: justify;
+  margin: 10px;
+  font-family: 'Comfortaa';
+}
+
+.bulletin-link {
+  font-size: 17px;
+  text-align: center;
+  margin: 10px;
+  font-family: 'Comfortaa';
 }
