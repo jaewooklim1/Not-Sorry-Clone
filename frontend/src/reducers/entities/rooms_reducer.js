@@ -12,13 +12,17 @@ const roomsReducer= (state={}, action)=> {
     switch (action.type) {
         case RECEIVE_ROOMS:
             // return action.rooms;
-            const newState = {};
+            let newState = {};
             action.rooms.forEach(room => {newState[room._id] = room}) 
             return newState;
         case RECEIVE_NEW_ROOM: 
             return Object.assign({}, state, {[Object.keys(state).length]: action.room}); 
         case RECEIVE_ROOM: 
             return Object.assign({}, state, {[action.room._id]: action.room});
+        case REMOVE_ROOM:
+            let newerState = Object.assign({}, state)
+            delete newerState[action.roomId];
+            return newerState;
         default:
             return state;
     }

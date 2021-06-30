@@ -17,12 +17,16 @@ export const getRoom = roomId => {
 //     return axios.post('/api/rooms/', roomData)
 // }
 
-export const createRoom = (roomData)=> { 
+export const createRoom = (roomData) => { 
     return socket.emit('create_new_room', roomData)
 }
 
+// export const removeRoom = (roomId) => {
+//     return socket.emit('remove_room', roomId)
+// }
+
 export const removeRoom = (roomId) => {
-    return socket.emit('remove_room', roomId)
+    return axios.delete(`/api/rooms/${roomId}`)
 }
 
 // export const updateRoom= (roomData)=> { 

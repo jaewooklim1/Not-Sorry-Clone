@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const passport = require('passport');
 const io = require('../../app');
+const { update } = require('../../models/Room');
 // const { socket } = require('../../frontend/src/components/app');
 const Room = require('../../models/Room');
 const validateRoomInput = require('../../validation/rooms');
@@ -26,8 +27,16 @@ const onConnect = (socket, io) => {
         newRoom.save()
         socket.join(newRoom._id);
         socket.emit("push_new_room", (newRoom));
+        socket.broadcast.emit("add_new_room", (newRoom));
     })
 
+    //socket on delete_room, room 
+
+    socket.on('remove_room', async ({ room}) => {
+        await Room.findByIdAndDelete(room._id);
+        
+        io.emit("update_rooms");
+    })
 
     socket.on("join_room", async ({ room, user_id }) => {
         let foundRoom = await Room.findById(room._id)
@@ -36,7 +45,7 @@ const onConnect = (socket, io) => {
             // socket.join(foundRoom._id);
             socket.join(foundRoom._id.toString());
             foundRoom.players.push(user_id);
-            console.log("foundRoom", foundRoom);
+            // console.log("foundRoom", foundRoom);
             await foundRoom.save();
             // return io.to(foundRoom._id).emit("joined_room", (room));
             return io.to(foundRoom._id.toString()).emit("joined_room", (room));
@@ -52,12 +61,12 @@ const onConnect = (socket, io) => {
 
         let foundRoom = await Room.findById(room_id);
         socket.join(foundRoom._id.toString());
-        console.log("room from socket", foundRoom);
+        // console.log("room from socket", foundRoom);
         socket.emit("got_room", foundRoom);
     })
 
     socket.on("start_game", async liveRoom => {
-        console.log("room in start game", liveRoom);
+        // console.log("room in start game", liveRoom);
         const playerTeams = ["red", "blue", "yellow", "green"];
 
         // if (room.players.length === 4) {
@@ -98,16 +107,16 @@ const onConnect = (socket, io) => {
         await foundRoom.save();
         // setPlayers(newPlayers);
         // console.log("new gamestate after start game", foundRoom.gameState);
-        console.log("Game has started", foundRoom.gameState.players);
+        // console.log("Game has started", foundRoom.gameState.players);
         return io.to(foundRoom._id.toString()).emit("started_game", foundRoom);
     })
 
     socket.on("roll_dice", async ({ playerId, liveRoom }) => {
-        console.log("live room from roll dice", liveRoom);
+        // console.log("live room from roll dice", liveRoom);
         let foundRoom = await Room.findById(liveRoom._id);
 
         const diceRoll = await rollDice(playerId, foundRoom);
-        console.log("DICE ROLL", diceRoll);
+        // console.log("DICE ROLL", diceRoll);
         foundRoom.gameState.prevDiceRoll = diceRoll;
         // console.log("updated game state backend", foundRoom);
         const gameOver = (liveRoom) => {
@@ -130,7 +139,7 @@ const onConnect = (socket, io) => {
         if (gameOver(foundRoom)) {
             return endGame(foundRoom);
         }
-      
+
 
         // foundRoom.gameState.players = correctPlayers;
         // console.log("newPlayers", correctPlayers);
@@ -140,7 +149,7 @@ const onConnect = (socket, io) => {
         //         return { ...piece, pos: piece.pos % 60 };
         //     })
         // })
-        console.log("new found room", foundRoom);
+        // console.log("new found room", foundRoom);
         io.to(foundRoom._id.toString()).emit("updated_game_state", foundRoom);
     })
 
@@ -170,11 +179,11 @@ const rollDice = async (playerId, liveRoom) => {
     const players = liveRoom.gameState.players;
     // if (playerId === currentPlayerId) {
     const dieOne = Math.floor(Math.random() * (13 - 1) + 1);
-    console.log("dice roll", (dieOne));
+    // console.log("dice roll", (dieOne));
     if ((dieOne) === 7 || ((dieOne) === 11)) {
         liveRoom.gameState.activePieces.forEach(async (piece) => {
             if (liveRoom.gameState.players[liveRoom.gameState.currentPlayer].team === piece.color) {
-                console.log("players - in if", players);
+                // console.log("players - in if", players);
                 checkMove(liveRoom, liveRoom.gameState.players[liveRoom.gameState.currentPlayer], (dieOne));
                 liveRoom.gameState.currentPlayer = (liveRoom.gameState.currentPlayer + 1) % 4;
 
@@ -231,8 +240,8 @@ const checkSafeMove = (liveRoom, i, diceRoll) => {
     //check to see if piece are the same if so dont move piece
     if ((piece.safeZonePos + diceRoll) < 6) {
         let activePiecesFilter = liveRoom.gameState.activePieces.filter(activePiece => {
-            console.log("active piece", activePiece);
-            console.log("piece to filter out", piece);
+            // console.log("active piece", activePiece);
+            // console.log("piece to filter out", piece);
             return activePiece.pos !== piece.pos
         });
         liveRoom.gameState.activePieces = activePiecesFilter;
@@ -287,31 +296,31 @@ const checkMove = (liveRoom, currentPlayer, diceRoll) => {
 
 const checkSlide = (piece, diceRoll) => {
     if ((piece.pos + diceRoll) === 9) {
-        console.log("SLIIIIIIIIIIIIIIIIIIIDE");
+        // console.log("SLIIIIIIIIIIIIIIIIIIIDE");
         return 4;
     } else if ((piece.pos + diceRoll) === 16 && piece.color !== "blue") {
-        console.log("SLIIIIIIIIIIIIIIIIIIIDE");
+        // console.log("SLIIIIIIIIIIIIIIIIIIIDE");
         return 3;
     } else if ((piece.pos + diceRoll) === 24) {
-        console.log("SLIIIIIIIIIIIIIIIIIIIDE");
+        // console.log("SLIIIIIIIIIIIIIIIIIIIDE");
         return 4;
     } else if ((piece.pos + diceRoll) === 31 && piece.color !== "yellow") {
-        console.log("SLIIIIIIIIIIIIIIIIIIIDE");
+        // console.log("SLIIIIIIIIIIIIIIIIIIIDE");
         return 3;
     } else if ((piece.pos + diceRoll) === 39) {
-        console.log("SLIIIIIIIIIIIIIIIIIIIDE");
+        // console.log("SLIIIIIIIIIIIIIIIIIIIDE");
         return 4;
     } else if ((piece.pos + diceRoll) === 46 && piece.color !== "green") {
-        console.log("SLIIIIIIIIIIIIIIIIIIIDE");
+        // console.log("SLIIIIIIIIIIIIIIIIIIIDE");
         return 3;
     } else if ((piece.pos + diceRoll) === 54) {
         console.log("SLIIIIIIIIIIIIIIIIIIIDE");
         return 4;
     } else if ((piece.pos + diceRoll) === 1 && piece.color !== "red") {
-        console.log("SLIIIIIIIIIIIIIIIIIIIDE");
+        // console.log("SLIIIIIIIIIIIIIIIIIIIDE");
         return 3;
     } else {
-        console.log("nah");
+        // console.log("nah");
         return;
     }
     // }
@@ -324,13 +333,13 @@ const checkSafeZone = (liveRoom, i, diceRoll) => {
     let safeZonePieces = liveRoom.gameState.safeZonePieces;
     // if (piece.color === "red" && ((piece.pos + diceRoll) % 60) >= 2) {
     if (piece.color === "red" && ((piece.pos + diceRoll) % 60) > 2) {
-        console.log(`RED SAFE`);
+        // console.log(`RED SAFE`);
 
         if ((piece.pos + diceRoll - 62) === 6) {
-            console.log("WE MADE IT");
+            // console.log("WE MADE IT");
             let activePiecesFilter = activePieces.filter(activePiece => {
-                console.log("active piece", activePiece);
-                console.log("piece to filter out", piece);
+                // console.log("active piece", activePiece);
+                // console.log("piece to filter out", piece);
                 return activePiece.pos !== piece.pos
             });
             liveRoom.gameState.redCounter += 1;
@@ -343,15 +352,15 @@ const checkSafeZone = (liveRoom, i, diceRoll) => {
             player.pieces.shift();
             // setActivePieces(activePiecesFilter);
             activePieces = activePiecesFilter;
-            console.log("current player", player.pieces);
-            console.log("new active pieces", activePieces);
+            // console.log("current player", player.pieces);
+            // console.log("new active pieces", activePieces);
             // liveRoom.gameState.currentPlayer = (liveRoom.gameState.currentPlayer + 1) % 4;
             // delete players.pieces["piece"];
         } else if ((piece.pos + diceRoll - 62) < 6) {
 
             let activePiecesFilter = activePieces.filter(activePiece => {
-                console.log("active piece", activePiece);
-                console.log("piece to filter out", piece);
+                // console.log("active piece", activePiece);
+                // console.log("piece to filter out", piece);
                 return activePiece.pos !== piece.pos
             });
 
@@ -369,8 +378,8 @@ const checkSafeZone = (liveRoom, i, diceRoll) => {
             piece.safeZonePos = (piece.pos + diceRoll - 62);
             piece.pos = -1;
             activePieces = activePiecesFilter;
-            console.log("new active pieces", activePieces);
-            console.log("safe zone", safeZonePieces);
+            // console.log("new active pieces", activePieces);
+            // console.log("safe zone", safeZonePieces);
             // liveRoom.gameState.currentPlayer = (liveRoom.gameState.currentPlayer + 1) % 4;
 
         }
@@ -378,12 +387,12 @@ const checkSafeZone = (liveRoom, i, diceRoll) => {
         return true;
     } else if (piece.color === "blue" && ((piece.pos + diceRoll) % 60) > 17) {
         // } else if (piece.color === "blue" && (piece.pos % 60) >= 17) {
-        console.log("BLUE SAFE");
+        // console.log("BLUE SAFE");
         if ((piece.pos + diceRoll - 77) === 6) {
-            console.log("WE MADE IT");
+            // console.log("WE MADE IT");
             let activePiecesFilter = activePieces.filter(activePiece => {
-                console.log("active piece", activePiece);
-                console.log("piece to filter out", piece);
+                // console.log("active piece", activePiece);
+                // console.log("piece to filter out", piece);
                 return activePiece.pos !== piece.pos
             });
 
@@ -392,21 +401,21 @@ const checkSafeZone = (liveRoom, i, diceRoll) => {
             // if (gameOver(liveRoom)) {
             //     return endGame(liveRoom);
             // }
-            console.log("RED COUNTER", redCounter);
-            console.log("BLUE COUNTER", blueCounter);
+            // console.log("RED COUNTER", redCounter);
+            // console.log("BLUE COUNTER", blueCounter);
             player.pieces.shift();
             // setActivePieces(activePiecesFilter);
             activePieces = activePiecesFilter;
-            console.log("current player", player.pieces);
-            console.log("new active pieces", activePieces);
+            // console.log("current player", player.pieces);
+            // console.log("new active pieces", activePieces);
             // liveRoom.gameState.currentPlayer = (liveRoom.gameState.currentPlayer + 1) % 4;
 
             // delete players.pieces["piece"];
         } else if ((piece.pos + diceRoll - 77) < 6) {
 
             let activePiecesFilter = activePieces.filter(activePiece => {
-                console.log("active piece", activePiece);
-                console.log("piece to filter out", piece);
+                // console.log("active piece", activePiece);
+                // console.log("piece to filter out", piece);
                 return activePiece.pos !== piece.pos
             });
 
@@ -424,19 +433,19 @@ const checkSafeZone = (liveRoom, i, diceRoll) => {
             piece.safeZonePos = (piece.pos + diceRoll - 77);
             piece.pos = -1;
             activePieces = activePiecesFilter;
-            console.log("new active pieces", activePieces);
-            console.log("safe zone", safeZonePieces);
+            // console.log("new active pieces", activePieces);
+            // console.log("safe zone", safeZonePieces);
             // liveRoom.gameState.currentPlayer = (liveRoom.gameState.currentPlayer + 1) % 4;
 
         }
     } else if (piece.color === "yellow" && ((piece.pos + diceRoll) % 60) > 32) {
-        console.log(`YELLOW SAFE`);
+        // console.log(`YELLOW SAFE`);
 
         if ((piece.pos + diceRoll - 92) === 6) {
-            console.log("WE MADE IT");
+            // console.log("WE MADE IT");
             let activePiecesFilter = activePieces.filter(activePiece => {
-                console.log("active piece", activePiece);
-                console.log("piece to filter out", piece);
+                // console.log("active piece", activePiece);
+                // console.log("piece to filter out", piece);
                 return activePiece.pos !== piece.pos
             });
             liveRoom.gameState.yellowCounter += 1;
@@ -449,16 +458,16 @@ const checkSafeZone = (liveRoom, i, diceRoll) => {
             player.pieces.shift();
             // setActivePieces(activePiecesFilter);
             activePieces = activePiecesFilter;
-            console.log("current player", player.pieces);
-            console.log("new active pieces", activePieces);
+            // console.log("current player", player.pieces);
+            // console.log("new active pieces", activePieces);
             // liveRoom.gameState.currentPlayer = (liveRoom.gameState.currentPlayer + 1) % 4;
 
             // delete players.pieces["piece"];
         } else if ((piece.pos + diceRoll - 92) < 6) {
 
             let activePiecesFilter = activePieces.filter(activePiece => {
-                console.log("active piece", activePiece);
-                console.log("piece to filter out", piece);
+                // console.log("active piece", activePiece);
+                // console.log("piece to filter out", piece);
                 return activePiece.pos !== piece.pos
             });
 
@@ -476,18 +485,18 @@ const checkSafeZone = (liveRoom, i, diceRoll) => {
             piece.safeZonePos = (piece.pos + diceRoll - 92);
             piece.pos = -1;
             activePieces = activePiecesFilter;
-            console.log("new active pieces", activePieces);
-            console.log("safe zone", safeZonePieces);
+            // console.log("new active pieces", activePieces);
+            // console.log("safe zone", safeZonePieces);
         }
         return true;
     } else if (piece.color === "green" && ((piece.pos + diceRoll) % 60) > 32) {
-        console.log(`GREEN SAFE`);
+        // console.log(`GREEN SAFE`);
 
         if ((piece.pos + diceRoll - 108) === 6) {
-            console.log("WE MADE IT");
+            // console.log("WE MADE IT");
             let activePiecesFilter = activePieces.filter(activePiece => {
-                console.log("active piece", activePiece);
-                console.log("piece to filter out", piece);
+                // console.log("active piece", activePiece);
+                // console.log("piece to filter out", piece);
                 return activePiece.pos !== piece.pos
             });
             liveRoom.gameState.greenCounter += 1;
@@ -499,15 +508,15 @@ const checkSafeZone = (liveRoom, i, diceRoll) => {
             player.pieces.shift();
             // setActivePieces(activePiecesFilter);
             activePieces = activePiecesFilter;
-            console.log("current player", player.pieces);
-            console.log("new active pieces", activePieces);
+            // console.log("current player", player.pieces);
+            // console.log("new active pieces", activePieces);
             // liveRoom.gameState.currentPlayer = (liveRoom.gameState.currentPlayer  + 1) % 4;
             // delete players.pieces["piece"];
         } else if ((piece.pos + diceRoll - 108) < 6) {
 
             let activePiecesFilter = activePieces.filter(activePiece => {
-                console.log("active piece", activePiece);
-                console.log("piece to filter out", piece);
+                // console.log("active piece", activePiece);
+                // console.log("piece to filter out", piece);
                 return activePiece.pos !== piece.pos
             });
 
@@ -525,8 +534,8 @@ const checkSafeZone = (liveRoom, i, diceRoll) => {
             piece.safeZonePos = (piece.pos + diceRoll - 108);
             piece.pos = -1;
             activePieces = activePiecesFilter;
-            console.log("new active pieces", activePieces);
-            console.log("safe zone", safeZonePieces);
+            // console.log("new active pieces", activePieces);
+            // console.log("safe zone", safeZonePieces);
             // liveRoom.gameState.currentPlayer = (liveRoom.gameState.currentPlayer  + 1) % 4;
 
         }
@@ -543,7 +552,7 @@ const initializePiece = (liveRoom) => {
             break;
         } else {
             liveRoom.gameState.activePieces.push(player.pieces[i]);
-            console.log("active pieces", activePieces);
+            // console.log("active pieces", activePieces);
             liveRoom.gameState.players[currentPlayer].pieces[i].pos = startingPos[player.pieces[i].color];
             // player.pieces[i].pos = 1;
             break;
