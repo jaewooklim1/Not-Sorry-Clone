@@ -40,7 +40,7 @@ class SignupForm extends React.Component{
 
     renderErrors() {
         return(
-          <ul>
+          <ul className='errors'>
             {Object.keys(this.state.errors).map((error, i) => (
               <li key={`error-${i}`}>
                 {this.state.errors[error]}
@@ -63,7 +63,7 @@ class SignupForm extends React.Component{
                     value={this.state.username}
                     className="input-username"
                     onChange={this.update('username')}
-                    placeholder="username"
+                    placeholder="Username"
                   />
                 <br/>
                   <input type="password"

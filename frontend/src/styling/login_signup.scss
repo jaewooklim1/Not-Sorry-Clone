@@ -87,17 +87,35 @@ justify-content: center;
     width: 100%;
     border-radius: 6px;
 }
-.input-submit:hover {
+.demo-user-btn:hover , .input-submit:hover {
     text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
 }
+
+.demo-user-btn { 
+    margin-top: 10px;
+    cursor: pointer;
+    background: #0071e3;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    height: 3rem;
+    width: 100%;
+    border-radius: 6px;
+}
+
 .input-form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .input-errors {
     text-align: center;
+}
+
+.errors { 
+    color: red;
 }
 
 .sign-up-nav-ctn, .login-nav-ctn{ 
