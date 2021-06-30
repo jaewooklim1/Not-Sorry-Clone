@@ -96,7 +96,7 @@ class RoomShowPage extends React.Component {
                 )
             }
             // this.props.liveRoom.gameState.players.length === 4 ? socket.emit("start_game", this.props.liveRoom) : console.log("game in progress");
-            return <Game users={this.props.users}/>;
+            return <Game users={this.props.users} />;
         }
 
         const renderShow = () => {
@@ -124,27 +124,28 @@ class RoomShowPage extends React.Component {
                                 })
                             }
                         </ul>
-                        {/* {startbtn()} */}
+                        <div className="start-game-button-cont">
+                            {startbtn()}
+                        </div>
                     </div>
 
                 </>
             )
         }
-        // const startbtn = () => {
-        //     if (rooms.data.players.length === 4) {
-        //         return (
-        //             <button onClick={() => socket.emit("start_game", this.props.liveRoom)}>
-        //                 Start Game
-        //             </button>
-        //         )
-        //     }
-        //     // }
+        const startbtn = () => {
+            return (
+                <button onClick={() => socket.emit("start_game", this.props.liveRoom)}>
+                    Start Game
+                </button>
+            )
+        }
 
 
         // }    // console.log("live room from render", this.props.liveRoom.players);
         return (
             <div>
-                {this.props.liveRoom.players.length === 4 ? renderBoard() : renderShow()}
+                {this.props.liveRoom.gameActive === true ? renderBoard() : renderShow()}
+                {/* {renderShow()} */}
             </div>
         )
 

@@ -32,12 +32,17 @@ const Board = (props) => {
     //     dispatch(fetchUsers())
     // }, []) 
     const rollDice = () => {
-        console.log(liveRoom.gameState)
-        console.log(playerId)
+        // console.log(liveRoom)
+        // console.log(liveRoom.gameState)
+        // console.log(playerId)
         if (playerId === liveRoom.gameState.players[liveRoom.gameState.currentPlayer].id) {
             console.log("dice is rolling")
             socket.emit("roll_dice", { playerId, liveRoom });
         }
+    }
+
+    const exitGame = () => {
+        socket.emit("exit_game", {playerId, liveRoom});
     }
 
     function idToName(id) {
@@ -72,7 +77,7 @@ const Board = (props) => {
                                 </div>
                                 <div className="player-name">
                                     <p>
-                                        {idToName(liveRoom.players[0])}
+                                        {liveRoom.players[0] ? idToName(liveRoom.players[0]) : "N/A"}
                                     </p>
                                 </div>
                                 <div className="each-player-count">
@@ -90,7 +95,7 @@ const Board = (props) => {
                                 </div>
                                 <div className="player-name">
                                     <p>
-                                        {idToName(liveRoom.players[1])}
+                                        {liveRoom.players[1] ? idToName(liveRoom.players[1]) : "N/A"}
                                     </p>
                                 </div>
                                 <div className="each-player-count">
@@ -108,7 +113,7 @@ const Board = (props) => {
                                 </div>
                                 <div className="player-name">
                                     <p>
-                                        {idToName(liveRoom.players[2])}
+                                        {liveRoom.players[2] ? idToName(liveRoom.players[2]) : "N/A"}
                                     </p>
                                 </div>
                                 <div className="each-player-count">
@@ -126,7 +131,7 @@ const Board = (props) => {
                                 </div>
                                 <div className="player-name">
                                     <p>
-                                        {idToName(liveRoom.players[3])}
+                                        {liveRoom.players[3] ? idToName(liveRoom.players[3]) : "N/A"}
                                     </p>
                                 </div>
                                 <div className="each-player-count">
@@ -152,10 +157,7 @@ const Board = (props) => {
                         <p className="dice-roll-number">
                             {liveRoom.gameState.prevDiceRoll}
                         </p>
-                        <div className="exit-game-button" onClick={() => {
-                            console.log("live room from frontend", liveRoom)
-                            socket.emit("exit_game", ({playerId, liveRoom}))
-                        }}>
+                        <div className="exit-game-button" onClick={() => exitGame()}>
                             Exit Game
                         </div>
                     </div>
