@@ -38,15 +38,15 @@ const RoomIndexItem = ({ room, currentUser }) => {
     const dispatch = useDispatch();
     const user_id = useSelector((store) => store.session.user.id);
 
-    console.log("room from room index item", room);
-    console.log("currentUser", currentUser);
+    // console.log("room from room index item", room);
+    // console.log("currentUser", currentUser);
     const renderDelete = () => {
         return (
             <button className="delete-rooms-button"
                 onClick={() => {
                     // console.log("Click")
-                    // console.log("room to remove", { room });
-                    socket.emit("remove_room", { room });
+                    // console.log("room to remove", { room, currentUser });
+                    socket.emit("remove_room", { room, currentUser });
                     // dispatch(fetchRooms());
                 }}> 
                 Delete Room

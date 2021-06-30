@@ -32,10 +32,14 @@ const onConnect = (socket, io) => {
 
     //socket on delete_room, room 
 
-    socket.on('remove_room', async ({ room }) => {
-        await Room.findByIdAndDelete(room._id);
+    socket.on('remove_room', async ({ room, currentUser }) => {
+
+        if (room.user === currentUser.id) {
+            await Room.findByIdAndDelete(room._id);
+        }
 
         io.emit("update_rooms");
+        socket.broadcast.emit("update_rooms");
     })
 
     socket.on("join_room", async ({ room, user_id }) => {
@@ -127,32 +131,6 @@ const onConnect = (socket, io) => {
             }
         }
 
-        // foundRoom.gameState.players = foundRoom.players.map((player, idx) => {
-
-        //     return {
-        //         id: player._id,
-        //         team: playerTeams[idx],
-        //         active: true,
-        //         pieces: [
-        //             {
-        //                 safeZonePos: -1,
-        //                 pos: -1,
-        //                 color: playerTeams[idx]
-        //             },
-        //             {
-        //                 safeZonePos: -1,
-        //                 pos: -1,
-        //                 color: playerTeams[idx]
-        //             },
-        //             {
-        //                 safeZonePos: -1,
-        //                 pos: -1,
-        //                 color: playerTeams[idx]
-        //             }
-        //         ]
-        //     };
-
-        // })
         foundRoom.gameState.activePieces = [];
         foundRoom.gameState.safeZonePieces = [];
         // room.gameState.players = newPlayers;
@@ -165,12 +143,25 @@ const onConnect = (socket, io) => {
         foundRoom.gameActive = true;
 
         await foundRoom.save();
-        console.log("found room in backend", foundRoom.gameState);
+        // console.log("found room in backend", foundRoom.gameState);
 
         // setPlayers(newPlayers);
         // console.log("new gamestate after start game", foundRoom.gameState);
         // console.log("Game has started", foundRoom.gameState.players);
         return io.to(foundRoom._id.toString()).emit("started_game", foundRoom);
+    })
+
+    socket.on("update_activity", async ({liveRoom}) => {
+        let inactivityTimer;
+        let foundRoom = await Room.findById(liveRoom._id);
+        clearTimeout(inactivityTimer);
+
+        inactivityTimer = setTimeout(() => {
+            console.log("pppppppppppppppppppppoooooooooooppppppppp");
+            Room.findByIdAndDelete(foundRoom._id)
+            io.emit("update_rooms");
+            socket.broadcast.emit("update_rooms");
+        }, 10000);
     })
 
     socket.on("exit_game", async ({ playerId, liveRoom }) => {
@@ -199,11 +190,29 @@ const onConnect = (socket, io) => {
                 return player;
             }
         });
-
         await foundRoom.save();
         io.to(foundRoom._id.toString()).emit("updated_game_state", foundRoom);
+
+        if (checkActivePlayers(foundRoom) === false) {
+            await Room.findByIdAndDelete(foundRoom._id);
+            io.emit("update_rooms");
+            socket.broadcast.emit("update_rooms");
+        }
+
         // console.log("new players", foundRoom.gameState.players);
     })
+
+    const checkActivePlayers = (liveRoom) => {
+        let isActive = false;
+
+        liveRoom.gameState.players.forEach(player => {
+            if (player.active === true) {
+                isActive = true;
+            }
+        });
+
+        return isActive;
+    }
 
     socket.on("roll_dice", async ({ playerId, liveRoom }) => {
         // console.log("live room from roll dice", liveRoom);
