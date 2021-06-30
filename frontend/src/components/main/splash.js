@@ -8,7 +8,7 @@ class Splash extends React.Component {
     return (
       <div className="whole-page">
         <NavBar></NavBar>
-        <div className="greeting-line">Welcome to Sorry</div>
+        <div className="greeting-line">Welcome to NotSorry</div>
         <div className="greeting-subtitle">
           America's popular board game now online!
         </div>
