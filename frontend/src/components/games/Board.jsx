@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { fetchUsers } from '../../actions/session_actions';
 import { socket } from '../app';
 import './board.css';
@@ -9,7 +10,7 @@ const boardArr = new Array(256).fill(1);
 const rowArr = new Array(16).fill(1);
 
 const Board = (props) => {
-
+    const history = useHistory();
     const dispatch = useDispatch();
     const playerId = useSelector(state => (state.session.user.id))
     const liveRoom = useSelector(state => (state.entities.liveRoom.liveRoom));
@@ -41,8 +42,13 @@ const Board = (props) => {
         }
     }
 
+    const updateActivity = () => {
+        socket.emit("update_activity", ({ liveRoom }))
+    }
+
     const exitGame = () => {
-        socket.emit("exit_game", {playerId, liveRoom});
+        socket.emit("exit_game", { playerId, liveRoom });
+        history.push('/rooms');
     }
 
     function idToName(id) {
@@ -149,7 +155,10 @@ const Board = (props) => {
                             <p className="current-player-name">
                                 {idToName(liveRoom.players[liveRoom.gameState.currentPlayer])}
                             </p>
-                            <button className="dice" onClick={() => rollDice()} >
+                            <button className="dice" onClick={() => {
+                                updateActivity()
+                                rollDice()
+                            }}>
                                 🎲
                             </button>
                         </div>
