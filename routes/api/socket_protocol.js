@@ -32,9 +32,9 @@ const onConnect = (socket, io) => {
 
     //socket on delete_room, room 
 
-    socket.on('remove_room', async ({ room}) => {
+    socket.on('remove_room', async ({ room }) => {
         await Room.findByIdAndDelete(room._id);
-        
+
         io.emit("update_rooms");
     })
 
@@ -72,30 +72,87 @@ const onConnect = (socket, io) => {
         // if (room.players.length === 4) {
         let foundRoom = await Room.findById(liveRoom._id);
         // const endGame = () => {
-        foundRoom.gameState.players = foundRoom.players.map((player, idx) => {
-            return {
-                id: player._id,
-                team: playerTeams[idx],
-                pieces: [
-                    {
-                        safeZonePos: -1,
-                        pos: -1,
-                        color: playerTeams[idx]
-                    },
-                    {
-                        safeZonePos: -1,
-                        pos: -1,
-                        color: playerTeams[idx]
-                    },
-                    {
-                        safeZonePos: -1,
-                        pos: -1,
-                        color: playerTeams[idx]
-                    }
-                ]
-            };
 
-        })
+        for (let i = 0; i <= 3; i++) {
+            if (foundRoom.players[i]) {
+                foundRoom.gameState.players.push(
+                    {
+                        id: liveRoom.players[i],
+                        team: playerTeams[i],
+                        active: true,
+                        pieces: [
+                            {
+                                safeZonePos: -1,
+                                pos: -1,
+                                color: playerTeams[i]
+                            },
+                            {
+                                safeZonePos: -1,
+                                pos: -1,
+                                color: playerTeams[i]
+                            },
+                            {
+                                safeZonePos: -1,
+                                pos: -1,
+                                color: playerTeams[i]
+                            }
+                        ]
+                    }
+                );
+            } else {
+                foundRoom.gameState.players.push(
+                    {
+                        id: null,
+                        team: playerTeams[i],
+                        active: false,
+                        pieces: [
+                            {
+                                safeZonePos: -1,
+                                pos: -1,
+                                color: playerTeams[i]
+                            },
+                            {
+                                safeZonePos: -1,
+                                pos: -1,
+                                color: playerTeams[i]
+                            },
+                            {
+                                safeZonePos: -1,
+                                pos: -1,
+                                color: playerTeams[i]
+                            }
+                        ]
+                    }
+                )
+            }
+        }
+
+        // foundRoom.gameState.players = foundRoom.players.map((player, idx) => {
+
+        //     return {
+        //         id: player._id,
+        //         team: playerTeams[idx],
+        //         active: true,
+        //         pieces: [
+        //             {
+        //                 safeZonePos: -1,
+        //                 pos: -1,
+        //                 color: playerTeams[idx]
+        //             },
+        //             {
+        //                 safeZonePos: -1,
+        //                 pos: -1,
+        //                 color: playerTeams[idx]
+        //             },
+        //             {
+        //                 safeZonePos: -1,
+        //                 pos: -1,
+        //                 color: playerTeams[idx]
+        //             }
+        //         ]
+        //     };
+
+        // })
         foundRoom.gameState.activePieces = [];
         foundRoom.gameState.safeZonePieces = [];
         // room.gameState.players = newPlayers;
@@ -104,11 +161,48 @@ const onConnect = (socket, io) => {
         foundRoom.gameState.yellowCounter = 0;
         foundRoom.gameState.greenCounter = 0;
         foundRoom.gameState.currentPlayer = 0;
+
+        foundRoom.gameActive = true;
+
         await foundRoom.save();
+        console.log("found room in backend", foundRoom.gameState);
+
         // setPlayers(newPlayers);
         // console.log("new gamestate after start game", foundRoom.gameState);
         // console.log("Game has started", foundRoom.gameState.players);
         return io.to(foundRoom._id.toString()).emit("started_game", foundRoom);
+    })
+
+    socket.on("exit_game", async ({ playerId, liveRoom }) => {
+
+        // console.log("in the backend!");
+        // console.log("live room in backend", liveRoom);
+
+        let foundRoom = await Room.findById(liveRoom._id);
+
+        foundRoom.gameState.players.filter(player => {
+            // console.log("player.id in newPLayers", player.id);
+            // console.log("player to kick out", playerId);
+            if (playerId == player.id) {
+                // console.log("in if statement");
+                player.pieces.map(piece => {
+                    piece.pos = -1;
+                    piece.safeZonePos = -1;
+                });
+
+                player.id = null;
+                player.active = false;
+                // console.log("player to change", player);
+                // console.log("player in if statement", player);
+                return player;
+            } else {
+                return player;
+            }
+        });
+
+        await foundRoom.save();
+        io.to(foundRoom._id.toString()).emit("updated_game_state", foundRoom);
+        // console.log("new players", foundRoom.gameState.players);
     })
 
     socket.on("roll_dice", async ({ playerId, liveRoom }) => {
@@ -132,6 +226,7 @@ const onConnect = (socket, io) => {
                 return false;
             }
         }
+
         const endGame = (liveRoom) => {
             io.to(liveRoom._id.toString()).emit("end_game", liveRoom);
         }
@@ -139,7 +234,6 @@ const onConnect = (socket, io) => {
         if (gameOver(foundRoom)) {
             return endGame(foundRoom);
         }
-
 
         // foundRoom.gameState.players = correctPlayers;
         // console.log("newPlayers", correctPlayers);
@@ -154,22 +248,15 @@ const onConnect = (socket, io) => {
     })
 
 
-    socket.on("update_game_state", liveRoom => {
+    // socket.on("update_game_state", liveRoom => {
 
-    })
+    // })
 
-    socket.on("reset_game_state", room => {
+    // socket.on("reset_game_state", room => {
 
-    })
+    // })
 
 }
-
-// const setCurrentPlayer = (currentPlayer) => {
-//     return currentPlayer = (currentPlayer + 1) % 4;
-// }
-
-
-
 
 
 const rollDice = async (playerId, liveRoom) => {
@@ -185,9 +272,8 @@ const rollDice = async (playerId, liveRoom) => {
             if (liveRoom.gameState.players[liveRoom.gameState.currentPlayer].team === piece.color) {
                 // console.log("players - in if", players);
                 checkMove(liveRoom, liveRoom.gameState.players[liveRoom.gameState.currentPlayer], (dieOne));
-                liveRoom.gameState.currentPlayer = (liveRoom.gameState.currentPlayer + 1) % 4;
-
-
+                // liveRoom.gameState.currentPlayer = (liveRoom.gameState.currentPlayer + 1) % 4;
+                liveRoom.gameState.currentPlayer = setCurrentPlayer(liveRoom);
             }
         })
 
@@ -198,11 +284,25 @@ const rollDice = async (playerId, liveRoom) => {
     // }
 
     checkMove(liveRoom, liveRoom.gameState.players[liveRoom.gameState.currentPlayer], (dieOne));
-    liveRoom.gameState.currentPlayer = (liveRoom.gameState.currentPlayer + 1) % 4;
+    liveRoom.gameState.currentPlayer = setCurrentPlayer(liveRoom);
+    // liveRoom.gameState.currentPlayer = (liveRoom.gameState.currentPlayer + 1) % 4;
     await liveRoom.save();
 
     // console.log("players - out if", players);
     return dieOne;
+}
+
+const setCurrentPlayer = (liveRoom) => {
+    for (let i = 0; i < 4; i++) {
+        if (liveRoom.gameState.players[(liveRoom.gameState.currentPlayer + 1) % 4].active === false) {
+            liveRoom.gameState.currentPlayer = (liveRoom.gameState.currentPlayer + 1) % 4;
+        } else {
+            // console.log("gamestate.players", liveRoom.gameState)
+            liveRoom.gameState.currentPlayer = (liveRoom.gameState.currentPlayer + 1) % 4;
+            break;
+        }
+    }
+    return liveRoom.gameState.currentPlayer;
 }
 
 const movePiece = (liveRoom, diceRoll) => {
@@ -314,7 +414,7 @@ const checkSlide = (piece, diceRoll) => {
         // console.log("SLIIIIIIIIIIIIIIIIIIIDE");
         return 3;
     } else if ((piece.pos + diceRoll) === 54) {
-        console.log("SLIIIIIIIIIIIIIIIIIIIDE");
+        // console.log("SLIIIIIIIIIIIIIIIIIIIDE");
         return 4;
     } else if ((piece.pos + diceRoll) === 1 && piece.color !== "red") {
         // console.log("SLIIIIIIIIIIIIIIIIIIIDE");

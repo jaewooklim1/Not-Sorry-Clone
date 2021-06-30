@@ -44,8 +44,8 @@ const RoomIndexItem = ({ room, currentUser }) => {
         return (
             <button className="delete-rooms-button"
                 onClick={() => {
-                    console.log("Click")
-                    console.log("room to remove", { room });
+                    // console.log("Click")
+                    // console.log("room to remove", { room });
                     socket.emit("remove_room", { room });
                     // dispatch(fetchRooms());
                 }}> 
@@ -78,7 +78,8 @@ const RoomIndexItem = ({ room, currentUser }) => {
                         </li>
 
                     </div>
-                      {room.players[0] === currentUser.id ? renderDelete() : ""}
+                      {/* {room.players[0] === currentUser.id ? renderDelete() : ""} */}
+                      {renderDelete()}
                 </div>
             </CardContent>
         </Card>

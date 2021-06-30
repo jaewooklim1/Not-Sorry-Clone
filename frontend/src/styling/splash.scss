@@ -93,6 +93,20 @@ body {
   justify-content: center;
 }
 
+.greeting-subtitle {
+  font-size: 25px;
+  color: white;
+  text-align: center;
+  display: relative;
+  margin-top: 5px;
+}
+
+.splashImage {
+  display: flex;
+  padding-top: 50px;
+  justify-content: center;
+}
+
 // .logout-button {
 //   width: 275px;
 //   /* border: 1px solid rgba(255,255,255,0.3); */
