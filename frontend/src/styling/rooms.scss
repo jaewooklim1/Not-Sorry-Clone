@@ -22,7 +22,7 @@
 }
 
 .card-background-image {
-  background-image: url("https://i.gifer.com/McuD.gif");
+  background-image: url('https://i.gifer.com/McuD.gif');
   background-size: 50px, 190px;
   background-repeat: no-repeat;
   // width: 150px;
@@ -49,49 +49,48 @@
 //     margin-top: 5px;
 //     // justify-content: center;
 // }
-.add-room-modal { 
+.add-room-modal {
   font-family: 'Lato', sans-serif;
 }
-.add-room-modal h2{ 
-  padding: 5px; 
+.add-room-modal h2 {
+  padding: 5px;
   margin: 0px 8px;
-  border-bottom: 2px solid rgba(128, 128, 128, 0.438); 
+  border-bottom: 2px solid rgba(128, 128, 128, 0.438);
 }
 
 .create-room-btn {
-  background: none;  
-  margin: 32px 6px 6px 6px; 
+  background: none;
+  margin: 32px 6px 6px 6px;
   padding: 6px 12px;
   cursor: pointer;
-  outline: none; 
+  outline: none;
   transition: all 0.3s;
   border: 2px solid #3498db;
   border-radius: 3px;
 }
 
-.rooms-page-text{ 
+.rooms-page-text {
   font-family: 'Lato', sans-serif;
 }
 
-.create-room-btn:hover{ 
-  color:white; 
+.create-room-btn:hover {
+  color: white;
   background-color: #3498db;
 }
 
-.button-add-room { 
-display: flex;
-justify-content: center;
-} 
-
-.button-add-room { 
+.button-add-room {
   display: flex;
   justify-content: center;
-} 
+}
 
-.MuiCardContent-root:hover{ 
+.MuiCardContent-root:hover {
   box-shadow: 0 0 10px 0 #3498db inset;
   cursor: pointer;
-} 
+}
+// .button-add-room {
+//   display: flex;
+//   justify-content: center;
+// } //centers btn but cant click b/c of background
 
 /* The alert message box */
 .alert {

@@ -1,6 +1,6 @@
 body {
   // background: rgb(19, 27, 58);
-  font-family: "Taviraj", serif;
+  font-family: 'Taviraj', serif;
   padding: 0;
   margin: 0;
   height: 100px;
@@ -37,6 +37,7 @@ body {
   justify-content: space-evenly;
   font-size: 15px;
   font-weight: 100;
+  font-family: Helvetica;
   // margin-right: 250px;
   // margin-left: 200px;
   /* padding-left: 15px; */
@@ -65,6 +66,7 @@ body {
   font-size: 25px;
   text-decoration: none;
   /* text-align: center; */
+  font-family: Helvetica;
 }
 
 .greeting-line {
@@ -73,6 +75,22 @@ body {
   text-align: center;
   display: relative;
   margin-top: 15px;
+  font-family: Helvetica;
+}
+
+.greeting-subtitle {
+  font-size: 25px;
+  color: white;
+  text-align: center;
+  display: relative;
+  margin-top: 5px;
+  font-family: Helvetica;
+}
+
+.splashImage {
+  display: flex;
+  padding-top: 75px;
+  justify-content: center;
 }
 
 .greeting-subtitle {
@@ -178,18 +196,20 @@ body {
   color: white;
   /* margin-top: 150%; */
   flex-direction: column;
+  font-family: Helvetica;
 }
 
 .back-to-top {
   display: block;
   color: #fefefe;
-  height: 30px;
+  height: 35px;
+  margin-top: 10px;
   margin-bottom: 23px;
   width: 80%;
   background-color: #37475a;
   text-align: center;
   /* padding-top: 18px; */
-  font-family: "";
+  font-family: Helvetica;
   font-size: 25px;
   margin-left: 10%;
 }
@@ -208,6 +228,7 @@ body {
   width: 80%;
   padding-bottom: 5px;
   margin-left: 10%;
+  font-family: Helvetica;
 }
 
 .get-to-know {
@@ -217,6 +238,7 @@ body {
   justify-content: space-evenly;
   margin-bottom: 5px;
   list-style: none;
+  font-family: Helvetica;
 }
 
 .profile-picture {
@@ -245,11 +267,6 @@ body {
   color: rgb(247, 242, 242);
 }
 
-.input-errors {
-  color: rgb(114, 3, 3);
-  font-weight: 1000;
-}
-
 .input-errors > li {
   list-style: none;
 }
@@ -258,3 +275,45 @@ body {
   list-style: none;
 }
 
+.bulletin-board {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 400px;
+  margin:auto;
+  width: 50%;
+  // margin-left: 500px;
+  background-color: #181818;
+  color: #ddd;
+  padding: 10px;
+  // display: relative;
+  // text-align: center;
+  // margin-top: 145px;
+  font-family: 'Comfortaa';
+  border: 3px;
+  padding: 20px;
+  border-radius: 15px;
+  border: 3px solid rgba(76, 121, 245, 0.15);
+}
+
+.bulletin-title {
+  box-sizing: border-box;
+  font-size: 20px;
+  text-align: center;
+  margin: 10px;
+  font-family: 'Comfortaa';
+}
+
+.bulletin-content {
+  font-size: 17px;
+  text-align: justify;
+  margin: 10px;
+  font-family: 'Comfortaa';
+}
+
+.bulletin-link {
+  font-size: 17px;
+  text-align: center;
+  margin: 10px;
+  font-family: 'Comfortaa';
+}

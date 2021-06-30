@@ -226,6 +226,7 @@ const onConnect = (socket, io) => {
                 return false;
             }
         }
+
         const endGame = (liveRoom) => {
             io.to(liveRoom._id.toString()).emit("end_game", liveRoom);
         }
@@ -233,7 +234,6 @@ const onConnect = (socket, io) => {
         if (gameOver(foundRoom)) {
             return endGame(foundRoom);
         }
-
 
         // foundRoom.gameState.players = correctPlayers;
         // console.log("newPlayers", correctPlayers);
@@ -258,9 +258,6 @@ const onConnect = (socket, io) => {
 
 }
 
-// const setCurrentPlayer = (currentPlayer) => {
-//     return currentPlayer = (currentPlayer + 1) % 4;
-// }
 
 const rollDice = async (playerId, liveRoom) => {
 

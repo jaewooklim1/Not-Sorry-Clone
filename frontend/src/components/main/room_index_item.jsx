@@ -78,7 +78,8 @@ const RoomIndexItem = ({ room, currentUser }) => {
                         </li>
 
                     </div>
-                      {room.players[0] === currentUser.id ? renderDelete() : ""}
+                      {/* {room.players[0] === currentUser.id ? renderDelete() : ""} */}
+                      {renderDelete()}
                 </div>
             </CardContent>
         </Card>
