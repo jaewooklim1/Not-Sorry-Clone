@@ -44,12 +44,22 @@ const RoomIndexItem = ({ room }) => {
                         className="individual-rooms"
                         onClick={() => {
                             console.log("ON CLICK");
-                            socket.emit("join_room", { room, user_id });
+                            if (room.players.length < 4){
+                                socket.emit("join_room", { room, user_id });
+                            } else {
+                                alert("Room is full");
+                            }
                         }}
                     >
                         <li>
                             <Typography className={classes.title} color="textSecondary">
-                                {room.roomname}
+                                <div key={room._id}>
+
+                                    {room.roomname}
+                                
+                                    <br></br>
+                                    {`Players ${room.players.length}/4`}
+                                </div>
                             </Typography>
                         </li>
                     </div>
