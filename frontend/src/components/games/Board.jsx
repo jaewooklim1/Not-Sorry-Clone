@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { fetchUsers } from '../../actions/session_actions';
 import { socket } from '../app';
 import './board.css';
@@ -9,7 +10,7 @@ const boardArr = new Array(256).fill(1);
 const rowArr = new Array(16).fill(1);
 
 const Board = (props) => {
-
+    const history = useHistory();
     const dispatch = useDispatch();
     const playerId = useSelector(state => (state.session.user.id))
     const liveRoom = useSelector(state => (state.entities.liveRoom.liveRoom));
@@ -32,12 +33,22 @@ const Board = (props) => {
     //     dispatch(fetchUsers())
     // }, []) 
     const rollDice = () => {
-        console.log(liveRoom.gameState)
-        console.log(playerId)
+        // console.log(liveRoom)
+        // console.log(liveRoom.gameState)
+        // console.log(playerId)
         if (playerId === liveRoom.gameState.players[liveRoom.gameState.currentPlayer].id) {
             console.log("dice is rolling")
             socket.emit("roll_dice", { playerId, liveRoom });
         }
+    }
+
+    const updateActivity = () => {
+        socket.emit("update_activity", ({ liveRoom }))
+    }
+
+    const exitGame = () => {
+        socket.emit("exit_game", { playerId, liveRoom });
+        history.push('/rooms');
     }
 
     function idToName(id) {
@@ -61,326 +72,357 @@ const Board = (props) => {
     }
     console.log("liveRoom from board", liveRoom);
     return (
-        <div className="board-container">
-            <div className="tiles-container">
-                {
-                    rowArr.map((tile, idx) => {
-
-
-                        return <Tile key={idx} idx={idx} />
-                    })
-                }
-                {
-                    rowArr.map((tile, idx) => {
-
-                        let boardIdx;
-                        if (idx === 0) {
-                            boardIdx = 59;
-                        } else if (idx === 15) {
-                            boardIdx = 16;
-                        } else if (idx === 4) {
-                            boardIdx = "red";
-                        } else if (idx === 2) {
-                            boardIdx = JSON.stringify({ color: "red", pos: 0 });
-                        }
-
-                        return <Tile key={idx} idx={boardIdx} />
-                    })
-                }
-                {
-
-                    rowArr.map((tile, idx) => {
-                        let boardIdx;
-                        if (idx === 0) {
-                            boardIdx = 58;
-                        } else if (idx === 15) {
-                            boardIdx = 17;
-                        } else if (idx >= 9 && idx <= 14) {
-                            boardIdx = JSON.stringify({ color: "blue", pos: 14 - idx });
-                        } else if (idx === 2) {
-                            boardIdx = JSON.stringify({ color: "red", pos: 1 });
-                        }
-
-                        return <Tile key={idx} idx={boardIdx} />
-                    })
-                }
-                {
-                    rowArr.map((tile, idx) => {
-
-                        let boardIdx;
-                        if (idx === 0) {
-                            boardIdx = 57;
-                        } else if (idx === 15) {
-                            boardIdx = 18;
-                        } else if (idx === 2) {
-                            boardIdx = JSON.stringify({ color: "red", pos: 2 });
-                        }
-
-                        return <Tile key={idx} idx={boardIdx} />
-                    })
-                }
-                {
-                    rowArr.map((tile, idx) => {
-
-                        let boardIdx;
-                        if (idx === 0) {
-                            boardIdx = 56;
-                        } else if (idx === 15) {
-                            boardIdx = 19;
-                        } else if (idx === 14) {
-                            boardIdx = "blue";
-                        } else if (idx === 2) {
-                            boardIdx = JSON.stringify({ color: "red", pos: 3 });
-                        }
-
-                        return <Tile key={idx} idx={boardIdx} />
-                    })
-                }
-                {
-                    rowArr.map((tile, idx) => {
-
-                        let boardIdx;
-                        if (idx === 0) {
-                            boardIdx = 55;
-                        } else if (idx === 15) {
-                            boardIdx = 20;
-                        } else if (idx === 2) {
-                            boardIdx = JSON.stringify({ color: "red", pos: 4 });
-                        }
-
-                        return <Tile key={idx} idx={boardIdx} />
-                    })
-                }
-                {
-                    rowArr.map((tile, idx) => {
-
-                        let boardIdx;
-                        if (idx === 0) {
-                            boardIdx = 54;
-                        } else if (idx === 15) {
-                            boardIdx = 21;
-                        } else if (idx === 2) {
-                            boardIdx = JSON.stringify({ color: "red", pos: 5 });
-                        }
-
-                        return <Tile key={idx} idx={boardIdx} />
-                    })
-                }
-
-                {
-                    rowArr.map((tile, idx) => {
-
-                        let boardIdx;
-                        if (idx === 0) {
-                            boardIdx = 53;
-                        } else if (idx === 15) {
-                            boardIdx = 22;
-                        }
-
-                        return <Tile key={idx} idx={boardIdx} />
-                    })
-                }
-                {
-                    rowArr.map((tile, idx) => {
-
-                        let boardIdx;
-                        if (idx === 0) {
-                            boardIdx = 52;
-                        } else if (idx === 15) {
-                            boardIdx = 23;
-                        }
-
-                        return <Tile key={idx} idx={boardIdx} />
-                    })
-                }
-                {
-                    rowArr.map((tile, idx) => {
-
-                        let boardIdx;
-                        if (idx === 0) {
-                            boardIdx = 51;
-                        } else if (idx === 15) {
-                            boardIdx = 24;
-                        } else if (idx === 13) {
-                            boardIdx = JSON.stringify({ color: "yellow", pos: 5 });
-
-                        }
-
-                        return <Tile key={idx} idx={boardIdx} />
-                    })
-                }
-                {
-                    rowArr.map((tile, idx) => {
-
-                        let boardIdx;
-                        if (idx === 0) {
-                            boardIdx = 50;
-                        } else if (idx === 15) {
-                            boardIdx = 25;
-                        } else if (idx === 13) {
-                            boardIdx = JSON.stringify({ color: "yellow", pos: 4 });
-
-                        }
-
-                        return <Tile key={idx} idx={boardIdx} />
-                    })
-                }
-                {
-                    rowArr.map((tile, idx) => {
-
-                        let boardIdx;
-                        if (idx === 0) {
-                            boardIdx = 49;
-                        } else if (idx === 15) {
-                            boardIdx = 26;
-                        } else if (idx === 1) {
-                            boardIdx = "green";
-                        } else if (idx === 13) {
-                            boardIdx = JSON.stringify({ color: "yellow", pos: 3 });
-
-                        }
-
-                        return <Tile key={idx} idx={boardIdx} />
-                    })
-                }
-                {
-                    rowArr.map((tile, idx) => {
-
-                        let boardIdx;
-                        if (idx === 0) {
-                            boardIdx = 48;
-                        } else if (idx === 15) {
-                            boardIdx = 27;
-                        } else if (idx === 13) {
-                            boardIdx = JSON.stringify({ color: "yellow", pos: 2 });
-
-                        }
-
-                        return <Tile key={idx} idx={boardIdx} />
-                    })
-                }
-                {
-                    rowArr.map((tile, idx) => {
-
-                        let boardIdx;
-                        if (idx === 0) {
-                            boardIdx = 47;
-                        } else if (idx === 15) {
-                            boardIdx = 28;
-                        } else if (idx >= 1 && idx <= 6) {
-                            boardIdx = JSON.stringify({ color: "green", pos: idx - 1 });
-                        } else if (idx === 13) {
-                            boardIdx = JSON.stringify({ color: "yellow", pos: 1 });
-
-                        }
-
-                        return <Tile key={idx} idx={boardIdx} />
-                    })
-                }
-                {
-                    rowArr.map((tile, idx) => {
-
-                        let boardIdx;
-                        if (idx === 0) {
-                            boardIdx = 46;
-                        } else if (idx === 15) {
-                            boardIdx = 29;
-                        } else if (idx === 11) {
-                            boardIdx = "yellow";
-                        } else if (idx === 13) {
-                            boardIdx = JSON.stringify({ color: "yellow", pos: 0 });
-
-                        }
-
-                        return <Tile key={idx} idx={boardIdx} />
-                    })
-                }
-                {
-                    rowArr.map((tile, idx) => {
-                        let boardIdx = 45;
-                        boardIdx -= idx;
-                        return <Tile key={idx} idx={boardIdx} />
-                    })
-
-                }
-            </div>
-
-            {/* <button onClick={() => socket.emit("start_game", liveRoom)}>
-                start game
-            </button> */}
-            <div className="dice-counter-container">
+        <div className="board-page-container">
+            <div className="board-page-section">
                 <div className="each-play-details">
                     <div className="counter-container">
                         <div className="red-counter-container">
                             <div className="red-counter">
-                                <h3 className="counter-title">Red Counter </h3>
-                                <p className="counter-number">
-                                    {liveRoom.gameState.redCounter}
-                                </p>
-                            </div>
-                            <div className="red-player-name">
-                                <p>
-                                    {idToName(liveRoom.players[0])}
-                                </p>
-                            </div>
-                        </div>
-                        <div className="red-counter-container">
-                            <div className="blue-counter">
-                                <h3 className="counter-title">Blue Counter </h3>
-                                <p className="counter-number">
-                                    {liveRoom.gameState.blueCounter}
-                                </p>
-                            </div>
-                            <div className="red-player-name">
-                                <p>
-                                    {idToName(liveRoom.players[1])}
-                                </p>
+                                <div className="team-name">
+                                    <h3>Red Team</h3>
+                                </div>
+                                <div className="player-name">
+                                    <p>
+                                        {liveRoom.players[0] ? idToName(liveRoom.players[0]) : "N/A"}
+                                    </p>
+                                </div>
+                                <div className="each-player-count">
+                                    <h3 className="counter-title">Counter </h3>
+                                    <p className="counter-number">
+                                        {liveRoom.gameState.redCounter}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                         <div className="red-counter-container">
-                            <div className="yellow-counter">
-                                <h3 className="counter-title">Yellow Counter </h3>
-                                <p className="counter-number">
-                                    {liveRoom.gameState.yellowCounter}
-                                </p>
-                            </div>
-                            <div className="red-player-name">
-                                <p>
-                                    {idToName(liveRoom.players[2])}
-                                </p>
+                            <div className="red-counter">
+                                <div className="team-name">
+                                    <h3>Blue Team</h3>
+                                </div>
+                                <div className="player-name">
+                                    <p>
+                                        {liveRoom.players[1] ? idToName(liveRoom.players[1]) : "N/A"}
+                                    </p>
+                                </div>
+                                <div className="each-player-count">
+                                    <h3 className="counter-title">Counter </h3>
+                                    <p className="counter-number">
+                                        {liveRoom.gameState.blueCounter}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                         <div className="red-counter-container">
-                            <div className="green-counter">
-                                <h3 className="counter-title">Green Counter </h3>
-                                <p className="counter-number">
-                                    {liveRoom.gameState.greenCounter}
-                                </p>
-                            </div>
-                            <div className="red-player-name">
-                                <p>
-                                    {idToName(liveRoom.players[3])}
-                                </p>
+                            <div className="red-counter">
+                                <div className="team-name">
+                                    <h3>Yellow Team</h3>
+                                </div>
+                                <div className="player-name">
+                                    <p>
+                                        {liveRoom.players[2] ? idToName(liveRoom.players[2]) : "N/A"}
+                                    </p>
+                                </div>
+                                <div className="each-player-count">
+                                    <h3 className="counter-title">Counter </h3>
+                                    <p className="counter-number">
+                                        {liveRoom.gameState.yellowCounter}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div className="each-turn-container">
-                    <div className="current-player-container">
-                        <h3 className="current-player-title">Current Player </h3>
-                        <p className="current-player-name">
-                            {idToName(liveRoom.players[liveRoom.gameState.currentPlayer])}
-                        </p>
-                        <button className="dice" onClick={() => rollDice()} >
-                            🎲
-                        </button>
+                        <div className="red-counter-container">
+                            <div className="red-counter">
+                                <div className="team-name">
+                                    <h3>Green Team</h3>
+                                </div>
+                                <div className="player-name">
+                                    <p>
+                                        {liveRoom.players[3] ? idToName(liveRoom.players[3]) : "N/A"}
+                                    </p>
+                                </div>
+                                <div className="each-player-count">
+                                    <h3 className="counter-title">Counter </h3>
+                                    <p className="counter-number">
+                                        {liveRoom.gameState.greenCounter}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div className="dice-roll">
-                        <h3 className="dice-roll-title">Dice Roll</h3>
+                        <div className="current-player-container">
+                            <h3 className="current-player-title">Current Player </h3>
+                            <p className="current-player-name">
+                                {idToName(liveRoom.players[liveRoom.gameState.currentPlayer])}
+                            </p>
+                            <button className="dice" onClick={() => {
+                                updateActivity()
+                                rollDice()
+                            }}>
+                                🎲
+                            </button>
+                        </div>
+                        <h3 className="dice-roll-title">Previous Roll</h3>
                         <p className="dice-roll-number">
                             {liveRoom.gameState.prevDiceRoll}
                         </p>
+                        <div className="exit-game-button" onClick={() => exitGame()}>
+                            Exit Game
+                        </div>
                     </div>
+                </div>
+            </div>
+            <div className="board-container">
+                <div className="tiles-container">
+                    {
+                        rowArr.map((tile, idx) => {
+
+
+                            return <Tile key={idx} idx={idx} />
+                        })
+                    }
+                    {
+                        rowArr.map((tile, idx) => {
+
+                            let boardIdx;
+                            if (idx === 0) {
+                                boardIdx = 59;
+                            } else if (idx === 15) {
+                                boardIdx = 16;
+                            } else if (idx === 4) {
+                                boardIdx = "red";
+                            } else if (idx === 2) {
+                                boardIdx = JSON.stringify({ color: "red", pos: 0 });
+                            }
+
+                            return <Tile key={idx} idx={boardIdx} />
+                        })
+                    }
+                    {
+
+                        rowArr.map((tile, idx) => {
+                            let boardIdx;
+                            if (idx === 0) {
+                                boardIdx = 58;
+                            } else if (idx === 15) {
+                                boardIdx = 17;
+                            } else if (idx >= 9 && idx <= 14) {
+                                boardIdx = JSON.stringify({ color: "blue", pos: 14 - idx });
+                            } else if (idx === 2) {
+                                boardIdx = JSON.stringify({ color: "red", pos: 1 });
+                            }
+
+                            return <Tile key={idx} idx={boardIdx} />
+                        })
+                    }
+                    {
+                        rowArr.map((tile, idx) => {
+
+                            let boardIdx;
+                            if (idx === 0) {
+                                boardIdx = 57;
+                            } else if (idx === 15) {
+                                boardIdx = 18;
+                            } else if (idx === 2) {
+                                boardIdx = JSON.stringify({ color: "red", pos: 2 });
+                            }
+
+                            return <Tile key={idx} idx={boardIdx} />
+                        })
+                    }
+                    {
+                        rowArr.map((tile, idx) => {
+
+                            let boardIdx;
+                            if (idx === 0) {
+                                boardIdx = 56;
+                            } else if (idx === 15) {
+                                boardIdx = 19;
+                            } else if (idx === 14) {
+                                boardIdx = "blue";
+                            } else if (idx === 2) {
+                                boardIdx = JSON.stringify({ color: "red", pos: 3 });
+                            }
+
+                            return <Tile key={idx} idx={boardIdx} />
+                        })
+                    }
+                    {
+                        rowArr.map((tile, idx) => {
+
+                            let boardIdx;
+                            if (idx === 0) {
+                                boardIdx = 55;
+                            } else if (idx === 15) {
+                                boardIdx = 20;
+                            } else if (idx === 2) {
+                                boardIdx = JSON.stringify({ color: "red", pos: 4 });
+                            }
+
+                            return <Tile key={idx} idx={boardIdx} />
+                        })
+                    }
+                    {
+                        rowArr.map((tile, idx) => {
+
+                            let boardIdx;
+                            if (idx === 0) {
+                                boardIdx = 54;
+                            } else if (idx === 15) {
+                                boardIdx = 21;
+                            } else if (idx === 2) {
+                                boardIdx = JSON.stringify({ color: "red", pos: 5 });
+                            }
+
+                            return <Tile key={idx} idx={boardIdx} />
+                        })
+                    }
+
+                    {
+                        rowArr.map((tile, idx) => {
+
+                            let boardIdx;
+                            if (idx === 0) {
+                                boardIdx = 53;
+                            } else if (idx === 15) {
+                                boardIdx = 22;
+                            }
+
+                            return <Tile key={idx} idx={boardIdx} />
+                        })
+                    }
+                    {
+                        rowArr.map((tile, idx) => {
+
+                            let boardIdx;
+                            if (idx === 0) {
+                                boardIdx = 52;
+                            } else if (idx === 15) {
+                                boardIdx = 23;
+                            }
+
+                            return <Tile key={idx} idx={boardIdx} />
+                        })
+                    }
+                    {
+                        rowArr.map((tile, idx) => {
+
+                            let boardIdx;
+                            if (idx === 0) {
+                                boardIdx = 51;
+                            } else if (idx === 15) {
+                                boardIdx = 24;
+                            } else if (idx === 13) {
+                                boardIdx = JSON.stringify({ color: "yellow", pos: 5 });
+
+                            }
+
+                            return <Tile key={idx} idx={boardIdx} />
+                        })
+                    }
+                    {
+                        rowArr.map((tile, idx) => {
+
+                            let boardIdx;
+                            if (idx === 0) {
+                                boardIdx = 50;
+                            } else if (idx === 15) {
+                                boardIdx = 25;
+                            } else if (idx === 13) {
+                                boardIdx = JSON.stringify({ color: "yellow", pos: 4 });
+
+                            }
+
+                            return <Tile key={idx} idx={boardIdx} />
+                        })
+                    }
+                    {
+                        rowArr.map((tile, idx) => {
+
+                            let boardIdx;
+                            if (idx === 0) {
+                                boardIdx = 49;
+                            } else if (idx === 15) {
+                                boardIdx = 26;
+                            } else if (idx === 1) {
+                                boardIdx = "green";
+                            } else if (idx === 13) {
+                                boardIdx = JSON.stringify({ color: "yellow", pos: 3 });
+
+                            }
+
+                            return <Tile key={idx} idx={boardIdx} />
+                        })
+                    }
+                    {
+                        rowArr.map((tile, idx) => {
+
+                            let boardIdx;
+                            if (idx === 0) {
+                                boardIdx = 48;
+                            } else if (idx === 15) {
+                                boardIdx = 27;
+                            } else if (idx === 13) {
+                                boardIdx = JSON.stringify({ color: "yellow", pos: 2 });
+
+                            }
+
+                            return <Tile key={idx} idx={boardIdx} />
+                        })
+                    }
+                    {
+                        rowArr.map((tile, idx) => {
+
+                            let boardIdx;
+                            if (idx === 0) {
+                                boardIdx = 47;
+                            } else if (idx === 15) {
+                                boardIdx = 28;
+                            } else if (idx >= 1 && idx <= 6) {
+                                boardIdx = JSON.stringify({ color: "green", pos: idx - 1 });
+                            } else if (idx === 13) {
+                                boardIdx = JSON.stringify({ color: "yellow", pos: 1 });
+
+                            }
+
+                            return <Tile key={idx} idx={boardIdx} />
+                        })
+                    }
+                    {
+                        rowArr.map((tile, idx) => {
+
+                            let boardIdx;
+                            if (idx === 0) {
+                                boardIdx = 46;
+                            } else if (idx === 15) {
+                                boardIdx = 29;
+                            } else if (idx === 11) {
+                                boardIdx = "yellow";
+                            } else if (idx === 13) {
+                                boardIdx = JSON.stringify({ color: "yellow", pos: 0 });
+
+                            }
+
+                            return <Tile key={idx} idx={boardIdx} />
+                        })
+                    }
+                    {
+                        rowArr.map((tile, idx) => {
+                            let boardIdx = 45;
+                            boardIdx -= idx;
+                            return <Tile key={idx} idx={boardIdx} />
+                        })
+
+                    }
+                </div>
+            </div>
+            {/* <button onClick={() => socket.emit("start_game", liveRoom)}>
+                start game
+            </button> */}
+            <div className="dice-counter-container">
+
+                <div className="each-turn-container">
+
                 </div>
             </div>
         </div>

@@ -16,24 +16,30 @@ class Splash extends React.Component {
           <img src="https://i.imgur.com/ETjxAwz.gif" />
         </div>
         <div className="bulletin-board">
-          <h2>
-            Play the hit board game in your browser! Always free with no ads!
-          </h2>
-          <p>
-            Sorry is a board game for 2-4 players. Players move their three or
-            four pieces around the board, attempting to get all of their pieces
-            "home" before any other player. The game title comes from the many
-            ways in which a player can negate the progress of another, while
-            issuing an apologetic "Sorry!"
-          </p>
-          <p>
-            Check out our "
-            <a href="https://github.com/jaewooklim1/Not-Sorry-Clone">
-              github page
-            </a>
-            " to learn about how the game works, or hop into the the game lobby
-            itself right now.
-          </p>
+          <div className="bulletin-title">
+            <h2>Play the hit board game in your browser! Always free with no ads!</h2>
+          </div>
+          <div className="bulletin-content">
+            <p>
+              Sorry is a board game for 2-4 players. Players move their three or
+              four pieces around the board, attempting to get all of their pieces
+              "home" before any other player. The game title comes from the many
+              ways in which a player can negate the progress of another, while
+              issuing an apologetic "Sorry!"
+            </p>
+          </div>
+          <div className="bulletin-link">
+            <p>
+              Check out our "
+        
+                <a href="https://github.com/jaewooklim1/Not-Sorry-Clone">
+                  github page
+                </a>
+           
+              " to learn about how the game works, or hop into the the game lobby
+              itself right now.
+            </p>
+          </div>
         </div>
 
         {/* <div className="greeting-instructions">Instructions</div> */}
