@@ -1,3 +1,8 @@
+// @font-face {
+//   font-family: 'Acquire';
+//   src: url('../../public/fonts/Aquire-BW0ox.ttf');
+// }
+
 body {
   // background: rgb(19, 27, 58);
   font-family: 'Taviraj', serif;
@@ -90,6 +95,20 @@ body {
 .splashImage {
   display: flex;
   padding-top: 75px;
+  justify-content: center;
+}
+
+.greeting-subtitle {
+  font-size: 25px;
+  color: white;
+  text-align: center;
+  display: relative;
+  margin-top: 5px;
+}
+
+.splashImage {
+  display: flex;
+  padding: 50px;
   justify-content: center;
 }
 

@@ -29,11 +29,19 @@ const RoomSchema = new Schema({
         type: String,
         default: Date.now,
     },
+    gameActive: {
+        type: Boolean,
+        default: false
+    },
     gameState: {
         players: [{
             id: {
                 type: Schema.Types.ObjectId,
                 ref: 'User'
+            },
+            active: {
+                type: Boolean,
+                default: false
             },
             team: {
                 type: String,

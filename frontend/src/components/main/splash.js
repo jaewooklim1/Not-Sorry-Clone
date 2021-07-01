@@ -63,18 +63,18 @@ class Splash extends React.Component {
           </div>  
         </div> */}
 
-        <div className="test-background"></div>
+        {/* <div className="test-background"></div> */}
         <footer
           className="footer"
-          style={{position: 'absolute', bottom: '-500px'}}
+          style={{position: 'absolute', bottom: '-50px'}}
         >
           <div className="logo-background-row">
             <div className="logo-background-column"></div>
           </div>
 
-          <div className="back-to-top" onClick={() => window.scrollTo(0, 0)}>
+          {/* <div className="back-to-top" onClick={() => window.scrollTo(0, 0)}>
             Back to top
-          </div>
+          </div> */}
           <div className="sub-bottom-footer">
             <div className="get-to-know-text">Get to Know the Creators</div>
             <div className="get-to-know">
