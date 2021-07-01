@@ -4,7 +4,7 @@ import {closeModal} from '../../actions/modal_actions';
 import AddRoom from './add_room_form'; 
 
 const mSTP= (state)=> {
-    console.log("container", state);
+    // console.log("container", state);
     return({ 
     room: { 
         roomname:'',

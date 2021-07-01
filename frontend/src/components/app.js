@@ -74,6 +74,10 @@ const App = () => {
             dispatch(fetchRooms());
         })
 
+        // socket.on("tester_msg", msg => {
+        //     console.log(msg);
+        // })
+
     }, []);
 
     return (

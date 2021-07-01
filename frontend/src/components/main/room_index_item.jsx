@@ -61,7 +61,7 @@ const RoomIndexItem = ({ room, currentUser }) => {
                     <div
                         className="individual-rooms"
                         onClick={() => {
-                            console.log("ON CLICK");
+                            // console.log("ON CLICK");
                             if (Object.values(room.players).includes(currentUser.id) || room.players.length < 4) {
                                 socket.emit("join_room", { room, user_id });
                             } else {
