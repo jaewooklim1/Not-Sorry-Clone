@@ -15,7 +15,7 @@ class Splash extends React.Component {
         <div className="splashImage">
           <img src="https://i.imgur.com/ETjxAwz.gif" />
         </div>
-        <div className="bulletin-board">
+        {/* <div className="bulletin-board">
           <div className="bulletin-title">
             <h2>Play the hit board game in your browser! Always free with no ads!</h2>
           </div>
@@ -40,7 +40,7 @@ class Splash extends React.Component {
               itself right now.
             </p>
           </div>
-        </div>
+        </div> */}
 
         {/* <div className="greeting-instructions">Instructions</div> */}
         {/* <div id="page">
