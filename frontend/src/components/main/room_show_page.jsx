@@ -13,7 +13,7 @@ class RoomShowPage extends React.Component {
 
         };
 
-        console.log("From constructor", this.props.rooms);
+        // console.log("From constructor", this.props.rooms);
         this.exitRoom = this.exitRoom.bind(this);
     }
 
@@ -27,9 +27,9 @@ class RoomShowPage extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         // console.log("currState", room);
-        console.log("prevProps", prevProps);
-        console.log("prevState", prevState);
-        console.log("currProps", this.props);
+        // console.log("prevProps", prevProps);
+        // console.log("prevState", prevState);
+        // console.log("currProps", this.props);
         // if (!this.props.liveRoom) {
         //     return;
         // }
@@ -60,10 +60,10 @@ class RoomShowPage extends React.Component {
         // if (!rooms.data) {
         //     return null;
         // }
-        console.log("room", rooms);
+        // console.log("room", rooms);
         if (!this.props.rooms) return null;
-        console.log("props from show room", this.props);
-        console.log(this.state.players);
+        // console.log("props from show room", this.props);
+        // console.log(this.state.players);
 
         function idToName(id) {
 
@@ -90,7 +90,7 @@ class RoomShowPage extends React.Component {
         const renderBoard = () => {
             if (!this.props.liveRoom.gameState.players.length) {
                 return (
-                    <button onClick={() => socket.emit("start_game", this.props.liveRoom)}>
+                    <button className="start-game-btn btn third" onClick={() => socket.emit("start_game", this.props.liveRoom)}>
                         Start Game
                     </button>
                 )
