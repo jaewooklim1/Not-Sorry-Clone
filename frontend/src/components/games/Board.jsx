@@ -29,6 +29,23 @@ const Board = (props) => {
     const [pointCounter, setPointCounter] = useState(0);
 
 
+    const withTimeOut = (onSuccess, onTimeout, timeout) => {
+        let called = false;
+
+        const timer = setTimeout(() => {
+            if (called) return;
+            called = true;
+            onTimeout();
+        }, timeout)
+
+        return (...args) => {
+            if (called) return;
+            called = true;
+            clearTimeout(timer);
+            onSuccess();
+        }
+    }
+
     // useEffect(() => {
     //     dispatch(fetchUsers())
     // }, []) 
@@ -70,7 +87,7 @@ const Board = (props) => {
         return username;
 
     }
-    console.log("liveRoom from board", liveRoom);
+    // console.log("liveRoom from board", liveRoom);
     return (
         <div className="board-page-container">
             <div className="board-page-section">
@@ -156,8 +173,10 @@ const Board = (props) => {
                                 {idToName(liveRoom.players[liveRoom.gameState.currentPlayer])}
                             </p>
                             <button className="dice" onClick={() => {
-                                updateActivity()
-                                rollDice()
+                            //    socket.emit("tester", ({liveRoom}, withTimeOut(rollDice(), () => {
+                            //        console.log("Room will be deleted!")
+                            //    }, 15 * 60)));
+                                rollDice();
                             }}>
                                 🎲
                             </button>

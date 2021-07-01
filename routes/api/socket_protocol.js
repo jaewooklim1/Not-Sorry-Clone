@@ -151,18 +151,25 @@ const onConnect = (socket, io) => {
         return io.to(foundRoom._id.toString()).emit("started_game", foundRoom);
     })
 
-    socket.on("update_activity", async ({liveRoom}) => {
-        let inactivityTimer;
-        let foundRoom = await Room.findById(liveRoom._id);
-        clearTimeout(inactivityTimer);
+    // socket.on("update_activity", async ({liveRoom}) => {
+    //     let inactivityTimer;
+    //     let foundRoom = await Room.findById(liveRoom._id);
+    //     clearTimeout(inactivityTimer);
 
-        inactivityTimer = setTimeout(() => {
-            console.log("pppppppppppppppppppppoooooooooooppppppppp");
-            Room.findByIdAndDelete(foundRoom._id)
-            io.emit("update_rooms");
-            socket.broadcast.emit("update_rooms");
-        }, 10000);
-    })
+    //     inactivityTimer = setTimeout(() => {
+    //         console.log("PoP");
+    //         Room.findByIdAndDelete(foundRoom._id)
+    //         io.emit("update_rooms");
+    //         socket.broadcast.emit("update_rooms");
+    //     }, 1000);
+    // })
+
+    socket.on("tester", async ({liveRoom}, msg) => {
+        let foundRoom = Room.findById(liveRoom._id);
+
+        io.to(foundRoom._id.toString()).emit("tester_msg", msg);
+        socket.broadcast.emit("tester_msg", msg);
+    }) 
 
     socket.on("exit_game", async ({ playerId, liveRoom }) => {
 

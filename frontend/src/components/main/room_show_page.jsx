@@ -13,7 +13,7 @@ class RoomShowPage extends React.Component {
 
         };
 
-        console.log("From constructor", this.props.rooms);
+        // console.log("From constructor", this.props.rooms);
         this.exitRoom = this.exitRoom.bind(this);
     }
 
@@ -23,22 +23,6 @@ class RoomShowPage extends React.Component {
         this.props.fetchUsers();
 
         // this.exitRoom = this.exitRoom.bind(this);
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        // console.log("currState", room);
-        console.log("prevProps", prevProps);
-        console.log("prevState", prevState);
-        console.log("currProps", this.props);
-        // if (!this.props.liveRoom) {
-        //     return;
-        // }
-        // if(!prevState) {
-        //     return null;
-        // }
-        // if (this.props.liveRoom.players !== prevState.players) {
-        //     this.props.fetchUsers();
-        // }
     }
 
     exitRoom(e) {
@@ -60,10 +44,10 @@ class RoomShowPage extends React.Component {
         // if (!rooms.data) {
         //     return null;
         // }
-        console.log("room", rooms);
+        // console.log("room", rooms);
         if (!this.props.rooms) return null;
-        console.log("props from show room", this.props);
-        console.log(this.state.players);
+        // console.log("props from show room", this.props);
+        // console.log(this.state.players);
 
         function idToName(id) {
 
