@@ -1,13 +1,14 @@
 .board-page-container {
     height: 100%;
     width: 100%;
+    position: relative;
 }
 
 .board-page-section {
     position: relative;
     margin-bottom: 15px;
 
-    height: 215px;
+    height: 169px;
 }
 
 .tiles-container {
@@ -53,8 +54,25 @@
     height: 500px;
 }
 
+.exit-game-button {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    /* margin: 10px; */
+    font-size: 22px;
+    height: 40px;
+    width: 150px;
+    border: gray outset 5px;
+}
+
 .exit-game-button:hover {
     cursor: pointer;
+}
+
+.exit-game-button:active {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
 
 .dice-counter-container {
@@ -85,13 +103,13 @@
     font-weight: bold;
     color: whitesmoke;
     align-items: center;
-    border: red solid 2px;
+    border: gray outset 5px;
     width: 155px;
     /* border: gray inset 5px; */
 }
 
 .team-name {
-    border-bottom: red solid 2px;
+    border-bottom: gray solid 2px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -106,7 +124,7 @@
     font-size: 30px;
     padding-top: 5px;
     padding-bottom: 5px;
-    border-bottom: red solid 2px;
+    border-bottom: gray solid 2px;
     color: whitesmoke;
 } 
 
@@ -125,27 +143,67 @@
 
 .dice-roll {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     font-weight: bold;
     align-items: center;
     font-size: 25px;
     justify-content: center;
     color: whitesmoke;
     width: 100%;
-    height: 50px;
+    position: relative;
+    bottom: -43px;
+}
+
+.die-info-cont {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    font-size: 15px;
+}
+
+.curr-prev-cont {
+    display: flex;
+    flex-direction: row;
+}
+
+.prev-roll-cont {
+    display: flex;
+    margin-left: 8px;
+    font-size: 20px;
+}
+
+.dice-roll-exit-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 522px;
+    align-items: center;
+    margin-top: 10px;
+
 }
 
 .dice {
     display: flex;
     justify-content: center;
     text-align: center;
-    margin: 10px;
-    font-size: 27px;
-    height: 49px;
-    width: 63px;
+    margin-right: 3px;
+    font-size: 22px;
+    height: 40px;
+    width: 55px;
     border: gray outset 5px;
     /* background-color: brown; */
 }
+
+.dice:hover {
+    cursor: pointer;
+}
+
+.dice:active {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+
 
 .each-turn-container {
     /* margin-top: 10px; */
@@ -162,7 +220,7 @@
     flex-direction: row;
     font-weight: bold;
     align-items: center;
-    font-size: 25px;
+    font-size: 20px;
     color: whitesmoke;
 }
 
@@ -181,12 +239,12 @@
     border-top: gray outset 5px;
     border-left: gray outset 5px;
     border-bottom: gray outset 5px;
-    padding: 8px;
+    padding: 6px;
 }
 
 .dice-roll-number {
     border: gray inset 5px;
-    padding: 8px;
+    padding: 6px;
     padding-left: 15px;
     padding-right: 15px;
 }
