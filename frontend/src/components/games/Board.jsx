@@ -166,29 +166,7 @@ const Board = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="dice-roll">
-                        <div className="current-player-container">
-                            <h3 className="current-player-title">Current Player </h3>
-                            <p className="current-player-name">
-                                {idToName(liveRoom.players[liveRoom.gameState.currentPlayer])}
-                            </p>
-                            <button className="dice" onClick={() => {
-                            //    socket.emit("tester", ({liveRoom}, withTimeOut(rollDice(), () => {
-                            //        console.log("Room will be deleted!")
-                            //    }, 15 * 60)));
-                                rollDice();
-                            }}>
-                                🎲
-                            </button>
-                        </div>
-                        <h3 className="dice-roll-title">Previous Roll</h3>
-                        <p className="dice-roll-number">
-                            {liveRoom.gameState.prevDiceRoll}
-                        </p>
-                        <div className="exit-game-button" onClick={() => exitGame()}>
-                            Exit Game
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <div className="board-container">
@@ -438,10 +416,44 @@ const Board = (props) => {
             {/* <button onClick={() => socket.emit("start_game", liveRoom)}>
                 start game
             </button> */}
-            <div className="dice-counter-container">
+            {/* <div className="dice-counter-container">
 
                 <div className="each-turn-container">
 
+                </div>
+            </div> */}
+            <div className="dice-roll">
+                <div className="curr-prev-cont">
+                    <div className="current-player-container">
+                        <h3 className="current-player-title">Current Player </h3>
+                        <p className="current-player-name">
+                            {idToName(liveRoom.players[liveRoom.gameState.currentPlayer])}
+                        </p>
+                    </div>
+                    <div className="prev-roll-cont">
+                        <h3 className="dice-roll-title">Previous Roll</h3>
+                        <p className="dice-roll-number">
+                            {liveRoom.gameState.prevDiceRoll}
+                        </p>
+                    </div>
+                </div>
+                <div className="dice-roll-exit-cont">
+                    <div className="die-info-cont">
+                        <button className="dice" onClick={() => {
+                            //    socket.emit("tester", ({liveRoom}, withTimeOut(rollDice(), () => {
+                            //        console.log("Room will be deleted!")
+                            //    }, 15 * 60)));
+                            rollDice();
+                        }}>
+                            🎲
+                        </button>
+                        <p className="die-info">
+                            (click to roll)
+                        </p>
+                    </div>
+                    <div className="exit-game-button" onClick={() => exitGame()}>
+                        Exit Game
+                    </div>
                 </div>
             </div>
         </div>
