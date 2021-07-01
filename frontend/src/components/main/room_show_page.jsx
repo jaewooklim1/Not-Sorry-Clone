@@ -67,14 +67,14 @@ class RoomShowPage extends React.Component {
 
         function idToName(id) {
 
-            if (!users.data) {
+            if (!users) {
                 return null;
             }
 
             let username = "";
             let i = 0;
-            while (i <= users.data.length) {
-                let user = users.data[i];
+            while (i <= users.length) {
+                let user = users[i];
                 if (user._id === id) {
                     username = user.username;
                     break;
@@ -115,7 +115,7 @@ class RoomShowPage extends React.Component {
                             {
                                 this.props.liveRoom.players.map((playerId, index) => {
                                     return (
-                                        <div className={`player-ctn pos-${index}`}>
+                                        <div key={playerId} className={`player-ctn pos-${index}`}>
                                             <p className="player-name" key={playerId.id} >
                                                 {
                                                     idToName(playerId)
