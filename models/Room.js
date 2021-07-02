@@ -27,11 +27,16 @@ const RoomSchema = new Schema({
     },
     date: {
         type: String,
-        default: Date.now,
+        default: Date.now(),
     },
     gameActive: {
         type: Boolean,
         default: false
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now(),
+        require: true
     },
     gameState: {
         players: [{

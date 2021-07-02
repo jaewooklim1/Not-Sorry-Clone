@@ -10,7 +10,7 @@ const validateRoomInput = require('../../validation/rooms');
 
 
 const onConnect = (socket, io) => {
-    socket.on('create_new_room', (room) => {
+    socket.on('create_new_room', async (room) => {
         const { errors, isValid } = validateRoomInput(room);
 
         if (!isValid) {
@@ -24,10 +24,12 @@ const onConnect = (socket, io) => {
         });
 
         //should redirect user to /room/:room_id
-        newRoom.save()
+        await newRoom.save()
+        newRoom.populate("players");
         socket.join(newRoom._id);
         socket.emit("push_new_room", (newRoom));
         socket.broadcast.emit("add_new_room", (newRoom));
+
     })
 
     //socket on delete_room, room 
@@ -63,7 +65,7 @@ const onConnect = (socket, io) => {
 
     socket.on("get_room", async room_id => {
 
-        let foundRoom = await Room.findById(room_id);
+        let foundRoom = await Room.findById(room_id).populate("players");
         socket.join(foundRoom._id.toString());
         // console.log("room from socket", foundRoom);
         socket.emit("got_room", foundRoom);
@@ -74,7 +76,7 @@ const onConnect = (socket, io) => {
         const playerTeams = ["red", "blue", "yellow", "green"];
 
         // if (room.players.length === 4) {
-        let foundRoom = await Room.findById(liveRoom._id);
+        let foundRoom = await Room.findById(liveRoom._id).populate("players");
         // const endGame = () => {
 
         for (let i = 0; i <= 3; i++) {
@@ -151,19 +153,6 @@ const onConnect = (socket, io) => {
         return io.to(foundRoom._id.toString()).emit("started_game", foundRoom);
     })
 
-    // socket.on("update_activity", async ({liveRoom}) => {
-    //     let inactivityTimer;
-    //     let foundRoom = await Room.findById(liveRoom._id);
-    //     clearTimeout(inactivityTimer);
-
-    //     inactivityTimer = setTimeout(() => {
-    //         console.log("PoP");
-    //         Room.findByIdAndDelete(foundRoom._id)
-    //         io.emit("update_rooms");
-    //         socket.broadcast.emit("update_rooms");
-    //     }, 1000);
-    // })
-
     socket.on("tester", async ({liveRoom}, msg) => {
         let foundRoom = Room.findById(liveRoom._id);
 
@@ -176,7 +165,7 @@ const onConnect = (socket, io) => {
         // console.log("in the backend!");
         // console.log("live room in backend", liveRoom);
 
-        let foundRoom = await Room.findById(liveRoom._id);
+        let foundRoom = await Room.findById(liveRoom._id).populate("players");
 
         foundRoom.gameState.players.filter(player => {
             // console.log("player.id in newPLayers", player.id);
@@ -223,7 +212,7 @@ const onConnect = (socket, io) => {
 
     socket.on("roll_dice", async ({ playerId, liveRoom }) => {
         // console.log("live room from roll dice", liveRoom);
-        let foundRoom = await Room.findById(liveRoom._id);
+        let foundRoom = await Room.findById(liveRoom._id).populate("players");
 
         const diceRoll = await rollDice(playerId, foundRoom);
         // console.log("DICE ROLL", diceRoll);

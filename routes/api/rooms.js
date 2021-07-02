@@ -7,7 +7,12 @@ const passport = require('passport');
 const Room = require('../../models/Room');
 const validateRoomInput = require('../../validation/rooms');
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+    let expirationTime = new Date(Date.now());
+    expirationTime.setHours(expirationTime.getHours() + 2);
+    // expirationTime.setMinutes(expirationTime.getMinutes() - 1);
+    await Room.deleteMany({createdAt: {$lt: expirationTime}})
+    //Date.now 
     Room.find()
     .sort({date: -1})
     .then(room => res.json(room))
