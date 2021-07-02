@@ -44,6 +44,7 @@ a {
 
 .players{
     grid-area: 1 / 2 / 5 / 3; 
+    color: black;
     // margin: 20px auto;
     // width:50vh;
     // height:50vh;
@@ -150,5 +151,33 @@ a {
 }
 
 .third:hover {
+    box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+}
+
+.start-game-button-cont {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -55px;
+}
+
+.start-game-button {
+    border-color: #3498db;
+    color: whitesmoke;
+    box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+    -webkit-transition: all 150ms ease-in-out;
+    transition: all 150ms ease-in-out;
+    margin: auto;
+    height: 50px;
+    width: 200px;
+    border-radius: 15px;
+    font-size: 22px;
+    font-weight: bolder;
+    // background-color: #3498db;
+}
+
+.start-game-button:hover {
+    cursor: pointer;
+    color: black;
     box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
 }

@@ -12,6 +12,11 @@ body {
   background-color: rgb(4, 4, 56);
 }
 
+.whole-page {
+  width: 100%;
+  height: 100%;
+}
+
 .sorry-banner {
   position: absolute;
   top: 0;
@@ -75,7 +80,7 @@ body {
 }
 
 .greeting-line {
-  font-size: 50px;
+  font-size: 60px;
   color: white;
   text-align: center;
   display: relative;
@@ -94,7 +99,7 @@ body {
 
 .splashImage {
   display: flex;
-  padding-top: 75px;
+  padding-top: 81px;
   justify-content: center;
 }
 
@@ -106,11 +111,6 @@ body {
   margin-top: 5px;
 }
 
-.splashImage {
-  display: flex;
-  padding: 50px;
-  justify-content: center;
-}
 
 // .logout-button {
 //   width: 275px;
@@ -177,15 +177,13 @@ body {
 }
 
 .footer {
-  /* position: absolute; */
-  left: 0;
-  right: 0;
-  bottom: -100px;
+  position: relative; 
+ 
+  bottom: -50px; 
   width: 100%;
-  min-width: 905px;
-  height: 190px;
+  // min-width: 905px;
+  height: 176px;
   background-color: #242f3e;
-  display: block;
   float: bottom;
   background: rgba(8, 21, 41, 0.863);
   justify-content: space-between;
@@ -193,7 +191,7 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
+  font-size: 30px;
   font: inherit;
   /* vertical-align: baseline; */
   /* position: fixed; */
@@ -247,8 +245,8 @@ body {
 }
 
 .profile-picture {
-  height: 25px;
-  width: 25px;
+  height: 38px;
+  width: 38px;
   border: 1px solid darkgray;
   border-radius: 50%;
 }
@@ -259,6 +257,7 @@ body {
 
 .sub-bottom-footer {
   /* margin-top: 90% */
+  font-size: 25px;
 }
 .bottom-footer {
   /* margin-top: 90%; */
