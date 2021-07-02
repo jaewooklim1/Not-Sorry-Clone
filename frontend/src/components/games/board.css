@@ -104,7 +104,7 @@
     color: whitesmoke;
     align-items: center;
     border: gray outset 5px;
-    width: 155px;
+    /* width: 155px; */
     /* border: gray inset 5px; */
 }
 
@@ -123,6 +123,8 @@
     width: 150px;
     font-size: 30px;
     padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
     padding-bottom: 5px;
     border-bottom: gray solid 2px;
     color: whitesmoke;
@@ -154,6 +156,8 @@
     bottom: -43px;
 }
 
+
+
 .die-info-cont {
     display: flex;
     flex-direction: row;
@@ -175,8 +179,8 @@
 .dice-roll-exit-cont {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    width: 522px;
+    justify-content: space-between;
+    width: 448px;
     align-items: center;
     margin-top: 10px;
 
@@ -249,3 +253,12 @@
     padding-right: 15px;
 }
 
+@media only screen and (max-height: 855px) {
+    .curr-prev-cont {
+        justify-content: baseline;
+    }
+
+    .dice-roll-exit-cont {
+        justify-content: baseline;
+    }
+}

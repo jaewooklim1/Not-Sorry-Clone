@@ -33,6 +33,11 @@ const RoomSchema = new Schema({
         type: Boolean,
         default: false
     },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        index: {expires: '1m'}
+    },
     gameState: {
         players: [{
             id: {
@@ -88,6 +93,7 @@ const RoomSchema = new Schema({
             type: Number,
             default: 0
         }
+       
     }
 })
 
