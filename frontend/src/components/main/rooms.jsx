@@ -56,7 +56,7 @@ class Rooms extends React.Component {
         <div className="button-add-room">
           <button
             onClick={() => {
-              console.log("on click");
+              // console.log("on click");
               this.props.openModal({ modal: "addRoom" });
             }}
             className="btn third"
