@@ -49,28 +49,6 @@ class RoomShowPage extends React.Component {
         // console.log("props from show room", this.props);
         // console.log(this.state.players);
 
-        function idToName(id) {
-
-            if (!users) {
-                return null;
-            }
-
-            let username = "";
-            let i = 0;
-            while (i <= users.length) {
-                let user = users[i];
-                if (user._id === id) {
-                    username = user.username;
-                    break;
-                }
-                i++
-            }
-
-            return username;
-
-        }
-
-
         const renderBoard = () => {
             if (!this.props.liveRoom.gameState.players.length) {
                 return (
@@ -111,12 +89,12 @@ class RoomShowPage extends React.Component {
                         <ul className="players">
 
                             {
-                                this.props.liveRoom.players.map((playerId, index) => {
+                                this.props.liveRoom.players.map((player, index) => {
                                     return (
-                                        <div key={playerId} className={`player-ctn pos-${index}`}>
-                                            <p className="player-names" key={playerId.id} >
+                                        <div key={player._id} className={`player-ctn pos-${index}`}>
+                                            <p className="player-names" key={player._id} >
                                                 {
-                                                    idToName(playerId)
+                                                    player.username
                                                 }
                                             </p>
                                         </div>

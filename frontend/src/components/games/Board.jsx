@@ -14,53 +14,13 @@ const Board = (props) => {
     const dispatch = useDispatch();
     const playerId = useSelector(state => (state.session.user.id))
     const liveRoom = useSelector(state => (state.entities.liveRoom.liveRoom));
-    // const users = useSelector(state => state.users)
-    const playerUsername = useSelector(state => (state.session.user.username));
-    const [pos, setPos] = useState(-1);
-    const [pieces, setPiece] = useState([]);
-    const [safeZonePieces, setSafeZonePieces] = useState([]);
-    const [redCounter, setRedCounter] = useState(0);
-    const [blueCounter, setBlueCounter] = useState(0);
-    const [greenCounter, setGreenCounter] = useState(0);
-    const [yellowCounter, setYellowCounter] = useState(0);
-    let [activePieces, setActivePieces] = useState([]);
-    const [players, setPlayers] = useState([{ team: "red" }, { team: "blue" }, { team: "green" }, { team: "yellow" }]);
-    const [currentPlayer, setCurrentPlayer] = useState(0);
-    const [pointCounter, setPointCounter] = useState(0);
 
-
-    const withTimeOut = (onSuccess, onTimeout, timeout) => {
-        let called = false;
-
-        const timer = setTimeout(() => {
-            if (called) return;
-            called = true;
-            onTimeout();
-        }, timeout)
-
-        return (...args) => {
-            if (called) return;
-            called = true;
-            clearTimeout(timer);
-            onSuccess();
-        }
-    }
-
-    // useEffect(() => {
-    //     dispatch(fetchUsers())
-    // }, []) 
     const rollDice = () => {
-        // console.log(liveRoom)
-        // console.log(liveRoom.gameState)
-        // console.log(playerId)
+
         if (playerId === liveRoom.gameState.players[liveRoom.gameState.currentPlayer].id) {
             console.log("dice is rolling")
             socket.emit("roll_dice", { playerId, liveRoom });
         }
-    }
-
-    const updateActivity = () => {
-        socket.emit("update_activity", ({ liveRoom }))
     }
 
     const exitGame = () => {
@@ -68,26 +28,6 @@ const Board = (props) => {
         history.push('/rooms');
     }
 
-    function idToName(id) {
-        if (!props.users.data) {
-            return null;
-        }
-
-        let username = "";
-        let i = 0;
-        while (i <= props.users.data.length) {
-            let user = props.users.data[i];
-            if (user._id === id) {
-                username = user.username;
-                break;
-            }
-            i++
-        }
-
-        return username;
-
-    }
-    // console.log("liveRoom from board", liveRoom);
     return (
         <div className="board-page-container">
             <div className="board-page-section">
@@ -100,7 +40,7 @@ const Board = (props) => {
                                 </div>
                                 <div className="player-name">
                                     <p>
-                                        {liveRoom.players[0] ? idToName(liveRoom.players[0]) : "N/A"}
+                                        {liveRoom.players[0] ? liveRoom.players[0].username : "N/A"}
                                     </p>
                                 </div>
                                 <div className="each-player-count">
@@ -118,7 +58,7 @@ const Board = (props) => {
                                 </div>
                                 <div className="player-name">
                                     <p>
-                                        {liveRoom.players[1] ? idToName(liveRoom.players[1]) : "N/A"}
+                                        {liveRoom.players[1] && liveRoom.gameState.players[1].active === true ? liveRoom.players[1].username : "N/A"}
                                     </p>
                                 </div>
                                 <div className="each-player-count">
@@ -136,7 +76,7 @@ const Board = (props) => {
                                 </div>
                                 <div className="player-name">
                                     <p>
-                                        {liveRoom.players[2] ? idToName(liveRoom.players[2]) : "N/A"}
+                                        {liveRoom.players[2] ? liveRoom.players[2].username : "N/A"}
                                     </p>
                                 </div>
                                 <div className="each-player-count">
@@ -154,7 +94,7 @@ const Board = (props) => {
                                 </div>
                                 <div className="player-name">
                                     <p>
-                                        {liveRoom.players[3] ? idToName(liveRoom.players[3]) : "N/A"}
+                                        {liveRoom.players[3] ? liveRoom.players[3].useranme : "N/A"}
                                     </p>
                                 </div>
                                 <div className="each-player-count">
@@ -427,7 +367,7 @@ const Board = (props) => {
                     <div className="current-player-container">
                         <h3 className="current-player-title">Current Player </h3>
                         <p className="current-player-name">
-                            {idToName(liveRoom.players[liveRoom.gameState.currentPlayer])}
+                            {liveRoom.players[liveRoom.gameState.currentPlayer].username}
                         </p>
                     </div>
                     <div className="prev-roll-cont">
