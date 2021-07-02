@@ -109,9 +109,23 @@ class RoomShowPage extends React.Component {
                     </header>
                     <div className="game-box">
 
+                        <div className="game-colors">
+                            <div className="red">
+                                <h3>Red Team</h3>
+                            </div> 
+                            <div className="blue">
+                                <h3>Blue Team</h3>
+                            </div> 
+                            <div className="yellow">
+                                <h3>Yellow Team</h3>
+                            </div> 
+                            <div className="green">
+                                <h3>Green Team</h3>
+                            </div> 
+                        </div>
+
                         <ul className="players">
 
-                            <h3> Current Players: </h3>
                             {
                                 this.props.liveRoom.players.map((playerId, index) => {
                                     return (
