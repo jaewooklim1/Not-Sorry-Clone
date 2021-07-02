@@ -326,7 +326,8 @@ body {
 .instructions-modal {
   display: table;
   margin-bottom: 25px;
-  border: 1px double rgb(0, 0, 0);
+  // border: 1px rgb(0, 0, 0);
+  // border-style: double;
   padding: 5px;
   // background-color: rgba(255, 191, 191, 0.288);
 }
@@ -344,7 +345,7 @@ body {
   font-size: 75px;
   text-align: center;
   text-shadow: 2px 2px #000000;
-  color: rgb(153, 153, 153);
+  color: rgb(214, 214, 214);
   flex-direction: column;
   float: right;
   margin-top: 10px;
@@ -352,7 +353,8 @@ body {
 }
 
 .game-instructions-list {
-  border: 1px double rgb(0, 0, 0);
+  // border: 1px rgb(0, 0, 0);
+  // border-style: double;
 }
 .game-instructions-list > li {
   font-family: sans-serif;
