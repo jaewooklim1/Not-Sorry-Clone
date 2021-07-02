@@ -51,14 +51,14 @@ class RoomShowPage extends React.Component {
 
         function idToName(id) {
 
-            if (!users.data) {
+            if (!users) {
                 return null;
             }
 
             let username = "";
             let i = 0;
-            while (i <= users.data.length) {
-                let user = users.data[i];
+            while (i <= users.length) {
+                let user = users[i];
                 if (user._id === id) {
                     username = user.username;
                     break;
@@ -74,7 +74,7 @@ class RoomShowPage extends React.Component {
         const renderBoard = () => {
             if (!this.props.liveRoom.gameState.players.length) {
                 return (
-                    <button onClick={() => socket.emit("start_game", this.props.liveRoom)}>
+                    <button className="start-game-btn btn third" onClick={() => socket.emit("start_game", this.props.liveRoom)}>
                         Start Game
                     </button>
                 )
@@ -93,13 +93,27 @@ class RoomShowPage extends React.Component {
                     </header>
                     <div className="game-box">
 
+                        <div className="game-colors">
+                            <div className="red">
+                                <h3>Red Team</h3>
+                            </div> 
+                            <div className="blue">
+                                <h3>Blue Team</h3>
+                            </div> 
+                            <div className="yellow">
+                                <h3>Yellow Team</h3>
+                            </div> 
+                            <div className="green">
+                                <h3>Green Team</h3>
+                            </div> 
+                        </div>
+
                         <ul className="players">
 
-                            <h3> Current Players: </h3>
                             {
                                 this.props.liveRoom.players.map((playerId, index) => {
                                     return (
-                                        <div className={`player-ctn pos-${index}`}>
+                                        <div key={playerId} className={`player-ctn pos-${index}`}>
                                             <p className="player-name" key={playerId.id} >
                                                 {
                                                     idToName(playerId)
