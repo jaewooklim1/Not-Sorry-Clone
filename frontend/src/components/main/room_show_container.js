@@ -10,7 +10,7 @@ const mSTP= (state, ownProps)=> {
         userId: state.session.user.id,
         rooms: state.entities.rooms,
         liveRoom: state.entities.liveRoom.liveRoom,
-        users: state.entities.users,
+        users: state.entities.users.data,
     })
 }
 
