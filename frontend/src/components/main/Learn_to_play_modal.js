@@ -50,7 +50,7 @@ export default function SimpleModal() {
         <div className="instructions-2">Instructions</div>
       </div>
 
-      <div classname="game-instructions-list">
+      <div className="game-instructions-list">
         <li>
           Player must roll a 7 or a 11 to get out of the starting zone with
           their pieces

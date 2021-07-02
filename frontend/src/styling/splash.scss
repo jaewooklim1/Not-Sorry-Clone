@@ -328,7 +328,7 @@ body {
   margin-bottom: 25px;
   border: 1px double rgb(0, 0, 0);
   padding: 5px;
-  background-color: rgba(139, 139, 139, 0.288);
+  // background-color: rgba(255, 191, 191, 0.288);
 }
 .pieces-fighting {
   height: 90px;
@@ -344,17 +344,22 @@ body {
   font-size: 75px;
   text-align: center;
   text-shadow: 2px 2px #000000;
-  color: rgb(255, 255, 255);
+  color: rgb(153, 153, 153);
   flex-direction: column;
   float: right;
   margin-top: 10px;
   margin-left: 20px;
 }
 
+.game-instructions-list {
+  border: 1px double rgb(0, 0, 0);
+}
 .game-instructions-list > li {
   font-family: sans-serif;
-  color: white;
+  color: rgb(185, 185, 185);
   text-shadow: 2px 2px #000000;
+  font-size: 20px;
+  margin: 10px;
 }
 
 // .instructions {
