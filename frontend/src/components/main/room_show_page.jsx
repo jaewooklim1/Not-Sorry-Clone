@@ -74,7 +74,7 @@ class RoomShowPage extends React.Component {
         const renderBoard = () => {
             if (!this.props.liveRoom.gameState.players.length) {
                 return (
-                    <button className="start-game-btn btn third" onClick={() => socket.emit("start_game", this.props.liveRoom)}>
+                    <button className="btn third" onClick={() => socket.emit("start_game", this.props.liveRoom)}>
                         Start Game
                     </button>
                 )
@@ -114,7 +114,7 @@ class RoomShowPage extends React.Component {
                                 this.props.liveRoom.players.map((playerId, index) => {
                                     return (
                                         <div key={playerId} className={`player-ctn pos-${index}`}>
-                                            <p className="player-name" key={playerId.id} >
+                                            <p className="player-names" key={playerId.id} >
                                                 {
                                                     idToName(playerId)
                                                 }
@@ -124,17 +124,17 @@ class RoomShowPage extends React.Component {
                                 })
                             }
                         </ul>
+                    </div>
                         <div className="start-game-button-cont">
                             {startbtn()}
                         </div>
-                    </div>
 
                 </>
             )
         }
         const startbtn = () => {
             return (
-                <button onClick={() => socket.emit("start_game", this.props.liveRoom)}>
+                <button className="start-game-button" onClick={() => socket.emit("start_game", this.props.liveRoom)}>
                     Start Game
                 </button>
             )
