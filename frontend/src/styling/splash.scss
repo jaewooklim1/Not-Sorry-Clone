@@ -180,7 +180,7 @@ body {
   /* position: absolute; */
   left: 0;
   right: 0;
-  bottom: -100px; 
+  bottom: -100px;
   width: 100%;
   min-width: 905px;
   height: 190px;
@@ -321,4 +321,54 @@ body {
 //   text-align: center;
 //   margin: 10px;
 //   font-family: 'Comfortaa';
+// }
+
+.instructions-modal {
+  display: table;
+  margin-bottom: 25px;
+  border: 1px double rgb(0, 0, 0);
+  padding: 5px;
+  background-color: rgba(139, 139, 139, 0.288);
+}
+.pieces-fighting {
+  height: 90px;
+
+  flex-direction: column;
+  float: left;
+
+  // margin: 0px;
+}
+
+.instructions-2 {
+  font-family: sans-serif;
+  font-size: 75px;
+  text-align: center;
+  text-shadow: 2px 2px #000000;
+  color: rgb(255, 255, 255);
+  flex-direction: column;
+  float: right;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.game-instructions-list > li {
+  font-family: sans-serif;
+  color: white;
+  text-shadow: 2px 2px #000000;
+}
+
+// .instructions {
+//   font-family: sans-serif;
+//   font-size: 50px;
+//   text-align: center;
+//   text-shadow: 2px 2px #000000;
+//   color: rgb(255, 255, 255);
+//   float: right;
+// }
+
+// .game-instructions-modal {
+//   padding-top: 50px;
+// }
+// .game-instructions-modal > li {
+//   list-style-image: url('../Red_Piece_small.png');
 // }
