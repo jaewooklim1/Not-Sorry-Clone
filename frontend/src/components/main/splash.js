@@ -8,33 +8,39 @@ class Splash extends React.Component {
     return (
       <div className="whole-page">
         <NavBar></NavBar>
-        <div className="greeting-line">Welcome to Sorry</div>
+        <div className="greeting-line">Welcome to NotSorry</div>
         <div className="greeting-subtitle">
           America's popular board game now online!
         </div>
         <div className="splashImage">
           <img src="https://i.imgur.com/ETjxAwz.gif" />
         </div>
-        <div className="bulletin-board">
-          <h2>
-            Play the hit board game in your browser! Always free with no ads!
-          </h2>
-          <p>
-            Sorry is a board game for 2-4 players. Players move their three or
-            four pieces around the board, attempting to get all of their pieces
-            "home" before any other player. The game title comes from the many
-            ways in which a player can negate the progress of another, while
-            issuing an apologetic "Sorry!"
-          </p>
-          <p>
-            Check out our "
-            <a href="https://github.com/jaewooklim1/Not-Sorry-Clone">
-              github page
-            </a>
-            " to learn about how the game works, or hop into the the game lobby
-            itself right now.
-          </p>
-        </div>
+        {/* <div className="bulletin-board">
+          <div className="bulletin-title">
+            <h2>Play the hit board game in your browser! Always free with no ads!</h2>
+          </div>
+          <div className="bulletin-content">
+            <p>
+              Sorry is a board game for 2-4 players. Players move their three or
+              four pieces around the board, attempting to get all of their pieces
+              "home" before any other player. The game title comes from the many
+              ways in which a player can negate the progress of another, while
+              issuing an apologetic "Sorry!"
+            </p>
+          </div>
+          <div className="bulletin-link">
+            <p>
+              Check out our "
+        
+                <a href="https://github.com/jaewooklim1/Not-Sorry-Clone">
+                  github page
+                </a>
+           
+              " to learn about how the game works, or hop into the the game lobby
+              itself right now.
+            </p>
+          </div>
+        </div> */}
 
         {/* <div className="greeting-instructions">Instructions</div> */}
         {/* <div id="page">
@@ -57,18 +63,18 @@ class Splash extends React.Component {
           </div>  
         </div> */}
 
-        <div className="test-background"></div>
+        {/* <div className="test-background"></div> */}
         <footer
           className="footer"
-          style={{position: 'absolute', bottom: '-500px'}}
+          style={{position: 'absolute', bottom: '-50px'}}
         >
           <div className="logo-background-row">
             <div className="logo-background-column"></div>
           </div>
 
-          <div className="back-to-top" onClick={() => window.scrollTo(0, 0)}>
+          {/* <div className="back-to-top" onClick={() => window.scrollTo(0, 0)}>
             Back to top
-          </div>
+          </div> */}
           <div className="sub-bottom-footer">
             <div className="get-to-know-text">Get to Know the Creators</div>
             <div className="get-to-know">

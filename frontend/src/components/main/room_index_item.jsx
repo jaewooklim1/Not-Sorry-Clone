@@ -38,15 +38,15 @@ const RoomIndexItem = ({ room, currentUser }) => {
     const dispatch = useDispatch();
     const user_id = useSelector((store) => store.session.user.id);
 
-    console.log("room from room index item", room);
-    console.log("currentUser", currentUser);
+    // console.log("room from room index item", room);
+    // console.log("currentUser", currentUser);
     const renderDelete = () => {
         return (
             <button className="delete-rooms-button"
                 onClick={() => {
-                    console.log("Click")
-                    console.log("room to remove", { room });
-                    socket.emit("remove_room", { room });
+                    // console.log("Click")
+                    // console.log("room to remove", { room, currentUser });
+                    socket.emit("remove_room", { room, currentUser });
                     // dispatch(fetchRooms());
                 }}> 
                 Delete Room
@@ -61,7 +61,7 @@ const RoomIndexItem = ({ room, currentUser }) => {
                     <div
                         className="individual-rooms"
                         onClick={() => {
-                            console.log("ON CLICK");
+                            // console.log("ON CLICK");
                             if (Object.values(room.players).includes(currentUser.id) || room.players.length < 4) {
                                 socket.emit("join_room", { room, user_id });
                             } else {
@@ -78,7 +78,8 @@ const RoomIndexItem = ({ room, currentUser }) => {
                         </li>
 
                     </div>
-                      {room.players[0] === currentUser.id ? renderDelete() : ""}
+                      {/* {room.players[0] === currentUser.id ? renderDelete() : ""} */}
+                      {renderDelete()}
                 </div>
             </CardContent>
         </Card>

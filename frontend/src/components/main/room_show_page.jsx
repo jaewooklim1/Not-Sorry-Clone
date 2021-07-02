@@ -25,22 +25,6 @@ class RoomShowPage extends React.Component {
         // this.exitRoom = this.exitRoom.bind(this);
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        // console.log("currState", room);
-        // console.log("prevProps", prevProps);
-        // console.log("prevState", prevState);
-        // console.log("currProps", this.props);
-        // if (!this.props.liveRoom) {
-        //     return;
-        // }
-        // if(!prevState) {
-        //     return null;
-        // }
-        // if (this.props.liveRoom.players !== prevState.players) {
-        //     this.props.fetchUsers();
-        // }
-    }
-
     exitRoom(e) {
         // e.preventDefault(); 
         const index = this.props.rooms.data.players.indexOf(this.props.userId);
@@ -96,7 +80,7 @@ class RoomShowPage extends React.Component {
                 )
             }
             // this.props.liveRoom.gameState.players.length === 4 ? socket.emit("start_game", this.props.liveRoom) : console.log("game in progress");
-            return <Game users={this.props.users}/>;
+            return <Game users={this.props.users} />;
         }
 
         const renderShow = () => {
@@ -140,27 +124,28 @@ class RoomShowPage extends React.Component {
                                 })
                             }
                         </ul>
-                        {/* {startbtn()} */}
+                        <div className="start-game-button-cont">
+                            {startbtn()}
+                        </div>
                     </div>
 
                 </>
             )
         }
-        // const startbtn = () => {
-        //     if (rooms.data.players.length === 4) {
-        //         return (
-        //             <button onClick={() => socket.emit("start_game", this.props.liveRoom)}>
-        //                 Start Game
-        //             </button>
-        //         )
-        //     }
-        //     // }
+        const startbtn = () => {
+            return (
+                <button onClick={() => socket.emit("start_game", this.props.liveRoom)}>
+                    Start Game
+                </button>
+            )
+        }
 
 
         // }    // console.log("live room from render", this.props.liveRoom.players);
         return (
             <div>
-                {this.props.liveRoom.players.length === 4 ? renderBoard() : renderShow()}
+                {this.props.liveRoom.gameActive === true ? renderBoard() : renderShow()}
+                {/* {renderShow()} */}
             </div>
         )
 

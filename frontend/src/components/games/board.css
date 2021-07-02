@@ -1,17 +1,21 @@
-.board-container {
-    height: 650px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 100px;
+.board-page-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.board-page-section {
+    position: relative;
+    margin-bottom: 15px;
+
+    height: 169px;
 }
 
 .tiles-container {
     display: flex;
     flex-wrap: wrap;
-    width: 40%;
-    position: relative;
-    top: 97px;
+    width: 30%;
+    transform: rotate(90deg);
 }
 
 .board-tile {
@@ -22,135 +26,192 @@
     box-sizing: border-box;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
 } 
+
+.each-play-details {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    display: flex;
+    margin-top: 10px;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.counter-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.board-container {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* top: -10px; */
+    height: 500px;
+}
+
+.exit-game-button {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    /* margin: 10px; */
+    font-size: 22px;
+    height: 40px;
+    width: 150px;
+    border: gray outset 5px;
+}
+
+.exit-game-button:hover {
+    cursor: pointer;
+}
+
+.exit-game-button:active {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
 
 .dice-counter-container {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 11px;
+    position: relative;
+    top: -8px;
     /* background-color: yellow; */
     /* height: 350px; */
     width: 100%;
-}
-.counter-container {
-    display: flex;
- 
 }
 
 .red-counter-container {
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     font-family: 'Inconsolata', monospace;
+    margin-bottom: 8px;
+    margin-left: 15px;
 }
 .red-counter {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     font-size: 25px;
     font-weight: bold;
     color: whitesmoke;
     align-items: center;
+    border: gray outset 5px;
+    width: 155px;
     /* border: gray inset 5px; */
 }
 
-
-.red-player-name {
+.team-name {
+    border-bottom: gray solid 2px;
+    width: 100%;
     display: flex;
     justify-content: center;
-    /* background-color: brown; */
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.player-name {
+    display: flex;
+    justify-content: center;
     width: 150px;
     font-size: 30px;
-
-
-    border-left: gray outset 5px;
-    border-right: gray outset 5px;
-    border-bottom: gray outset 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: gray solid 2px;
     color: whitesmoke;
 } 
-.counter-number {
-    padding-right: 8px;
-    border: gray inset 5px;
-    margin-right: 13px;
-    padding: 8px;
-    padding-left: 15px;
-    padding-right: 15px;
-}
 
-.blue-counter {
+.each-player-count {
     display: flex;
     flex-direction: row;
-    font-size: 25px;
-    font-weight: bold;
-    color: whitesmoke;
-    align-items: center;
-    /* border: gray inset 5px; */
-
-}
-
-
-.yellow-counter {
-    display: flex;
-    flex-direction: row;
-    font-size: 25px;
-    font-weight: bold;
-    color: whitesmoke;
-    align-items: center;
-    /* border: gray inset 5px; */
-
+    justify-content: space-between;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .counter-title {
-    border-left: gray inset 5px;
-    border-bottom: gray inset 5px;
-    border-top: gray inset 5px;
-    padding: 8px;
+  justify-content: space-around;
 }
 
-.green-counter {
-    display: flex;
-    flex-direction: row;
-    font-size: 25px;
-    font-weight: bold;
-    align-items: center;
-    color: whitesmoke;
-    /* border: gray inset 5px; */
-
-}
 
 .dice-roll {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     font-weight: bold;
     align-items: center;
     font-size: 25px;
     justify-content: center;
     color: whitesmoke;
+    width: 100%;
+    position: relative;
+    bottom: -43px;
+}
+
+.die-info-cont {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    font-size: 15px;
+}
+
+.curr-prev-cont {
+    display: flex;
+    flex-direction: row;
+}
+
+.prev-roll-cont {
+    display: flex;
+    margin-left: 8px;
+    font-size: 20px;
+}
+
+.dice-roll-exit-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 522px;
+    align-items: center;
+    margin-top: 10px;
+
 }
 
 .dice {
     display: flex;
     justify-content: center;
     text-align: center;
-    margin: 10px;
-    font-size: 27px;
-    height: 49px;
-    width: 63px;
+    margin-right: 3px;
+    font-size: 22px;
+    height: 40px;
+    width: 55px;
     border: gray outset 5px;
     /* background-color: brown; */
 }
 
+.dice:hover {
+    cursor: pointer;
+}
+
+.dice:active {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+
+
 .each-turn-container {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    height: 50px;
+    /* margin-top: 10px; */
+   
+    /* flex-direction: column; */
+    /* height: 50px; */
     position: relative;
-    bottom: -823px;
+    /* bottom: -99px; */
     font-family: 'Inconsolata', monospace;
 }
 
@@ -159,7 +220,7 @@
     flex-direction: row;
     font-weight: bold;
     align-items: center;
-    font-size: 25px;
+    font-size: 20px;
     color: whitesmoke;
 }
 
@@ -178,12 +239,12 @@
     border-top: gray outset 5px;
     border-left: gray outset 5px;
     border-bottom: gray outset 5px;
-    padding: 8px;
+    padding: 6px;
 }
 
 .dice-roll-number {
     border: gray inset 5px;
-    padding: 8px;
+    padding: 6px;
     padding-left: 15px;
     padding-right: 15px;
 }

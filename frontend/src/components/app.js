@@ -17,8 +17,8 @@ import Game from './games/Game';
 import { receiveLiveGame, startGame, endGame } from '../actions/live_room_actions';
 import { fetchRooms } from '../actions/room_actions'
 import './reset.scss';
-// export const socket = io.connect('http://localhost:5000');
-export const socket = io.connect('https://not-sorry.herokuapp.com/');
+export const socket = io.connect('http://localhost:5000');
+// export const socket = io.connect('https://not-sorry.herokuapp.com/');
 
 
 socket.connect();
@@ -51,17 +51,17 @@ const App = () => {
         })
 
         socket.on("started_game", liveRoom => {
-            console.log("gamestate from frontend", liveRoom);
+            // console.log("gamestate from frontend", liveRoom);
             dispatch(startGame(liveRoom));
         })
 
         socket.on("got_room", room => {
-            console.log("got room from frontend", room);
+            // console.log("got room from frontend", room);
             dispatch(receiveLiveGame(room));
         })
 
         socket.on("updated_game_state", liveRoom => {
-            console.log("update_game_state liveRoom", liveRoom);
+            // console.log("update_game_state liveRoom", liveRoom);
             dispatch(receiveLiveGame(liveRoom));
         })
 
@@ -70,9 +70,13 @@ const App = () => {
         }) 
 
         socket.on("update_rooms", () => {
-            console.log("updating rooms");
+            // console.log("updating rooms");
             dispatch(fetchRooms());
         })
+
+        // socket.on("tester_msg", msg => {
+        //     console.log(msg);
+        // })
 
     }, []);
 

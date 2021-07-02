@@ -1,3 +1,8 @@
+// @font-face {
+//   font-family: 'Acquire';
+//   src: url('../../public/fonts/Aquire-BW0ox.ttf');
+// }
+
 body {
   // background: rgb(19, 27, 58);
   font-family: 'Taviraj', serif;
@@ -93,6 +98,20 @@ body {
   justify-content: center;
 }
 
+.greeting-subtitle {
+  font-size: 25px;
+  color: white;
+  text-align: center;
+  display: relative;
+  margin-top: 5px;
+}
+
+.splashImage {
+  display: flex;
+  padding: 50px;
+  justify-content: center;
+}
+
 // .logout-button {
 //   width: 275px;
 //   /* border: 1px solid rgba(255,255,255,0.3); */
@@ -161,7 +180,7 @@ body {
   /* position: absolute; */
   left: 0;
   right: 0;
-  /* bottom: -500px; */
+  bottom: -100px; 
   width: 100%;
   min-width: 905px;
   height: 190px;
@@ -261,33 +280,45 @@ body {
   list-style: none;
 }
 
-.bulletin-board {
-  height: 300px;
-  width: 50%;
-  margin-left: 500px;
-  background-color: #181818;
-  color: #ddd;
-  padding: 10px;
-  justify-content: center;
-  display: relative;
-  // text-align: center;
-  margin-top: 145px;
-  font-family: 'Comfortaa';
-  border: 3px;
-  padding: 20px;
-  border-radius: 15px;
-  border: 3px solid rgba(76, 121, 245, 0.15);
-}
+// .bulletin-board {
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: column;
+//   height: 400px;
+//   margin:auto;
+//   width: 50%;
+//   // margin-left: 500px;
+//   background-color: #181818;
+//   color: #ddd;
+//   padding: 10px;
+//   // display: relative;
+//   // text-align: center;
+//   // margin-top: 145px;
+//   font-family: 'Comfortaa';
+//   border: 3px;
+//   padding: 20px;
+//   border-radius: 15px;
+//   border: 3px solid rgba(76, 121, 245, 0.15);
+// }
 
-.bulletin-board > h2 {
-  font-size: 30px;
-  text-align: center;
-  margin: 25px;
-  font-family: Comfortaa;
-}
+// .bulletin-title {
+//   box-sizing: border-box;
+//   font-size: 20px;
+//   text-align: center;
+//   margin: 10px;
+//   font-family: 'Comfortaa';
+// }
 
-.bulletin-board > p {
-  font-size: 17px;
-  margin: 35px;
-  font-family: Comfortaa;
-}
+// .bulletin-content {
+//   font-size: 17px;
+//   text-align: justify;
+//   margin: 10px;
+//   font-family: 'Comfortaa';
+// }
+
+// .bulletin-link {
+//   font-size: 17px;
+//   text-align: center;
+//   margin: 10px;
+//   font-family: 'Comfortaa';
+// }
