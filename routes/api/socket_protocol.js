@@ -71,6 +71,22 @@ const onConnect = (socket, io) => {
         socket.emit("got_room", foundRoom);
     })
 
+    socket.on("exit_lobby", async ({liveRoom, userId}) => {
+        let foundRoom = await Room.findById(liveRoom._id)
+
+        foundRoom.players.filter(player => {
+            console.log("player", player._id);
+            console.log("user", userId);
+            if (player._id !== userId) {
+                return player;
+            }
+        });
+
+        await foundRoom.save();
+        // console.log(newPlayers);
+        console.log(foundRoom.players);
+    })
+
     socket.on("start_game", async liveRoom => {
         // console.log("room in start game", liveRoom);
         const playerTeams = ["red", "blue", "yellow", "green"];

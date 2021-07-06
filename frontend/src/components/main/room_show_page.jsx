@@ -2,7 +2,7 @@ import '../../styling/room_show_page.scss';
 import { socket } from '../app';
 import Game from '../games/Game';
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, Redirect } from 'react-router-dom';
 import '../../styling/room_show_page.scss';
 
 class RoomShowPage extends React.Component {
@@ -37,7 +37,7 @@ class RoomShowPage extends React.Component {
     render() {
 
         const { rooms } = this.props;
-        let { roomId, userId, users } = this.props;
+        const { liveRoom, userId } = this.props;
 
         if (!this.props.liveRoom) return null;
 
@@ -48,6 +48,10 @@ class RoomShowPage extends React.Component {
         if (!this.props.rooms) return null;
         // console.log("props from show room", this.props);
         // console.log(this.state.players);
+
+        const exitLobby = () => {
+            socket.emit("exit_lobby", ({liveRoom, userId}))
+        }
 
         const renderBoard = () => {
             if (!this.props.liveRoom.gameState.players.length) {
@@ -65,7 +69,7 @@ class RoomShowPage extends React.Component {
             return (
                 <>
                     <header className="back">
-                        <NavLink className="btn third" to='/rooms' >
+                        <NavLink className="btn third" to='/rooms' onClick={() => exitLobby()} >
                             Back to Lobby
                         </NavLink>
                     </header>
