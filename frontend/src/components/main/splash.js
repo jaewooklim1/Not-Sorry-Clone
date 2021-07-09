@@ -66,7 +66,7 @@ class Splash extends React.Component {
         {/* <div className="test-background"></div> */}
         <footer
           className="footer"
-          style={{position: 'absolute', bottom: '-50px'}}
+          style={{bottom: '-50px'}}
         >
           <div className="logo-background-row">
             <div className="logo-background-column"></div>

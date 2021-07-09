@@ -229,7 +229,7 @@ const onConnect = (socket, io) => {
     socket.on("roll_dice", async ({ playerId, liveRoom }) => {
         // console.log("live room from roll dice", liveRoom);
         let foundRoom = await Room.findById(liveRoom._id).populate("players");
-
+    
         const diceRoll = await rollDice(playerId, foundRoom);
         // console.log("DICE ROLL", diceRoll);
         foundRoom.gameState.prevDiceRoll = diceRoll;
@@ -248,13 +248,13 @@ const onConnect = (socket, io) => {
             }
         }
 
-        const endGame = (liveRoom) => {
-            io.to(liveRoom._id.toString()).emit("end_game", liveRoom);
-        }
+        // const endGame = (liveRoom) => {
+        //     io.to(liveRoom._id.toString()).emit("end_game", liveRoom);
+        // }
 
-        if (gameOver(foundRoom)) {
-            return endGame(foundRoom);
-        }
+        // if (gameOver(foundRoom)) {
+        //     return endGame(foundRoom);
+        // }
 
         // foundRoom.gameState.players = correctPlayers;
         // console.log("newPlayers", correctPlayers);
@@ -281,10 +281,9 @@ const onConnect = (socket, io) => {
 
 
 const rollDice = async (playerId, liveRoom) => {
-
-    const currentPlayerId = liveRoom.gameState.players[liveRoom.gameState.currentPlayer]._id;
+    // const currentPlayerId = liveRoom.gameState.players[liveRoom.gameState.currentPlayer]._id;
     // const currentPlayer = liveRoom.gameState.players[liveRoom.gameState.currentPlayer];
-    const players = liveRoom.gameState.players;
+    // const players = liveRoom.gameState.players;
     // if (playerId === currentPlayerId) {
     const dieOne = Math.floor(Math.random() * (13 - 1) + 1);
     // console.log("dice roll", (dieOne));
