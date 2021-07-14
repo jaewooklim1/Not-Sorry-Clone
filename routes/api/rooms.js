@@ -8,14 +8,14 @@ const Room = require('../../models/Room');
 const validateRoomInput = require('../../validation/rooms');
 
 router.get("/", async (req, res) => {
-    // let expirationTime = new Date(Date.now());
+    let expirationTime = new Date(Date.now());
     // let expirationDate = new Date(Date.now());
-    // expirationTime.setHours(expirationTime.getHours() - 2);
+    expirationTime.setHours(expirationTime.getHours() - 2);
     // expirationDate.setDate(experationDate.get);
     // console.log("DATE ---------------", expirationDate);
     // console.log("expirationTime---------------------", expirationTime, "--------------------")
-    // expirationTime.setMinutes(expirationTime.getMinutes() - 1);
-    // await Room.deleteMany({createdAt: {$lt: expirationTime}})
+    // expirationTime.setMinutes(expirationTime.getMinutes() - 5);
+    await Room.deleteMany({createdAt: {$lt: expirationTime}})
     //Date.now 
     Room.find()
     .sort({date: -1})

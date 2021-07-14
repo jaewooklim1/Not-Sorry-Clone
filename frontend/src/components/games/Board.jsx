@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { fetchUsers } from '../../actions/session_actions';
+// import { fetchUsers } from '../../actions/session_actions';
 import { socket } from '../app';
 import './board.css';
 import Tile from './tile';
@@ -12,12 +12,12 @@ const rowArr = new Array(16).fill(1);
 
 const Board = (props) => {
     const history = useHistory();
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const playerId = useSelector(state => (state.session.user.id))
     const liveRoom = useSelector(state => (state.entities.liveRoom.liveRoom));
 
     const rollDice = () => {
-        console.log("liveRoom", liveRoom);
+        // console.log("liveRoom", liveRoom);
         if (playerId === liveRoom.gameState.players[liveRoom.gameState.currentPlayer].id) {
             console.log("dice is rolling")
             socket.emit("roll_dice", { playerId, liveRoom });
@@ -394,13 +394,7 @@ const Board = (props) => {
                     </div>
                     <div className="dice-roll-exit-cont">
                         <div className="die-info-cont">
-                            <button className="dice" onClick={() => {
-                                //    socket.emit("tester", ({liveRoom}, withTimeOut(rollDice(), () => {
-                                //        console.log("Room will be deleted!")
-                                //    }, 15 * 60)));
-                                console.log("CLICK");
-                                rollDice();
-                            }}>
+                            <button className="dice" onClick={() => rollDice()}>
                                 🎲
                             </button>
                             <p className="die-info">

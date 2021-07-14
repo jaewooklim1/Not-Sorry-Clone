@@ -1,12 +1,12 @@
 import React from 'react';
 import '../../styling/splash.scss';
-import {AuthRoute, ProtectedRoute} from '../../util/route_util';
-import login_form_container from '../session/login_form_container';
-import signup_form_container from '../session/signup_form_container';
-import rooms_container from '../main/rooms_container';
+// import {AuthRoute, ProtectedRoute} from '../../util/route_util';
+// import login_form_container from '../session/login_form_container';
+// import signup_form_container from '../session/signup_form_container';
+// import rooms_container from '../main/rooms_container';
 import {Link, Switch} from 'react-router-dom';
 import Modal from '../main/Learn_to_play_modal';
-import LoginModal from '../main/Login_modal';
+// import LoginModal from '../main/Login_modal';
 
 class NavBar extends React.Component {
   constructor(props) {
