@@ -2,7 +2,7 @@ import '../../styling/room_show_page.scss';
 import { socket } from '../app';
 import Game from '../games/Game';
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, Redirect } from 'react-router-dom';
 import '../../styling/room_show_page.scss';
 
 class RoomShowPage extends React.Component {
@@ -37,7 +37,7 @@ class RoomShowPage extends React.Component {
     render() {
 
         const { rooms } = this.props;
-        let { roomId, userId, users } = this.props;
+        const { liveRoom, userId } = this.props;
 
         if (!this.props.liveRoom) return null;
 
@@ -49,32 +49,14 @@ class RoomShowPage extends React.Component {
         // console.log("props from show room", this.props);
         // console.log(this.state.players);
 
-        function idToName(id) {
-
-            if (!users) {
-                return null;
-            }
-
-            let username = "";
-            let i = 0;
-            while (i <= users.length) {
-                let user = users[i];
-                if (user._id === id) {
-                    username = user.username;
-                    break;
-                }
-                i++
-            }
-
-            return username;
-
+        const exitLobby = () => {
+            socket.emit("exit_lobby", ({liveRoom, userId}))
         }
-
 
         const renderBoard = () => {
             if (!this.props.liveRoom.gameState.players.length) {
                 return (
-                    <button className="start-game-btn btn third" onClick={() => socket.emit("start_game", this.props.liveRoom)}>
+                    <button className="btn third" onClick={() => socket.emit("start_game", this.props.liveRoom)}>
                         Start Game
                     </button>
                 )
@@ -87,7 +69,7 @@ class RoomShowPage extends React.Component {
             return (
                 <>
                     <header className="back">
-                        <NavLink className="btn third" to='/rooms' >
+                        <NavLink className="btn third" to='/rooms' onClick={() => exitLobby()} >
                             Back to Lobby
                         </NavLink>
                     </header>
@@ -111,12 +93,12 @@ class RoomShowPage extends React.Component {
                         <ul className="players">
 
                             {
-                                this.props.liveRoom.players.map((playerId, index) => {
+                                this.props.liveRoom.players.map((player, index) => {
                                     return (
-                                        <div key={playerId} className={`player-ctn pos-${index}`}>
-                                            <p className="player-name" key={playerId.id} >
+                                        <div key={player._id} className={`player-ctn pos-${index}`}>
+                                            <p className="player-names" key={player._id} >
                                                 {
-                                                    idToName(playerId)
+                                                    player.username
                                                 }
                                             </p>
                                         </div>
@@ -124,17 +106,17 @@ class RoomShowPage extends React.Component {
                                 })
                             }
                         </ul>
+                    </div>
                         <div className="start-game-button-cont">
                             {startbtn()}
                         </div>
-                    </div>
 
                 </>
             )
         }
         const startbtn = () => {
             return (
-                <button onClick={() => socket.emit("start_game", this.props.liveRoom)}>
+                <button className="start-game-button" onClick={() => socket.emit("start_game", this.props.liveRoom)}>
                     Start Game
                 </button>
             )
