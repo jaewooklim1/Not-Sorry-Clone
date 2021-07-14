@@ -41,7 +41,7 @@ const onConnect = (socket, io) => {
     })
 
     socket.on("join_room", async ({ room, user_id }) => {
-        let foundRoom = await Room.findById(room._id).populate("players");
+        let foundRoom = await Room.findById(room._id);
         if (!foundRoom.players.includes(user_id) && foundRoom.players.length <= 3) {
             // console.log("IO", io);
             // socket.join(foundRoom._id);
@@ -51,14 +51,14 @@ const onConnect = (socket, io) => {
             await foundRoom.save();
             foundRoom = await Room.findById(room._id).populate("players");
             // foundRoom.populate("players");
-            console.log("new players", foundRoom.players);
+            // console.log("new players", foundRoom.players);
             return io.to(foundRoom._id.toString()).emit("joined_room", (foundRoom));
             // io.to(foundRoom._id.toString()).emit("joined_room", (room));
             // return socket.to(foundRoom._id.toString()).emit("joined_room", (room));
             // console.log("backend join room");
         } else if (foundRoom.players.includes(user_id)) {
             socket.join(foundRoom._id.toString());
-            return io.to(foundRoom._id.toString()).emit("joined_room", (foundRoom));
+            return io.to(foundRoom._id.toString()).emit("already_joined_room", (foundRoom));
             // io.to(foundRoom._id.toString()).emit("joined_room", (room));
         }
         socket.emit("join_room_error", { error: "The room is full or you have already joined" });

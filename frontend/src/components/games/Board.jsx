@@ -1,5 +1,5 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 // import { fetchUsers } from '../../actions/session_actions';
 import { socket } from '../app';
@@ -16,23 +16,30 @@ const Board = (props) => {
     const playerId = useSelector(state => (state.session.user.id))
     const liveRoom = useSelector(state => (state.entities.liveRoom.liveRoom));
 
+
+    const maxPoint = () => {
+        return  (liveRoom.gameState.redCounter === 1 || liveRoom.gameState.redCounter === 1 || liveRoom.gameState.redCounter === 1 || liveRoom.gameState.redCounter === 1)  ?
+            true : false;
+    }
+
     const rollDice = () => {
-        // console.log("liveRoom", liveRoom);
-        if (playerId === liveRoom.gameState.players[liveRoom.gameState.currentPlayer].id) {
+        if ((playerId === liveRoom.gameState.players[liveRoom.gameState.currentPlayer].id) && (!maxPoint())) {
             console.log("dice is rolling")
             socket.emit("roll_dice", { playerId, liveRoom });
         }
     }
 
+
     const renderModal = () => {
-        return liveRoom.gameState.redCounter === 1 || liveRoom.gameState.redCounter === 1 || liveRoom.gameState.redCounter === 1 || liveRoom.gameState.redCounter === 1 ? 
-        <EndGameModal 
-        redCount={liveRoom.gameState.redCounter}
-        blueCount={liveRoom.gameState.blueCounter}
-        greenCount={liveRoom.gameState.greenCounter}
-        yellowCount={liveRoom.gameState.yellowCounter}
-        /> : "";
-    }   
+        return liveRoom.gameState.redCounter === 1 || liveRoom.gameState.redCounter === 1 || liveRoom.gameState.redCounter === 1 || liveRoom.gameState.redCounter === 1 ?
+            <EndGameModal
+                redCount={liveRoom.gameState.redCounter}
+                blueCount={liveRoom.gameState.blueCounter}
+                greenCount={liveRoom.gameState.greenCounter}
+                yellowCount={liveRoom.gameState.yellowCounter}
+            />
+            : "";
+    }
 
     const exitGame = () => {
         socket.emit("exit_game", { playerId, liveRoom });
@@ -42,7 +49,7 @@ const Board = (props) => {
     return (
 
         <>
-            { renderModal()}
+            {renderModal()}
 
             <div className="board-page-container">
                 <div className="board-page-section">
