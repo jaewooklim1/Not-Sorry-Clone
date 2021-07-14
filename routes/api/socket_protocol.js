@@ -13,10 +13,6 @@ const onConnect = (socket, io) => {
     socket.on('create_new_room', async (room) => {
         const { errors, isValid } = validateRoomInput(room);
 
-        if (!isValid) {
-
-        }
-
         const newRoom = new Room({
             roomname: room.roomname,
             user: room.user_id,
@@ -45,7 +41,7 @@ const onConnect = (socket, io) => {
     })
 
     socket.on("join_room", async ({ room, user_id }) => {
-        let foundRoom = await Room.findById(room._id)
+        let foundRoom = await Room.findById(room._id).populate("players");
         if (!foundRoom.players.includes(user_id) && foundRoom.players.length <= 3) {
             // console.log("IO", io);
             // socket.join(foundRoom._id);
@@ -53,14 +49,20 @@ const onConnect = (socket, io) => {
             foundRoom.players.push(user_id);
             // console.log("foundRoom", foundRoom);
             await foundRoom.save();
-            // return io.to(foundRoom._id).emit("joined_room", (room));
-            return io.to(foundRoom._id.toString()).emit("joined_room", (room));
+            foundRoom = await Room.findById(room._id).populate("players");
+            // foundRoom.populate("players");
+            console.log("new players", foundRoom.players);
+            return io.to(foundRoom._id.toString()).emit("joined_room", (foundRoom));
+            // io.to(foundRoom._id.toString()).emit("joined_room", (room));
+            // return socket.to(foundRoom._id.toString()).emit("joined_room", (room));
             // console.log("backend join room");
         } else if (foundRoom.players.includes(user_id)) {
             socket.join(foundRoom._id.toString());
-            return io.to(foundRoom._id.toString()).emit("joined_room", (room));
+            return io.to(foundRoom._id.toString()).emit("joined_room", (foundRoom));
+            // io.to(foundRoom._id.toString()).emit("joined_room", (room));
         }
         socket.emit("join_room_error", { error: "The room is full or you have already joined" });
+        // io.to(foundRoom._id.toString()).emit("join_room_error", { error: "The room is full or you have already joined" });
     })
 
     socket.on("get_room", async room_id => {
@@ -75,8 +77,8 @@ const onConnect = (socket, io) => {
         let foundRoom = await Room.findById(liveRoom._id)
 
         foundRoom.players.filter(player => {
-            console.log("player", player._id);
-            console.log("user", userId);
+            // console.log("player", player._id);
+            // console.log("user", userId);
             if (player._id !== userId) {
                 return player;
             }
@@ -84,22 +86,25 @@ const onConnect = (socket, io) => {
 
         await foundRoom.save();
         // console.log(newPlayers);
-        console.log(foundRoom.players);
+        // console.log(foundRoom.players);
     })
 
     socket.on("start_game", async liveRoom => {
+        // console.log("IN START GAME SOCKET");
         // console.log("room in start game", liveRoom);
         const playerTeams = ["red", "blue", "yellow", "green"];
 
         // if (room.players.length === 4) {
         let foundRoom = await Room.findById(liveRoom._id).populate("players");
+   
+        // console.log("players in foundRoom", foundRoom.players);
         // const endGame = () => {
 
         for (let i = 0; i <= 3; i++) {
             if (foundRoom.players[i]) {
                 foundRoom.gameState.players.push(
                     {
-                        id: liveRoom.players[i],
+                        id: foundRoom.players[i]._id,
                         team: playerTeams[i],
                         active: true,
                         pieces: [
@@ -161,6 +166,7 @@ const onConnect = (socket, io) => {
         foundRoom.gameActive = true;
 
         await foundRoom.save();
+        // console.log("foundRoom", foundRoom);
         // console.log("found room in backend", foundRoom.gameState);
 
         // setPlayers(newPlayers);
@@ -168,13 +174,6 @@ const onConnect = (socket, io) => {
         // console.log("Game has started", foundRoom.gameState.players);
         return io.to(foundRoom._id.toString()).emit("started_game", foundRoom);
     })
-
-    socket.on("tester", async ({liveRoom}, msg) => {
-        let foundRoom = Room.findById(liveRoom._id);
-
-        io.to(foundRoom._id.toString()).emit("tester_msg", msg);
-        socket.broadcast.emit("tester_msg", msg);
-    }) 
 
     socket.on("exit_game", async ({ playerId, liveRoom }) => {
 
