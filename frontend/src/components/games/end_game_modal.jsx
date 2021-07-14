@@ -55,7 +55,7 @@ const EndModal = (props) => {
     }
 
     return (
-        <div className="page-container">
+        <div className={`page-container`}>
             <div className="end-modal-container">
                 <div className="end-modal-content">
                     {showWinner()}
