@@ -152,6 +152,7 @@
     width: 100%;
     position: relative;
     bottom: -43px;
+    font-family: 'Inconsolata', monospace;
 }
 
 .die-info-cont {
