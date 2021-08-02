@@ -51,6 +51,7 @@ export default function SimpleModal() {
       </div>
 
       <div className="game-instructions-list">
+        <li><strong>Solo Testing is available</strong></li>
         <li>
           Player must roll a 7 or a 11 to get out of the starting zone with
           their pieces
