@@ -107,7 +107,7 @@ class RoomShowPage extends React.Component {
                             }
                         </ul>
                     </div>
-                    
+
                     <div className="start-game-button-cont">
                         {startbtn()}
                     </div>
@@ -116,9 +116,11 @@ class RoomShowPage extends React.Component {
             )
         }
         const startbtn = () => {
+            // console.log(this.props.liveRoom.players.length)
             return (
                 <button className="start-game-button" onClick={() => socket.emit("start_game", this.props.liveRoom)}>
-                    Start Game
+                    {this.props.liveRoom.players.length === 1 ? "Solo Explore" : "Start Game"}
+                    
                 </button>
             )
         }
