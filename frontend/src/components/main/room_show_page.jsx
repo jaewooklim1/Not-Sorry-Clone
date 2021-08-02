@@ -107,9 +107,10 @@ class RoomShowPage extends React.Component {
                             }
                         </ul>
                     </div>
-                        <div className="start-game-button-cont">
-                            {startbtn()}
-                        </div>
+                    
+                    <div className="start-game-button-cont">
+                        {startbtn()}
+                    </div>
 
                 </>
             )
