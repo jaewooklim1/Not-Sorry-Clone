@@ -1,11 +1,11 @@
-import React from 'react';
-import '../../styling/splash.scss';
+import React from "react";
+import "../../styling/splash.scss";
 // import {AuthRoute, ProtectedRoute} from '../../util/route_util';
 // import login_form_container from '../session/login_form_container';
 // import signup_form_container from '../session/signup_form_container';
 // import rooms_container from '../main/rooms_container';
-import {Link, Switch} from 'react-router-dom';
-import Modal from '../main/Learn_to_play_modal';
+import { Link, Switch } from "react-router-dom";
+import Modal from "../main/Learn_to_play_modal";
 // import LoginModal from '../main/Login_modal';
 
 class NavBar extends React.Component {
@@ -36,8 +36,14 @@ class NavBar extends React.Component {
     } else {
       return (
         <div>
-          {/* <Link to={'/signup'}>Signup</Link>
-                  <Link to={'/login'}>Login</Link> */}
+          {/* <ul className="banner-menu"> */}
+          <Link exact to="/login" className="fifth-menu">
+            Sign In
+          </Link>
+          <Link exact to="/signup" className="sixth-menu">
+            Register
+          </Link>
+          {/* </ul> */}
         </div>
       );
     }
@@ -48,7 +54,7 @@ class NavBar extends React.Component {
     return (
       <div>
         <h1></h1>
-        <div className="sorry-banner" style={{position: 'relative'}}>
+        <div className="sorry-banner" style={{ position: "relative" }}>
           <div className="sorry-logo-container">
             <img
               className="sorry-logo-transparent"
@@ -68,12 +74,12 @@ class NavBar extends React.Component {
               {/* <a className='second-menu' href='https://www.youtube.com/watch?v=y-puYiDeIhg'>Learn to Play</a> */}
               {/* <a className='fourth-menu' href='www.google.com'>Fourth Menu</a> */}
               {/* <LoginModal></LoginModal>      */}
-              <Link exact to="/login" className="fifth-menu">
+              {/* <Link exact to="/login" className="fifth-menu">
                 Sign In
               </Link>
               <Link exact to="/signup" className="sixth-menu">
                 Register
-              </Link>
+              </Link> */}
               <div className="seventh-menu">{this.getLinks()}</div>
             </ul>
             <div className="account-creation">
