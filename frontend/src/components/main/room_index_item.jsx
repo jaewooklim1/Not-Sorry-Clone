@@ -57,6 +57,31 @@ const RoomIndexItem = ({ room, currentUser }) => {
     );
   };
 
+  const style = {
+    color: "black",
+    cursor: "not-allowed",
+  };
+
+  const noRenderDelete = () => {
+    debugger;
+    return (
+      <button
+        style={style}
+        type="button"
+        disabled
+        className="delete-rooms-button"
+        onClick={() => {
+          // console.log("Click")
+          // console.log("room to remove", { room, currentUser });
+          socket.emit("remove_room", { room, currentUser });
+          // dispatch(fetchRooms());
+        }}
+      >
+        Delete Room
+      </button>
+    );
+  };
+
   return (
     <Card className={classes.root}>
       <CardContent className={classes.cardContent}>
@@ -83,8 +108,10 @@ const RoomIndexItem = ({ room, currentUser }) => {
               </Typography>
             </li>
           </div>
-          {/* {room.players[0] === currentUser.id ? renderDelete() : ""} */}
-          {renderDelete()}
+          {room.players[0] === currentUser.id
+            ? renderDelete()
+            : noRenderDelete()}
+          {/* {renderDelete()} */}
         </div>
       </CardContent>
     </Card>
