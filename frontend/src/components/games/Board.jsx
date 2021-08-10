@@ -116,7 +116,7 @@ const Board = (props) => {
                                     </div>
                                     <div className="player-name">
                                         <p>
-                                            {liveRoom.players[3] ? liveRoom.players[3].useranme : "N/A"}
+                                            {liveRoom.players[3] ? liveRoom.players[3].username : "N/A"}
                                         </p>
                                     </div>
                                     <div className="each-player-count">

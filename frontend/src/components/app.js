@@ -17,8 +17,8 @@ import Game from './games/Game';
 import { receiveLiveGame, startGame, endGame} from '../actions/live_room_actions';
 import { fetchRooms } from '../actions/room_actions'
 import './reset.scss';
-// export const socket = io.connect('http://localhost:5000');
-export const socket = io.connect('https://not-sorry.herokuapp.com/');
+export const socket = io.connect('http://localhost:5000');
+// export const socket = io.connect('https://not-sorry.herokuapp.com/');
 
 
 socket.connect();
@@ -48,6 +48,10 @@ const App = () => {
         })
         
         socket.on("already_joined_room", (room) => {
+            history.push(`/rooms/${room._id}`)
+        })
+
+        socket.on("already_joined_room", room => {
             history.push(`/rooms/${room._id}`)
         })
 

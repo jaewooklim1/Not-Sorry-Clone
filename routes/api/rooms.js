@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
     expirationTime.setHours(expirationTime.getHours() - 2);
     // expirationDate.setDate(experationDate.get);
     // console.log("DATE ---------------", expirationDate);
-    // console.log("expirationTime---------------------", expirationTime, "--------------------")
+    console.log("expirationTime---------------------", expirationTime, "--------------------")
     // expirationTime.setMinutes(expirationTime.getMinutes() - 5);
     await Room.deleteMany({createdAt: {$lt: expirationTime}})
     //Date.now 
