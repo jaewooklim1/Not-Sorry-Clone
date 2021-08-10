@@ -51,6 +51,7 @@ export default function SimpleModal() {
       </div>
 
       <div className="game-instructions-list">
+        <li><strong>Solo Testing is Available.</strong>However, 4 players are strongly recommended for a full game play experience </li>
         <li>
           Player must roll a 7 or a 11 to get out of the starting zone with
           their pieces

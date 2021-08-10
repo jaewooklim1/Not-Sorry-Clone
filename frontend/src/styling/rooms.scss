@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 .rooms-window {
   align-items: center;
@@ -22,7 +22,7 @@
 }
 
 .card-background-image {
-  background-image: url('https://i.gifer.com/McuD.gif');
+  background-image: url("https://i.gifer.com/McuD.gif");
   background-size: 50px, 190px;
   background-repeat: no-repeat;
   // width: 150px;
@@ -50,7 +50,7 @@
 //     // justify-content: center;
 // }
 .add-room-modal {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 .add-room-modal h2 {
   padding: 5px;
@@ -70,7 +70,7 @@
 }
 
 .rooms-page-text {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .create-room-btn:hover {
