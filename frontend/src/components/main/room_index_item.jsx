@@ -41,7 +41,7 @@ const RoomIndexItem = ({ room, currentUser }) => {
   // console.log("room from room index item", room);
   // console.log("currentUser", currentUser);
   const renderDelete = () => {
-    debugger;
+  
     return (
       <button
         className="delete-rooms-button"
@@ -63,7 +63,7 @@ const RoomIndexItem = ({ room, currentUser }) => {
   };
 
   const noRenderDelete = () => {
-    debugger;
+ 
     return (
       <button
         style={style}

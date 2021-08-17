@@ -33,11 +33,11 @@ const RoomSchema = new Schema({
         type: Boolean,
         default: false
     },
-    createdAt: {
-        type: Date,
-        default: Date.now(),
-        require: true
-    },
+    // createdAt: {
+    //     type: Date,
+    //     default: Date.now(),
+    //     require: true
+    // },
     gameState: {
         players: [{
             id: {
