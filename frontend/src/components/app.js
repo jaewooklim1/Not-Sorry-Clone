@@ -42,12 +42,15 @@ const App = () => {
         })
 
         socket.on("joined_room", (room) => {
-            // console.log("FRONT END WOOWWOWOWOOWOW")
             dispatch(receiveLiveGame(room))
             history.push(`/rooms/${room._id}`)
         })
         
         socket.on("already_joined_room", (room) => {
+            history.push(`/rooms/${room._id}`)
+        })
+
+        socket.on("already_joined_room", room => {
             history.push(`/rooms/${room._id}`)
         })
 
@@ -75,7 +78,7 @@ const App = () => {
         }) 
 
         socket.on("update_rooms", () => {
-            // console.log("updating rooms");
+            console.log("updating rooms");
             dispatch(fetchRooms());
         })
 

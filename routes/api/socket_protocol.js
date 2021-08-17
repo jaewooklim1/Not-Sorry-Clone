@@ -35,7 +35,7 @@ const onConnect = (socket, io) => {
         if (room.user === currentUser.id) {
             await Room.findByIdAndDelete(room._id);
         }
-
+        console.log("ROOM BEING DELETED");
         io.emit("update_rooms");
         socket.broadcast.emit("update_rooms");
     })
@@ -73,7 +73,7 @@ const onConnect = (socket, io) => {
         socket.emit("got_room", foundRoom);
     })
 
-    socket.on("exit_lobby", async ({liveRoom, userId}) => {
+    socket.on("exit_lobby", async ({ liveRoom, userId }) => {
         let foundRoom = await Room.findById(liveRoom._id)
 
         foundRoom.players.filter(player => {
@@ -89,6 +89,7 @@ const onConnect = (socket, io) => {
         // console.log(foundRoom.players);
     })
 
+
     socket.on("start_game", async liveRoom => {
         // console.log("IN START GAME SOCKET");
         // console.log("room in start game", liveRoom);
@@ -96,7 +97,7 @@ const onConnect = (socket, io) => {
 
         // if (room.players.length === 4) {
         let foundRoom = await Room.findById(liveRoom._id).populate("players");
-   
+
         // console.log("players in foundRoom", foundRoom.players);
         // const endGame = () => {
 
@@ -204,6 +205,8 @@ const onConnect = (socket, io) => {
         await foundRoom.save();
         io.to(foundRoom._id.toString()).emit("updated_game_state", foundRoom);
 
+
+        // removes player from room and check if any players remain
         if (checkActivePlayers(foundRoom) === false) {
             await Room.findByIdAndDelete(foundRoom._id);
             io.emit("update_rooms");
@@ -228,7 +231,7 @@ const onConnect = (socket, io) => {
     socket.on("roll_dice", async ({ playerId, liveRoom }) => {
         // console.log("live room from roll dice", liveRoom);
         let foundRoom = await Room.findById(liveRoom._id).populate("players");
-    
+
         const diceRoll = await rollDice(playerId, foundRoom);
         // console.log("DICE ROLL", diceRoll);
         foundRoom.gameState.prevDiceRoll = diceRoll;
