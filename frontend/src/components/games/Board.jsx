@@ -336,33 +336,36 @@ const Board = (props) => {
               boardIdx -= idx;
               return <Tile key={idx} idx={boardIdx} />;
             })}
-          </div>
-        </div>
-        <div className="dice-roll">
-          <div className="curr-prev-cont">
-            <div className="current-player-container">
-              <h3 className="current-player-title">Current Player </h3>
-              <p className="current-player-name">
-                {liveRoom.players[liveRoom.gameState.currentPlayer].username}
-              </p>
+            <div className="dice-roll">
+              <div className="curr-prev-cont">
+                <div className="current-player-container">
+                  <h3 className="current-player-title">Current Player </h3>
+                  <p className="current-player-name">
+                    {
+                      liveRoom.players[liveRoom.gameState.currentPlayer]
+                        .username
+                    }
+                  </p>
+                </div>
+              </div>
+              <div className="prev-roll-cont">
+                <h3 className="dice-roll-title">Previous Roll</h3>
+                <p className="dice-roll-number">
+                  {liveRoom.gameState.prevDiceRoll}
+                </p>
+              </div>
+              <div className="dice-roll-exit-cont">
+                <div className="die-info-cont">
+                  <button className="dice" onClick={() => rollDice()}>
+                    🎲
+                  </button>
+                  <p className="die-info">(click to roll)</p>
+                </div>
+              </div>
+              <div className="exit-game-button" onClick={() => exitGame()}>
+                Exit Game
+              </div>
             </div>
-          </div>
-          <div className="prev-roll-cont">
-            <h3 className="dice-roll-title">Previous Roll</h3>
-            <p className="dice-roll-number">
-              {liveRoom.gameState.prevDiceRoll}
-            </p>
-          </div>
-          <div className="dice-roll-exit-cont">
-            <div className="die-info-cont">
-              <button className="dice" onClick={() => rollDice()}>
-                🎲
-              </button>
-              <p className="die-info">(click to roll)</p>
-            </div>
-          </div>
-          <div className="exit-game-button" onClick={() => exitGame()}>
-            Exit Game
           </div>
         </div>
 

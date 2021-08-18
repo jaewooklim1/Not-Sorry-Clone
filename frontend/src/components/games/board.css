@@ -16,6 +16,7 @@
   flex-wrap: wrap;
   width: 30%;
   transform: rotate(90deg);
+  margin-right: 8%;
 }
 
 .board-tile {
@@ -150,15 +151,15 @@
   justify-content: left;
   color: whitesmoke;
   /* width: 100%; */
-  position: relative;
+  /* position: absolute; */
   /* bottom: -43px; */
   font-family: "Inconsolata", monospace;
   float: right;
-  top: -341px;
-  right: 50px;
+  top: 328px;
+  right: 0px;
+  z-index: 1;
+  transform: rotate(-90deg);
 }
-
-
 
 .die-info-cont {
   display: flex;

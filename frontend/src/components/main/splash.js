@@ -1,13 +1,14 @@
-import React from 'react';
-import '../../styling/splash.scss';
+import React from "react";
+import "../../styling/splash.scss";
 
-import NavBar from '../nav/navbar';
+import NavBar from "../nav/navbar";
+import NavBarContainer from "../nav/navbar_container";
 
 class Splash extends React.Component {
   render() {
     return (
       <div className="whole-page">
-        <NavBar></NavBar>
+        <NavBarContainer></NavBarContainer>
         <div className="greeting-line">Welcome to NotSorry</div>
         <div className="greeting-subtitle">
           America's popular board game now online!
@@ -64,10 +65,7 @@ class Splash extends React.Component {
         </div> */}
 
         {/* <div className="test-background"></div> */}
-        <footer
-          className="footer"
-          style={{bottom: '-50px'}}
-        >
+        <footer className="footer" style={{ bottom: "-50px" }}>
           <div className="logo-background-row">
             <div className="logo-background-column"></div>
           </div>
